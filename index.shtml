@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+	    <meta charset="utf-8"/>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>Harry Potter Synchronisation by DURAPHILMS</title>
+		<!-- IE -->
+		<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+		<!-- other browsers -->
+		<link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	</head>
+	<body>
+		<a name="top"></a>
+		<div id="title" class="title_font">
+			<!--
+			Harry Potter Synchronisation by DURAPHILMS
+			<div id="title_cover"></div>
+			-->
+		</div>
+		<div id="main" class="main_font">
+			<span class="description">
+				Willkommen liebe Potter-Fans, hier könnt Ihr Euch alle Teile von <i>
+				<a href="#hpudpva">HPudPvA</a></i>, <i><a href="#hpudodp">HPudOdP</a></i> und <i><a href="#hpudhlp">HPudHLP</a></i> anschauen.
+				Hierfür müsst Ihr die Nummer des entsprechenden Parts in das Nummernfeld unterhalb
+				vom Video eintragen und mit <key>ENTER</key> bestätigen. Das eigentliche Video könnt
+				Ihr herunterladen, indem Ihr mit der rechten Maustaste darauf klickt und
+				<key>Speichern unter ...</key> auswählt. Alternativ findet Ihr unter dem Video
+				auch den Download-Link für alle	Parts.<br/>
+				Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a> ;)
+			</span>
+			<p>
+				<!--
+					<i style="color: #F99;">
+					Ich ziehe gerade meinen Server um - die meisten PvA-Parts sollten problemlos laufen.
+					Bis zum 30. Nov. sollte ich die Traffic-Probleme von OdP unter Kontrolle bekommen....
+					<br/>
+					<br/>
+				-->
+				Diese Webseite benötigt HTML5-Unterstützung.</i>
+				<a href="https://html5test.com/" target="_blank" class="help">?</a>
+			</p>
+			<br/>
+			<p>
+				Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen):
+				<table width="100%" id="parts">
+					<tr width="100%">
+						<td class="descr">HPudPvA:</td>
+						<td id="pva1" class="number"><span class="tooltip" text="">1</span></td>
+						<td id="pva2" class="number"><span class="tooltip" text="">2</span></td>
+						<td id="pva3" class="number"><span class="tooltip" text="">3</span></td>
+						<td id="pva4" class="number"><span class="tooltip" text="">4</span></td>
+						<td id="pva5" class="number"><span class="tooltip" text="">5</span></td>
+						<td id="pva6" class="number"><span class="tooltip" text="">6</span></td>
+						<td id="pva7" class="number"><span class="tooltip" text="">7</span></td>
+						<td id="pva8" class="number"><span class="tooltip" text="">8</span></td>
+						<td id="pva9" class="number"><span class="tooltip" text="">9</span></td>
+						<td id="pva10" class="number"><span class="tooltip" text="">10</span></td>
+						<td id="pva11" class="number"><span class="tooltip" text="">11</span></td>
+						<td id="pva12" class="number"><span class="tooltip" text="">12</span></td>
+						<td id="pva13" class="number"><span class="tooltip" text="">13</span></td>
+						<td id="pva14" class="number"><span class="tooltip" text="">14</span></td>
+					</tr>
+					<tr width="100%">
+						<td class="descr">HPudOdP:</td>
+						<td id="odp1" class="number"><span class="tooltip" text="">1</span></td>
+						<td id="odp2" class="number"><span class="tooltip" text="">2</span></td>
+						<td id="odp3" class="number"><span class="tooltip" text="">3</span></td>
+						<td id="odp4" class="number"><span class="tooltip" text="">4</span></td>
+						<td id="odp5" class="number"><span class="tooltip" text="">5</span></td>
+						<td id="odp6" class="number"><span class="tooltip" text="">6</span></td>
+						<td id="odp7" class="number"><span class="tooltip" text="">7</span></td>
+						<td id="odp8" class="number"><span class="tooltip" text="">8</span></td>
+						<td id="odp9" class="number"><span class="tooltip" text="">9</span></td>
+						<td id="odp10" class="number"><span class="tooltip" text="">10</span></td>
+						<td id="odp11" class="number"><span class="tooltip" text="">11</span></td>
+						<td id="odp12" class="number"><span class="tooltip" text="">12</span></td>
+						<td id="odp13" class="number">--</td>
+						<td id="odp14" class="number">--</td>
+					</tr>
+					<tr width="100%">
+						<td class="descr">HPudHLP:</td>
+						<td id="hlp1" class="number"><span class="tooltip" text="">1</span></td>
+						<td id="hlp2" class="number">--</td>
+						<td id="hlp3" class="number">--</td>
+						<td id="hlp4" class="number">--</td>
+						<td id="hlp5" class="number">--</td>
+						<td id="hlp6" class="number">--</td>
+						<td id="hlp7" class="number">--</td>
+						<td id="hlp8" class="number">--</td>
+						<td id="hlp9" class="number">--</td>
+						<td id="hlp10" class="number">--</td>
+						<td id="hlp11" class="number">--</td>
+						<td id="hlp12" class="number">--</td>
+						<td id="hlp13" class="number">--</td>
+						<td id="hlp14" class="number">--</td>
+					</tr>
+					<tr width="100%" height="17px"></tr>
+					<tr width="100%" class="leg">
+						<td class="leg_desc">STATUS UNBEKANNT:</td>
+						<td class="number"></td>
+					</tr>
+					<tr width="100%" class="leg">
+						<td class="leg_desc">DERZEIT OFFLINE:</td>
+						<td class="number offline" style="cursor: default !important;"></td>
+					</tr>
+					<tr width="100%" class="leg">
+						<td class="leg_desc">KURZZEITIG OFFLINE:</td>
+						<td class="number temporary" style="cursor: default !important;"></td>
+					</tr>
+					<tr width="100%" class="leg">
+						<td class="leg_desc">ONLINE:</td>
+						<td class="number online" style="cursor: default !important;"></td>
+					</tr>
+				</table>
+			</p>
+			<br/>
+			<hr/>
+			<!--
+				PENNER VON ALCATRAZ
+			-->
+			<a name="hpudpva"></a>
+			<br/>
+			<p>
+				<b>Harry Potter und der Penner von Alcatraz:</b>
+				<br/>
+				<br/>
+				<!--
+				<iframe frameborder="0"
+						id="pva"
+						width="500"
+						height="300"
+						src=""
+						allowfullscreen></iframe>
+				-->
+				<video id="pva" width="500" height="300" controls allowfullscreen poster="./logos/logo_pva_trans.png">
+					<source src="" type="video/mp4">
+					Sry, dein Browser rafft kein HTML5. Versuch's mal mit Google Chrome....
+				</video>
+				<div class="notice">
+					Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+				</div>
+				<table width="100%">
+					<tr width="100%">
+						<td width="50%" align="left">
+							Part
+							<input id="sp_pva"
+								   type="number"
+								   pattern="[0-9]*"
+								   inputmode="numeric"
+								   min="1"
+								   max="11"
+								   placeholder="0 ... 0"
+								   onkeypress="return ((event.charCode >= 48) && (event.charCode <= 57)) ||
+								   			   (event.charCode == 46) ||
+								   			   (event.charCode == 45) ||
+								   			   (event.charCode == 27) ||
+								   			   (event.charCode == 8)"/>
+							anschauen....
+						</td>
+						<td width="50%" align="right">
+							<a href="https://mega.co.nz/#!L1IXDRCQ!5U3K8SA_Y4NgC_tTJtFTs3j3ZI-c5RZUobE1wniL3xo" target="_blank">Full Download (Pt. 1-<span id="pva_lim">14</span>)</a>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<br/>
+			<hr/>
+			<!--
+				ORDEN DES PENNERS
+			-->
+			<a name="hpudodp"></a>
+			<br/>
+			<p>
+				<b>Harry Potter und der Orden des Penners:</b>
+				<br/>
+				<br/>
+				<!--
+				<iframe frameborder="0"
+						id="odp"
+						width="500"
+						height="300"
+						src=""
+						allowfullscreen></iframe>
+				-->
+				<video id="odp" width="500" height="300" controls allowfullscreen poster="./logos/logo_odp_trans.png">
+					<source src="" type="video/mp4">
+					Sry, dein Browser rafft kein HTML5. Versuch's mal mit Google Chrome....
+				</video>
+				<div class="notice">
+					Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+				</div>
+				<table width="100%">
+					<tr width="100%">
+						<td width="50%" align="left">
+							Part
+							<input id="sp_odp"
+								   type="number"
+								   pattern="[0-9]*"
+								   inputmode="numeric"
+								   min="1"
+								   max="11"
+								   placeholder="0 ... 0"
+								   onkeypress="return ((event.charCode >= 48) && (event.charCode <= 57)) ||
+								   			   (event.charCode == 46) ||
+								   			   (event.charCode == 45) ||
+								   			   (event.charCode == 27) ||
+								   			   (event.charCode == 8)"/>
+							anschauen....
+						</td>
+						<td width="50%" align="right">
+							<a href="https://mega.co.nz/#!G8pjiYpb!zCoamW2UpiecBCtyELRuSKeSqLZmA4SoxR2SqB6oVL0" target="_blank">Full Download (Pt. 1-<span id="odp_lim">11</span>)</a>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<br/>
+			<hr/>
+			<!--
+				HALF-LIFE PRINCE
+			-->
+			<a name="hpudhlp"></a>
+			<br/>
+			<p>
+				<b>Harry Potter und der Half-Life Prinz:</b>
+				<br/>
+				<br/>
+				<!--
+				<iframe frameborder="0"
+						id="pva"
+						width="500"
+						height="300"
+						src=""
+						allowfullscreen></iframe>
+				-->
+				<video id="hlp" width="500" height="300" controls allowfullscreen poster="./logos/logo_hlp_trans.png">
+					<source src="" type="video/mp4">
+					Sry, dein Browser rafft kein HTML5. Versuch's mal mit Google Chrome....
+				</video>
+				<div class="notice">
+					Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+				</div>
+				<table width="100%">
+					<tr width="100%">
+						<td width="50%" align="left">
+							Part
+							<input id="sp_hlp"
+								   type="number"
+								   pattern="[0-9]*"
+								   inputmode="numeric"
+								   min="1"
+								   max="11"
+								   placeholder="0 ... 0"
+								   onkeypress="return ((event.charCode >= 48) && (event.charCode <= 57)) ||
+								   			   (event.charCode == 46) ||
+								   			   (event.charCode == 45) ||
+								   			   (event.charCode == 27) ||
+								   			   (event.charCode == 8)"/>
+							anschauen....
+						</td>
+						<td width="50%" align="right">
+							<a href="./404" target="_blank">Full Download (Pt. 1-<span id="hlp_lim">14</span>)</a>
+						</td>
+					</tr>
+				</table>
+			</p>
+			<br/>
+			<hr/>
+			<!--
+				CREDIT SECTION
+			-->
+			<a name="credits"></a>
+			<br/>
+			<table>
+				<tr>
+					<td>Videomaterial:</td>
+					<td>&copy; Duraphilms</td>
+					<td>2009-2015</td>
+				</tr>
+				<tr>
+					<td>Webseite:</td>
+					<td>&copy; Unknown6656</td>
+					<td>2015</td>
+				</tr>
+			</table>
+			<br/>
+			<table width="100%">
+				<tr width="100%">
+					<td align="left" width="75%">
+						<a href="https://www.youtube.com/user/darthdustinKanal2" target="_blank">
+							YouTube-Kanal von DURAPHILMS
+						</a>
+						<br/>
+						<br/>
+						<a href="https://www.youtube.com/user/Unknown6656" target="_blank">
+							YouTube-Kanal von Unknown6656
+						</a>
+						<br/>
+						<a href="https://www.facebook.com/pages/Unknown6656/381982338582331" target="_blank">
+							Facebookseite von Unknown6656
+						</a>
+						<br/>
+						<a href="https://twitter.com/Unknown6656" target="_blank">
+							Twitterseite von Unknown6656
+						</a>
+					</td>
+					<td align="right" width="25%">
+						<a href="https://www.youtube.com/user/darthdustinKanal2" target="_blank">
+							<div class="img_container" id="duraphilms"></div>
+						</a>
+					</td>
+					<td align="right" width="25%">
+						<a href="https://www.youtube.com/user/Unknown6656" target="_blank">
+							<div class="img_container" id="unknown6656"></div>
+						</a>
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<hr/>
+			<br/>
+			<span id="feedback">
+				<smc>
+					Fragen? Probleme? Kritik? Verbesserungsvorschläge?
+				</smc>
+				<br/>
+				<div class="sm twitter">
+					<a href="https://twitter.com/Unknown6656" target="_blank">
+						Hinterlasse einen Tweet @Unknown6656
+					</a>
+				</div>
+				<div class="sm youtube">
+					<a href="https://www.youtube.com/user/unknown6656/about" target="_blank">
+						Schreibe eine Nachricht an den YouTube-Kanal von Unknown6656
+					</a>
+				</div>
+				<div class="sm facebook">
+					<a href="https://www.facebook.com/pages/Unknown6656/381982338582331" target="_blank">
+						Schreibe eine Nachricht an die Facebook-Seite von Unknown6656
+					</a>
+				</div>
+				<div class="sm googleplus">
+					<a href="https://plus.google.com/109497906333427760394/about" target="_blank">
+						Schreibe eine Nachricht an die GooglePlus-Seite von Unknown6656
+					</a>
+				</div>
+			</span>
+			<br/>
+			<hr/>
+			<br/>
+			<a href="#top">Zurück zum Seitenanfang</a>
+		</div>
+		<div id="sidebar">
+			<span class="content main_font">
+				<a href="http://www.youtube.com/subscription_center?add_user=darthdustinKanal2" target="_blank">
+					<div class="duraphilms"></div>
+					DURAPHILMS abonnieren<br/>
+				</a>
+			</span>
+		</div>
+		<script type="text/javascript" language="javascript" src="./js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" language="javascript">
+			<!--
+
+			var urlbase = "https://dl.dropboxusercontent.com/"; // "//www.dailymotion.com/embed/video/";
+			var urlparams = ".mp4?dl=0"; // "?api=true&autoplay=1";
+
+			var pva_IDs = [
+				's/lxwndd282onxifp/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%201', /* 's/p2xvo9tz6a5duvw/pva_1' */
+				's/o8ctiw27tqw06d5/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%202', /* 'u/73253367/pva_2' */
+				's/gxv8gk0sx1cnsl8/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%203', /* 'u/73253367/pva_3' */
+				's/10i1pbz8fauw6h8/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%204', /* 'u/73253367/pva_4' */
+				's/lk5pkl09do8ze0x/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%205', /* 'u/73253367/pva_5' */
+				's/ox6l2oh265prlsj/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%206', /* 's/voem5t0895tvhjn/pva_6' */
+				's/3m3giez3ozzdyhp/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%207', /* 's/20v8p10m2ltf4n7/pva_7' */
+				's/v12dtpns1ni90cc/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%208', /* 's/g6ojq3d18cxv71z/pva_8' */
+				's/vczzrvvvya955t7/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%209', /* 's/pd6owcjow3s3ef1/pva_9' */
+				's/co4hut6zix5ysmo/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%2010', /* 's/6malrmv3dtjqm8c/pva_10' */
+				's/gnwjezggvl4pyap/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%2011', /* 's/rxp2xf5opelis6x/pva_11' */
+				's/f90245uw35eq54d/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%2012', /* 's/spjjp63035housv/pva_12' */
+				's/uk17eeco8lk2gg9/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%2013', /* 's/faeb90rtul74kn4/pva_13' */
+				's/q3hfxu7mtd15f0b/Harry%20Potter%20und%20der%20Penner%20von%20Alcatraz%20Part%2014' /* 's/ch9jrf1p535mi3q/pva_14' */
+			];
+			var odp_IDs = [
+				's/aeidu1nx88ps38f/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%201', /* 'u/73253367/odp_1' */
+				's/783cxbfiw3qbv9l/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%202', /* 'u/73253367/odp_2' */
+				's/gq21qopqhbprsvn/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%203', /* 'u/73253367/odp_3' */
+				's/47s3x5lrqniyh4i/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%204', /* 'u/73253367/odp_4' */
+				's/zqva09o03qq6geu/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%205', /* 'u/73253367/odp_5' */
+				's/fc2sjs4bek89a47/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%206', /* 'u/73253367/odp_6' */
+				's/rr18znfqu0faibz/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%207', /* 'u/73253367/odp_7' */
+				's/vnqhv9udkf9lutr/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%208', /* 'u/73253367/odp_8' */
+				's/clpkj0vs52zdhn6/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%209', /* 'u/73253367/odp_9' */
+				's/9kbbdgkn69mm49c/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%2010', /* 'u/73253367/odp_10' */
+				's/p8mobdk1urh9nzn/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%2011', /* 'u/73253367/odp_11' */
+				's/mdjhpaw43xg77n7/Harry%20Potter%20und%20der%20Orden%20des%20Penners%20Teil%2012',
+				''
+			];
+			var hlp_IDs = [
+				''
+			];
+
+			$('#sp_pva').attr('max', pva_IDs.length);
+			$('#sp_pva').attr('placeholder', '1 ... ' + pva_IDs.length);
+			$('#pva_lim').html(pva_IDs.length);
+
+			$('#sp_odp').attr('max', odp_IDs.length);
+			$('#sp_odp').attr('placeholder', '1 ... ' + odp_IDs.length);
+			$('#odp_lim').html(odp_IDs.length);
+
+			$('#sp_hlp').attr('max', hlp_IDs.length);
+			$('#sp_hlp').attr('placeholder', '1 ... ' + hlp_IDs.length);
+			$('#hlp_lim').html(hlp_IDs.length);
+
+			// var offline_string = "";
+
+			var pva_id_str = 'table#parts tr td#pva';
+			var odp_id_str = 'table#parts tr td#odp';
+			var hlp_id_str = 'table#parts tr td#hlp';
+
+			for (var i = 0; i < pva_IDs.length; i++) {
+				if (pva_IDs[i] == '') {
+					$(pva_id_str + (i + 1)).addClass('offline');
+					$(pva_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudPvA Part ' + (i + 1) + ' ist leider (noch) nicht online');
+				} else if (false) {
+					// CROSS-DOMAIN SYNCHRON PING
+
+					$(pva_id_str + (i + 1)).addClass('temporary');
+					$(pva_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudPvA Part ' + (i + 1) + ' ist zurzeit nicht erreichbar');
+				} else {
+					$(pva_id_str + (i + 1)).addClass('online');
+					$(pva_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudPvA Part ' + (i + 1) + ' ist online');
+				}
+				// if (pva_IDs[i] == '')
+				//	   offline_string += "<br/>&#160;&#160;&#160; - HPudPvA Teil " + (i + 1);
+			}
+
+			for (var i = 0; i < odp_IDs.length; i++) {
+				if (odp_IDs[i] == '') {
+					$(odp_id_str + (i + 1)).addClass('offline');
+					$(odp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudOdP Part ' + (i + 1) + ' ist leider (noch) nicht online');
+				} else if (false) {
+					// CROSS-DOMAIN SYNCHRON PING
+
+					$(odp_id_str + (i + 1)).addClass('temporary');
+					$(odp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudOdP Part ' + (i + 1) + ' ist zurzeit nicht erreichbar');
+				} else {
+					$(odp_id_str + (i + 1)).addClass('online');
+					$(odp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudOdP Part ' + (i + 1) + ' ist online');
+				}
+				// if (odp_IDs[i] == '')
+				//     offline_string += "<br/>&#160;&#160;&#160; - HPudOdP Teil " + (i + 1);
+			}
+
+			for (var i = 0; i < hlp_IDs.length; i++) {
+				if (hlp_IDs[i] == '') {
+					$(hlp_id_str + (i + 1)).addClass('offline');
+					$(hlp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudHLP Part ' + (i + 1) + ' ist leider (noch) nicht online');
+				} else if (false) {
+					// CROSS-DOMAIN SYNCHRON PING
+
+					$(hlp_id_str + (i + 1)).addClass('temporary');
+					$(hlp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudHLP Part ' + (i + 1) + ' ist zurzeit nicht erreichbar');
+				} else {
+					$(hlp_id_str + (i + 1)).addClass('online');
+					$(hlp_id_str + (i + 1) + ' span.tooltip').attr('text',
+						'HPudHLP Part ' + (i + 1) + ' ist online');
+				}
+				// if (hlp_IDs[i] == '')
+				//     offline_string += "<br/>&#160;&#160;&#160; - HPudHLP Teil " + (i + 1);
+			}
+
+			// offline_string += "<br/>Einige andere Teile wurden aus Copyright-gründen wieder gelöscht - ich schaue mal in den kommenden Tagen nach einer guten Plattform";
+			// $('span#offline').html(offline_string);
+
+
+			//-------- PROTOTYPE FUNCTIONS --------//
+
+			if (typeof String.prototype.startsWith != 'function') {
+				String.prototype.startsWith = function(str) {
+					return this.indexOf(str) === 0;
+				};
+			}
+
+			//-------- JQUERY HANDLERS --------//
+
+			//$('title').html($('div#title').html());
+			$('video').click(function(event) {
+				var tag = $(event.target).get(0);
+
+				if (tag.paused)
+					tag.play();
+				else
+					tag.pause();
+			});
+			$('#sp_pva').change(OKDchg_pva);
+			$('#sp_pva').keydown(function(event) {
+				if (event.keyCode == 13)
+				{
+					OKDchg_pva();
+
+					return false;
+				}
+			});
+			$('#sp_odp').change(OKDchg_odp);
+			$('#sp_odp').keydown(function(event) {
+				if (event.keyCode == 13)
+				{
+					OKDchg_odp();
+
+					return false;
+				}
+			});
+			$('#sp_hlp').change(OKDchg_hlp);
+			$('#sp_hlp').keydown(function(event) {
+				if (event.keyCode == 13)
+				{
+					OKDchg_hlp();
+
+					return false;
+				}
+			});
+			$('a[href*=#]:not([href=#])').click(function() {
+			    if ((location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')) ||
+			    	(location.hostname == this.hostname)) {
+
+					var target = $(this.hash);
+			        
+			        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+			        if (target.length) {
+			            $('html,body').animate({
+			                 scrollTop: target.offset().top
+			            }, 1000);
+
+			            return false;
+			        }
+			    }
+			});
+			$('tr:not(.leg)>td.online,tr:not(.leg)>td.offline').click(function(event) {
+				var id = $(event.target).parent().attr('id');
+				var num = id.substr(3);
+
+				id = id.substr(0, 3);
+
+				$('input#sp_' + id).val(num);
+
+				scrollToAnchor('hpud' + id);
+
+				if (id == 'pva')
+					OKDchg_pva();
+				else if (id == 'odp')
+					OKDchg_odp();
+				else
+					OKDchg_hlp();
+			});
+
+			//-------- EXTRA FUNCTIONS --------//
+
+			function OKDchg_pva() {
+				var url = "";
+
+				try {
+					url = urlbase + pva_IDs[$('#sp_pva').val() - 1] + urlparams;
+				} catch (e) { }
+
+				// $('#pva').attr('src', );
+				$('#pva > source').attr('src', url);
+				$('#pva')[0].load();
+				$('#pva')[0].play();
+
+				$('#pva').attr('height', $('#pva').width() / 16 * 9);
+			}
+
+			function OKDchg_odp() {
+				var url = "";
+
+				try {
+					url = urlbase + odp_IDs[$('#sp_odp').val() - 1] + urlparams;
+				} catch (e) { }
+
+				// $('#odp').attr('src', url;
+				$('#odp > source').attr('src', url);
+				$('#odp')[0].load();
+				$('#odp')[0].play();
+
+				$('#odp').attr('height', $('#odp').width() / 16 * 9);
+			}
+
+			function OKDchg_hlp() {
+				var url = "";
+
+				try {
+					url = urlbase + odp_IDs[$('#sp_hlp').val() - 1] + urlparams;
+				} catch (e) { }
+
+				// $('#odp').attr('src', url;
+				$('#hlp > source').attr('src', url);
+				$('#hlp')[0].load();
+				$('#hlp')[0].play();
+
+				$('#hlp').attr('height', $('#odp').width() / 16 * 9);
+			}
+
+			function isFlashEnabled() {
+				var hasFlash = false;
+				
+				try {
+					var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+					
+					if (fo)
+						hasFlash = true;
+				}
+				catch (e) {
+					if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined)
+						HasFlash = true;
+				}
+
+				return hasFlash;
+			}
+
+			function scrollToAnchor(aid) {
+			    var aTag = $("a[name='"+ aid +"']");
+
+			    $('html,body').animate({
+			    	scrollTop: aTag.offset().top
+			    }, 1000);
+			}
+
+			// -->
+		</script>
+	</body>
+</html>
