@@ -65,17 +65,17 @@
                 <p>
                     Auf dieser Seite könnt Ihr Euch alle Harry Potter Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
                     <ul>
-                        <li><a href="#hpues">Harry Potter und ein Stein</a> (COLDMIRROR)</li>
-                        <li><a href="#hpudgpk">Harry Potter und der geheime P████keller</a> (COLDMIRROR)</li>
-                        <li><a href="#hpudpp">Harry Potter und der Plastikpokal</a> (COLDMIRROR)</li>
-                        <li><a href="#hpudpva">Harry Potter und der Penner von Alcatraz</a> (DURAPHILMS)</li>
-                        <li><a href="#hpudfe">Harry Potter und der Feuer-Elch</a> (DURAPHILMS)</li>
-                        <li><a href="#hpudodp">Harry Potter und der Ordern des Penners</a> (DURAPHILMS)</li>
-                        <li><a href="#hpudhlp">Harry Potter und der Half-Life-Prinz</a> (DURAPHILMS)</li>
+                        <li>Harry Potter und ein Stein (Coldmirror)</li>
+                        <li>Harry Potter und der geheime P████keller (Coldmirror)</li>
+                        <li>Harry Potter und der Plastikpokal (Coldmirror)</li>
+                        <li>Harry Potter und der Penner von Alcatraz (Duraphilms)</li>
+                        <li>Harry Potter und der Feuer-Elch (Duraphilms)</li>
+                        <li>Harry Potter und der Ordern des Penners (Duraphilms)</li>
+                        <li>Harry Potter und der Half-Life-Prinz (Duraphilms)</li>
                     </ul>
                 </p>
                 <p>
-                    Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor -- die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
+                    Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor &mdash; die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
                     Um einen spezifischen Part zu sehen, könnt ihr auf den entsprechenden Eintrag in der folgenden Tabelle klicken.
                     Alternativ befindet sich unterhalb jedes Videofensters ein Auswahlmenü der verfügbaren Parts.
                     <!-- Um einen spezifischen Part zu sehen, müsst Ihr die entsprechende Nummer des Parts in das Nummernfeld unterhalb
@@ -151,6 +151,7 @@
                     <tr width="100%">
                         <td width="50%" align="left">
                             <select id="selector-part">
+                                <option value="">Bitte Part auswählen</option>
 <?php
     foreach ($videos as $key => $info)
     {
@@ -160,7 +161,7 @@
         for ($i = 1; $i <= $info[1]; ++$i)
         {
 ?>
-                                    <option value="<?=$key.$i?>">Part <?=$i?></option>
+                                    <option value="<?=$key?>-<?=$i?>">Part <?=$i?></option>
 <?php
         }
 ?>
@@ -191,45 +192,45 @@
             <table>
                 <tr>
                     <td>Videomaterial:</td>
-                    <td>&copy; Duraphilms, 2009-2015</td>
+                    <td> &nbsp; </td>
+                    <td>&copy; Duraphilms,</td>
+                    <td>2009-2015</td>
+                    <td> &nbsp; </td>
+                    <td>(<a href="https://youtube.com/darthdustinKanal2" target="_blank">YouTube</a>)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>&copy; Coldmirror,</td>
+                    <td>2006-2008</td>
+                    <td></td>
+                    <td>(<a href="https://youtube.com/coldmirror" target="_blank">YouTube</a>)</td>
                 </tr>
                 <tr>
                     <td>Webseite:</td>
-                    <td>&copy; Unknown6656, 2015-<?=date("Y")?></td>
+                    <td></td>
+                    <td>&copy; Unknown6656,</td>
+                    <td>2014-<?=date("Y")?></td>
+                    <td></td>
+                    <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
                 </tr>
             </table>
             <br/>
-            <table width="100%">
-                <tr width="100%">
-                    <td align="left" width="75%">
+            <table>
+                <tr>
+                    <td>
                         <a href="https://youtube.com/darthdustinKanal2" target="_blank">
-                            YouTube-Kanal von DURAPHILMS
-                        </a>
-                        <br/>
-                        <a href="https://youtube.com/Unknown6656" target="_blank">
-                            YouTube-Kanal von Unknown6656
-                        </a>
-                        <br/>
-                        <a href="https://github.com/Unknown6656" target="_blank">
-                            GitHub-Seite von Unknown6656
-                        </a>
-                        <br/>
-                        <a href="https://facebook.com/Unknown6656" target="_blank">
-                            Facebook-Seite von Unknown6656
-                        </a>
-                        <br/>
-                        <a href="https://twitter.com/Unknown6656" target="_blank">
-                            Twitter-Feed von Unknown6656
+                            <div class="img_container duraphilms"></div>
                         </a>
                     </td>
-                    <td align="right" width="25%">
-                        <a href="https://youtube.com/darthdustinKanal2" target="_blank">
-                            <div class="img_container" id="duraphilms"></div>
+                    <td>
+                        <a href="https://youtube.com/coldmirror" target="_blank">
+                            <div class="img_container coldmirror"></div>
                         </a>
                     </td>
-                    <td align="right" width="25%">
+                    <td>
                         <a href="https://youtube.com/Unknown6656" target="_blank">
-                            <div class="img_container" id="unknown6656"></div>
+                            <div class="img_container unknown6656"></div>
                         </a>
                     </td>
                 </tr>
@@ -237,25 +238,16 @@
             <br/>
             <hr/>
             <br/>
-            <span id="feedback">
+            <div id="feedback">
                 <smc>
                     Fragen? Probleme? Kritik? Verbesserungsvorschläge?
                 </smc>
                 <br/>
-                Kontaktiere mich via:
-                &#180;
-                <div class="sm github">
-                    <a href="https://github.com/Unknown6656" target="_blank"></a>
-                </div>
-                <div class="sm twitter">
-                    <a href="https://twitter.com/Unknown6656" target="_blank"></a>
-                </div>
-                <div class="sm youtube">
-                    <a href="https://youtube.com/unknown6656/about" target="_blank"></a>
-                </div>
-                <div class="sm facebook">
-                    <a href="https://facebook.com/Unknown6656" target="_blank"></a>
-                </div>
+                <a class="sm github" name="GitHub" href="https://github.com/Unknown6656" target="_blank"></a>
+                <a class="sm twitter" name="Twitter" href="https://twitter.com/Unknown6656" target="_blank"></a>
+                <a class="sm youtube" name="YouTube" href="https://youtube.com/unknown6656/about" target="_blank"></a>
+                <a class="sm facebook" name="Facebook" href="https://facebook.com/Unknown6656" target="_blank"></a>
+                <br/>
             </span>
             <br/>
             <hr/>
@@ -265,11 +257,37 @@
         <div id="sidebar">
             <span class="content main_font">
                 <a href="http://www.youtube.com/subscription_center?add_user=darthdustinKanal2" target="_blank">
-                    <div class="duraphilms"></div>
-                    DURAPHILMS abonnieren<br/>
+                    <div class="img_container duraphilms"></div>
+                    DURAPHILMS abonnieren
                 </a>
+                <br/>
+                <br/>
+                <a href="http://www.youtube.com/subscription_center?add_user=coldmirror" target="_blank">
+                    <div class="img_container coldmirror"></div>
+                    COLDMIRROR abonnieren
+                </a>
+                <br/>
+                <br/>
+                <a href="http://www.youtube.com/subscription_center?add_user=unknown6656" target="_blank">
+                    <div class="img_container unknown6656"></div>
+                    UNKNOWN6656 abonnieren
+                </a>
+                <br/>
             </span>
         </div>
+        <script type="text/javascript" language="javascript">
+            let video_ids = [
+<?php
+    foreach ($videos as $key => $info)
+        for ($i = 1; $i <= $info[1]; ++$i)
+        {
+?>
+                ["<?=$key?>", <?=$i?>, "<?=$info[0]?>"],
+<?php
+        }
+?>
+            ];
+        </script>
         <script type="text/javascript" language="javascript" src="js/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" language="javascript" src="js/script.js"></script>
     </body>
