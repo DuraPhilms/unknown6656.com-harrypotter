@@ -5,7 +5,7 @@
 :root {
     --font-title: 'HarryPotter', 'Aileron Light', 'Segoe UI Light', 'Century Gothic Light', 'Calibri', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
     --font-main: 'Segoe UI Light', 'Aileron Light', 'Century Gothic Light', 'Calibri', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
-    --font-mono: 'Consolas', 'Courier New', 'Courier', 'Lucida Console', monospace;
+    --font-mono: 'Consolas', 'Courier New', 'Courier', 'Lucida Console', 'Ubuntu Mono', monospace;
 }
 
 *:not(div#title) {
@@ -175,7 +175,7 @@ input[type="number"]::-webkit-input-placeholder {
 }
 
 body {
-    background-image: url('../src/bg.png');
+    background-image: url('../images/bg.png');
     background-repeat: no-repeat;
     background-color: black;
     background-size: cover;
@@ -251,15 +251,15 @@ span.description kbd {
 }
 
 .img_container.unknown6656 {
-    background-image: url('../src/unknown6656.png');
+    background-image: url('../images/unknown6656.png');
 }
 
 .img_container.coldmirror {
-    background-image: url('../src/coldmirror.png');
+    background-image: url('../images/coldmirror.png');
 }
 
 .img_container.duraphilms {
-    background-image: url('../src/duraphilms.jpg');
+    background-image: url('../images/duraphilms.jpg');
 }
 
 div#title {
@@ -306,7 +306,7 @@ div#title_cover {
 
 div#title_cover {
     background-color: rgba(100, 100, 100, .3);
-    background-image: url('../src/title.png');
+    background-image: url('../images/title.png');
     background-repeat: repeat;
     background-size: cover;
     position: relative;
@@ -375,7 +375,7 @@ div#main {
                 border-radius: 15px;
         border: 1px solid #8aa;
 
-        background-image: url('../src/youtube.png');
+        background-image: url('../images/youtube.png');
         background-color: rgba(0, 0, 0, 0.8);
         background-position: center center;
         background-repeat: no-repeat;
@@ -472,17 +472,17 @@ table#parts tr > td {
 }
 
 table#parts tr > td.number {
-    background-image: url('../src/gradient.png');
+    background-image: url('../images/gradient.png');
     background-color: transparent;
     /* background-color: rgba(100, 100, 100, 0.6);*/
     border: 1px solid #8aa;
 }
 
-table#parts tr.leg {
+table#parts tr.legende {
     height: 10px;
 }
 
-table#parts tr.leg > td.leg_desc {
+table#parts tr.legende > td.legende_desc {
     padding-right: 10px;
     text-align: right;
     font-size: 10pt;
@@ -510,7 +510,7 @@ table#parts tr > td.number {
 table#parts tr > td.online,
 table#parts tr > td.offline,
 table#parts tr > td.temporary {
-    background-image: url('../src/gradient-s.png');
+    background-image: url('../images/gradient-s.png');
     cursor: pointer;
 }
 
@@ -526,32 +526,32 @@ table#parts tr > td.temporary {
     background-color: rgba(200, 200, 100, 0.6);
 }
 
-table#parts tr:not(.leg) > td.online:hover:not(:active) {
+table#parts tr:not(.legende) > td.online:hover:not(:active) {
     background-color: rgba(50, 200, 50, 0.6);
     color: #afa;
 }
 
-table#parts tr:not(.leg) > td.offline:hover:not(:active) {
+table#parts tr:not(.legende) > td.offline:hover:not(:active) {
     background-color: rgba(200, 50, 50, 0.6);
     color: #faa;
 }
 
-table#parts tr:not(.leg) > td.temporary:hover:not(:active) {
+table#parts tr:not(.legende) > td.temporary:hover:not(:active) {
     background-color: rgba(200, 200, 50, 0.6);
     color: #ffa;
 }
 
-table#parts tr:not(.leg) > td.online:active {
+table#parts tr:not(.legende) > td.online:active {
     background-color: rgba(0, 100, 0, 0.6);
     color: #5a5;
 }
 
-table#parts tr:not(.leg) > td.offline:active {
+table#parts tr:not(.legende) > td.offline:active {
     background-color: rgba(100, 0, 0, 0.6);
     color: #a55;
 }
 
-table#parts tr:not(.leg) > td.temporary:active {
+table#parts tr:not(.legende) > td.temporary:active {
     background-color: rgba(100, 100, 0, 0.6);
     color: #aa5;
 }
@@ -596,7 +596,7 @@ video:before,
 iframe:before,
 table#parts tr > td span.tooltip:before {
     background-color: transparent;
-    background-image: url('../src/arrow.png');
+    background-image: url('../images/arrow.png');
     background-repeat: no-repeat;
     position: absolute;
     bottom: 20px;
@@ -724,19 +724,19 @@ table#parts tr > td span.tooltip:hover:after {
 }
 
 #feedback .sm.twitter {
-    background-image: url('../src/sm-twitter.png');
+    background-image: url('../images/sm-twitter.png');
 }
 
 #feedback .sm.youtube {
-    background-image: url('../src/sm-youtube.png');
+    background-image: url('../images/sm-youtube.png');
 }
 
 #feedback .sm.facebook {
-    background-image: url('../src/sm-facebook.png');
+    background-image: url('../images/sm-facebook.png');
 }
 
 #feedback .sm.github {
-    background-image: url('../src/sm-github.png');
+    background-image: url('../images/sm-github.png');
 }
 
 

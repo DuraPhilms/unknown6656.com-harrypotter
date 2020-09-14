@@ -37,9 +37,9 @@
         <meta name="og:description" content="Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
         <meta name="twitter:title" content="unknown6656 | Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
         <meta name="twitter:description" content="Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
-        <meta name="og:image" content="https://unknown6656.com/harrypotter/src/banner.png"/>
-        <meta name="twitter:image" content="https://unknown6656.com/harrypotter/src/banner.png"/>
-        <meta name="twitter:card" content="https://unknown6656.com/harrypotter/src/banner.png"/>
+        <meta name="og:image" content="https://unknown6656.com/harrypotter/images/banner.png"/>
+        <meta name="twitter:image" content="https://unknown6656.com/harrypotter/images/banner.png"/>
+        <meta name="twitter:card" content="https://unknown6656.com/harrypotter/images/banner.png"/>
         <title>Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
         <link rel="icon" type="image/x-icon" href="favicon.ico"/>
@@ -77,7 +77,7 @@
                 <p>
                     Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor &mdash; die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
                     Um einen spezifischen Part zu sehen, könnt ihr auf den entsprechenden Eintrag in der folgenden Tabelle klicken.
-                    Alternativ befindet sich unterhalb jedes Videofensters ein Auswahlmenü der verfügbaren Parts.
+                    Alternativ befindet sich unterhalb des Videofensters ein Auswahlmenü der verfügbaren Parts.
                     <!-- Um einen spezifischen Part zu sehen, müsst Ihr die entsprechende Nummer des Parts in das Nummernfeld unterhalb
                     des Videos eintragen und mit <key>ENTER</key> bestätigen. -->
                 </p>
@@ -108,7 +108,7 @@
 <?php
         for ($i = 1; $i <= $info[1]; $i++) {
 ?>
-            <td id="<?=$key.$i?>" class="number"><span class="tooltip" text=""><?=$i?></span></td>
+            <td id="<?=$key.str_pad($i, 2, '0', STR_PAD_LEFT)?>" class="number"><span class="tooltip" text=""><?=$i?></span></td>
 <?php
         }
 ?>
@@ -117,20 +117,20 @@
     }
 ?>
                     <tr width="100%" height="17px"></tr>
-                    <tr width="100%" class="leg">
-                        <td class="leg_desc">STATUS UNBEKANNT:</td>
+                    <tr width="100%" class="legende">
+                        <td class="legende_desc">STATUS UNBEKANNT:</td>
                         <td class="number"></td>
                     </tr>
-                    <tr width="100%" class="leg">
-                        <td class="leg_desc">DERZEIT OFFLINE:</td>
+                    <tr width="100%" class="legende">
+                        <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE:</td>
                         <td class="number offline" style="cursor: default !important;"></td>
                     </tr>
-                    <tr width="100%" class="leg">
-                        <td class="leg_desc">KURZZEITIG OFFLINE:</td>
+                    <tr width="100%" class="legende">
+                        <td class="legende_desc">TEMPORÄR (KURZZEITIG) OFFLINE:</td>
                         <td class="number temporary" style="cursor: default !important;"></td>
                     </tr>
-                    <tr width="100%" class="leg">
-                        <td class="leg_desc">ONLINE:</td>
+                    <tr width="100%" class="legende">
+                        <td class="legende_desc">ONLINE:</td>
                         <td class="number online" style="cursor: default !important;"></td>
                     </tr>
                 </table>
@@ -140,34 +140,38 @@
             <a name="video"></a>
             <h3 id="video-title"></h3>
             <p>
-                <video id="player" width="500" height="300" controls allowfullscreen poster="src/title.png">
-                    <source src="" type="video/mp4">
-                    Sry, dein Browser rafft kein HTML5. Versuch's mal mit Google Chrome....
-                </video>
+                <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png" type="video/mp4" src=""></video>
                 <div class="notice">
                     Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
                 </div>
                 <table width="100%">
                     <tr width="100%">
-                        <td width="50%" align="left">
-                            <select id="selector-part">
-                                <option value="">Bitte Part auswählen</option>
+                        <td width="50%">
+                            <select id="partselector">
+                                <option selected disabled>Bitte Part auswählen</option>
 <?php
     foreach ($videos as $key => $info)
-    {
+        if ($info[1] > 1)
+        {
 ?>
                                 <optgroup label="<?=$info[0]?>">
 <?php
-        for ($i = 1; $i <= $info[1]; ++$i)
-        {
+            for ($i = 1; $i <= $info[1]; ++$i)
+            {
 ?>
-                                    <option value="<?=$key?>-<?=$i?>">Part <?=$i?></option>
+                                    <option value="<?=$key.str_pad($i, 2, '0', STR_PAD_LEFT)?>">Part <?=$i?></option>
 <?php
-        }
+            }
 ?>
                                 </optgroup>
 <?php
-    }
+        }
+        else
+        {
+?>
+                                <option value="<?=$key?>01"><?=$info[0]?></option>
+<?php
+        }
 ?>
                             </select> anschauen....
                         </td>
@@ -282,7 +286,7 @@
         for ($i = 1; $i <= $info[1]; ++$i)
         {
 ?>
-                ["<?=$key?>", <?=$i?>, "<?=$info[0]?>"],
+                ["<?=$key?>", "<?=str_pad($i, 2, '0', STR_PAD_LEFT)?>", "<?=$info[0]?>"],
 <?php
         }
 ?>
