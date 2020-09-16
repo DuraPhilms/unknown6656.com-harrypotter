@@ -558,21 +558,19 @@ table#parts td span.tooltip:hover::after {
     opacity: .3;
     content: '';
     z-index: 1000;
-    height: calc(100% + 20px);
-    width: calc(100% + 20px);
-    bottom: -10px;
-    top: -10px;
-    margin-right: -10px;
-    margin-left: -10px;
+    height: 100%;
+    width: 100%;
+    bottom: 0px;
+    top: 0px;
 }
 
 #video-section.offline::after {
-    content: '[Video zuezeit leider OFFLINE]';
+    content: 'Dieses Video ist zurzeit leider OFFLINE.';
     vertical-align: middle;
     align-content: center;
     text-align: center;
     position: absolute;
-    transform: rotate(-10deg);
+    transform: rotate(-20deg);
     font-variant: small-caps;
     font-weight: 900;
     line-height: 100%;
@@ -581,6 +579,10 @@ table#parts td span.tooltip:hover::after {
     z-index: 1001;
     width: 100%;
     bottom: 50%;
+}
+
+#video-section.offline[data-video-name]::after {
+    content: attr(data-video-name) '\Aist zurzeit leider OFFLINE.';
 }
 
 #video-section.offline {
@@ -594,9 +596,8 @@ table#parts td span.tooltip:hover::after {
     color: var(--color-fg);
 }
 
-#video-section.offline video {
-    filter: blur(5px);
-    opacity: 0.5;
+#video-section.offline * {
+    filter: blur(10px);
 }
 
 /*
@@ -625,6 +626,8 @@ video {
     margin-left: 10px;
 }
 
+input,
+button,
 select {
     -webkit-transition: all 0.3s;
        -moz-transition: all 0.3s;
@@ -637,19 +640,41 @@ select {
     border: 1px solid var(--color-fg);
     background-color: rgba(0, 0, 0, .4);
     color: var(--color-fg);
-    margin-right: 5px;
-    margin-left: 5px;
-    min-width: 300px;
-    padding: 2px 5px;
+    min-height: 23px;
+    margin-left: 4px;
+    padding: 3px 5px;
+    cursor: pointer;
 }
 
-select:hover,
-select:active {
-    -webkit-box-shadow: 0px 0px 7px #4195fc;
-       -moz-box-shadow: 0px 0px 7px #4195fc;
-            box-shadow: 0px 0px 7px #4195fc;
+select {
+    width: 200px;
+}
 
-    border: 1px solid #4195fc;
+input[disabled],
+button[disabled],
+select[disabled] {
+    opacity: .5;
+    cursor: default;
+}
+
+input:not([disabled]):hover,
+input:not([disabled]):active,
+button:not([disabled]):hover,
+button:not([disabled]):active,
+select:not([disabled]):hover,
+select:not([disabled]):active {
+    -webkit-box-shadow: 0px 0px 7px #49f;
+       -moz-box-shadow: 0px 0px 7px #49f;
+            box-shadow: 0px 0px 7px #49f;
+
+    border: 1px solid #49f;
+}
+
+input:not([disabled]):active,
+button:not([disabled]):active,
+select:not([disabled]):active {
+    background-color: #15a;
+    color: white;
 }
 
 select option {
