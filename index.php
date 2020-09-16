@@ -9,6 +9,11 @@
         "hpudodp" => ["HP und der Orden des Penners", 13],
         "hpudhlp" => ["HP und der Half-Life-Prinz", 1],
     ];
+    $video_ids = array();
+
+    foreach ($videos as $key => $info)
+        for ($i = 1; $i <= $info[1]; ++$i)
+            array_push($video_ids, [$key, str_pad($i, 2, '0', STR_PAD_LEFT), $info[1], $info[0]]);
 ?>
 <html lang="de" prefix="og: http://ogp.me/ns#">
     <head>
@@ -99,23 +104,35 @@
             <p>
                 Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen):
                 <table width="100%" id="parts">
-<?php
-    foreach ($videos as $key => $info)
-    {
-?>
                     <tr width="100%">
-                        <td class="descr"><?=$info[0]?>:</td>
 <?php
-        for ($i = 1; $i <= $info[1]; $i++) {
-?>
-            <td id="<?=$key.str_pad($i, 2, '0', STR_PAD_LEFT)?>" class="number"><span class="tooltip" text=""><?=$i?></span></td>
-<?php
+    $last = "";
+
+    foreach ($video_ids as $key => $values)
+    {
+        if ($last != $values[0])
+        {
+            ?>
+                    <td class="descr"><?=$values[3]?>:</td>
+            <?php
         }
-?>
-                    </tr>
-<?php
+
+        ?>
+                        <td --data-video-id="<?=$key?>" class="number"><span class="tooltip" text=""><?=$values[1]?></span></td>
+        <?php
+
+        $last = $values[0];
+
+        if ($key + 1 < count($video_ids) && $last != $video_ids[$key + 1][0])
+        {
+            ?>
+                </tr>
+                <tr width="100%">
+            <?php
+        }
     }
 ?>
+                    </tr>
                     <tr width="100%" height="17px"></tr>
                     <tr width="100%" class="legende">
                         <td class="legende_desc">STATUS UNBEKANNT:</td>
@@ -137,57 +154,72 @@
             </p>
             <br/>
             <hr/>
-            <a name="video"></a>
-            <h3 id="video-title"></h3>
-            <p>
+            <div id="video-section" class="default">
+                <a name="video"></a>
+                <h3 id="video-title">
+                    <i>Bitte einen Part auswählen</i>
+                </h3>
                 <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png" type="video/mp4" src=""></video>
-                <div class="notice">
-                    Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
-                </div>
                 <table width="100%">
                     <tr width="100%">
-                        <td width="50%">
-                            <select id="partselector">
-                                <option selected disabled>Bitte Part auswählen</option>
-<?php
-    foreach ($videos as $key => $info)
-        if ($info[1] > 1)
-        {
-?>
-                                <optgroup label="<?=$info[0]?>">
-<?php
-            for ($i = 1; $i <= $info[1]; ++$i)
-            {
-?>
-                                    <option value="<?=$key.str_pad($i, 2, '0', STR_PAD_LEFT)?>">Part <?=$i?></option>
-<?php
-            }
-?>
-                                </optgroup>
-<?php
-        }
-        else
-        {
-?>
-                                <option value="<?=$key?>01"><?=$info[0]?></option>
-<?php
-        }
-?>
-                            </select> anschauen....
+                        <td width="70%" valign="top">
+                            <i style="font-size: 10pt">
+                                Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+                                <br/>
+                                &nbsp;
+                            </i>
                         </td>
-                        <td width="50%" align="right">
-<?php
-    // if ($info[1] > 1)
-    // {
-?>
-                            <a href="https://mega.co.nz/#!L1IXDRCQ!5U3K8SA_Y4NgC_tTJtFTs3j3ZI-c5RZUobE1wniL3xo" target="_blank">Full Download (Pt. 1-<span id="pva_lim">14</span>)</a>
-<?php
-    // }
-?>
+                        <td width="30%" align="right">
+                            <div id="download-links">
+                                <a id="download-single">Diesen Part herunterladen</a>
+                                <a id="download-all"><br/>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
+                            </div>
                         </td>
                     </tr>
                 </table>
-            </p>
+            </div>
+            <br/>
+            <select id="partselector">
+                <option selected disabled>Bitte Part auswählen</option>
+<?php
+    $group = "";
+
+    foreach ($video_ids as $key => $values)
+    {
+        if ($values[2] < 2)
+        {
+            ?>
+                <option value="<?=$key?>"><?=$values[3]?></option>
+            <?php
+        }
+        else
+        {
+            if ($group != $values[0])
+            {
+                ?>
+                <optgroup label="<?=$info[0]?>">
+                <?php
+            }
+            else
+            {
+                ?>
+                    <option value="<?=$key?>"><?=$group?> Part <?=$values[1]?></option>
+                <?php
+            }
+
+            if ($values[1] > $values[2] - 1)
+            {
+                ?>
+                </optgroup>
+                <?php
+            }
+        }
+
+        $group = $values[0];
+    }
+?>
+            </select>
+            <br/>
             <br/>
             <hr/>
             <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
@@ -282,13 +314,12 @@
         <script type="text/javascript" language="javascript">
             let video_ids = [
 <?php
-    foreach ($videos as $key => $info)
-        for ($i = 1; $i <= $info[1]; ++$i)
-        {
+    foreach ($video_ids as $key => $values)
+    {
 ?>
-                ["<?=$key?>", "<?=str_pad($i, 2, '0', STR_PAD_LEFT)?>", "<?=$info[0]?>"],
+                ["<?=$values[0]?>", "<?=$values[1]?>", <?=$values[1]?>, <?=$values[2]?>, "<?=$values[3]?>"],
 <?php
-        }
+    }
 ?>
             ];
         </script>
