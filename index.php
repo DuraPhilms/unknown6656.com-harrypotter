@@ -157,7 +157,7 @@
             <div id="video-section" class="default">
                 <a name="video"></a>
                 <h3 id="video-title">
-                    <i>Bitte einen Part auswählen</i>
+                    <i>Bitte ein Video auswählen</i>
                 </h3>
                 <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png" type="video/mp4" src=""></video>
                 <table width="100%">
@@ -169,23 +169,25 @@
                                 &nbsp;
                             </i>
                         </td>
-                        <td width="30%" align="right">
+                        <td width="30%" valign="top" align="right">
                             <div id="download-links">
-                                <a id="download-single">Diesen Part herunterladen</a>
-                                <a id="download-all"><br/>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
+                                <a id="download-single" download>Dieses Video herunterladen</a>
+                                <br/>
+                                <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
             <br/>
+            <button id="prev-movie" disabled>◀◀ Vorheriger Film</button>
+            <button id="prev-part" disabled>◀ Vorheriger Part</button>
             <select id="partselector">
-                <option selected disabled>Bitte Part auswählen</option>
+                <option selected disabled>Bitte Video auswählen</option>
 <?php
     $group = "";
 
     foreach ($video_ids as $key => $values)
-    {
         if ($values[2] < 2)
         {
             ?>
@@ -200,12 +202,10 @@
                 <optgroup label="<?=$info[0]?>">
                 <?php
             }
-            else
-            {
-                ?>
-                    <option value="<?=$key?>"><?=$group?> Part <?=$values[1]?></option>
-                <?php
-            }
+
+            ?>
+                <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
+            <?php
 
             if ($values[1] > $values[2] - 1)
             {
@@ -213,12 +213,13 @@
                 </optgroup>
                 <?php
             }
-        }
 
-        $group = $values[0];
-    }
+            $group = $values[0];
+        }
 ?>
             </select>
+            <button id="next-part" disabled>Nächster Part ▶</button>
+            <button id="next-movie" disabled>Nächster Film ▶▶</button>
             <br/>
             <br/>
             <hr/>
