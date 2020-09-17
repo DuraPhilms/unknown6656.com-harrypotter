@@ -56,8 +56,8 @@
             <link rel="alternate" type="application/rss+xml" href="/rss.xml" title="unknown6656.com RSS feed">
         -->
     </head>
+    <a name="top"></a>
     <body>
-        <a name="top"></a>
         <div id="title" class="title_font">
             <!--
             Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR
