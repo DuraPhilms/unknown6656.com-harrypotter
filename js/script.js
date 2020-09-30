@@ -1,6 +1,5 @@
 let part_selector = $('#partselector');
 let video_player = $('video#player');
-let video_player_source = $('video#player #player-source');
 let video_player_subtitle = $('video#player #player-subtitle');
 let video_title = $('#video-title');
 let video_section = $('#video-section');
@@ -96,8 +95,8 @@ function on_selector_changed(id)
     video_section.attr('data-video-name', friendly);
     video_title.text(friendly);
     video_player.attr('poster', thumbnail);
-    video_player_source.attr('src', path);
-    video_player_subtitle.attr('src', path);
+    video_player.attr('src', path);
+    video_player_subtitle.attr('src', subtitle);
 
     scroll_to_anchor('video');
     on_video_updated(id);
