@@ -29,7 +29,7 @@
         <meta name="twitter:site" content="@unknown6656">
         <meta name="fb:page_id" content="381982338582331"/>
         <meta name="og:url" content="https://unknown6656.com/harrypotter"/>
-        <meta name="og:site_name" content="unknown6656 | Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
+        <meta name="og:site_name" content="unknown6656 | Hаrry Pоttеr Synchronisation by DURAPHILMS / COLDMIRROR"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-touch-fullscreen" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -66,17 +66,21 @@
         </div>
         <div id="main" class="main_font">
             <span class="description">
-                <h2>Willkommen liebe Potter-Fans!</h2>
+                <h2>Wichtig: bitte hier abstimmen!</h2>
+                <iframe src="https://www.strawpoll.me/embed_1/21011398" width="720" height="400">
+                </iframe>
+                <hr/>
+                <h1>Willkommen liebe Pоttеr-Fans!</h1>
                 <p>
-                    Auf dieser Seite könnt Ihr Euch alle Harry Potter Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
+                    Auf dieser Seite könnt Ihr Euch alle Hаrry Pоttеr Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
                     <ul>
-                        <li>Harry Potter und ein Stein (Coldmirror)</li>
-                        <li>Harry Potter und der geheime P████keller (Coldmirror)</li>
-                        <li>Harry Potter und der Plastikpokal (Coldmirror)</li>
-                        <li>Harry Potter und der Penner von Alcatraz (Duraphilms)</li>
-                        <li>Harry Potter und der Feuer-Elch (Duraphilms)</li>
-                        <li>Harry Potter und der Ordern des Penners (Duraphilms)</li>
-                        <li>Harry Potter und der Half-Life-Prinz (Duraphilms)</li>
+                        <li>Hаrry Pоttеr und ein Stein (Coldmirror)</li>
+                        <li>Hаrry Pоttеr und der geheime P████keller (Coldmirror)</li>
+                        <li>Hаrry Pоttеr und der Plastikpokal (Coldmirror)</li>
+                        <li>Hаrry Pоttеr und der Penner von Alcatraz (Duraphilms)</li>
+                        <li>Hаrry Pоttеr und der Feuer-Elch (Duraphilms)</li>
+                        <li>Hаrry Pоttеr und der Ordern des Penners (Duraphilms)</li>
+                        <li>Hаrry Pоttеr und der Half-Life-Prinz (Duraphilms)</li>
                     </ul>
                 </p>
                 <p>
@@ -90,6 +94,9 @@
                     Das eigentliche Video könnt Ihr herunterladen, indem Ihr mit der rechten Maustaste darauf klickt und <key>Speichern unter ...</key> auswählt.
                     <!-- Auf mobilen Endgeräten kann man das Video durch ein [...] -->
                     <!-- Alternativ findet Ihr unter dem Video auch den Download-Link für alle Parts.<br/> -->
+                </p>
+                <p>
+                    Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
                 </p>
                 <p>
                     Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a>.
@@ -221,6 +228,9 @@
             <button id="next-part" disabled>Nächster Part ▶</button>
             <button id="next-movie" disabled>Nächster Film ▶▶</button>
             <br/>
+            <p>
+                Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
+            </p>
             <br/>
             <hr/>
             <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
@@ -252,6 +262,7 @@
                     <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
                 </tr>
             </table>
+
             <br/>
             <table>
                 <tr>
