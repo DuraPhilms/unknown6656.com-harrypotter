@@ -66,6 +66,10 @@
         </div>
         <div id="main" class="main_font">
             <span class="description">
+                <h2>Wichtig: bitte hier abstimmen!</h2>
+                <iframe src="https://www.strawpoll.me/embed_1/21011398" width="720" height="400">
+                </iframe>
+                <hr/>
                 <h2>Willkommen liebe Potter-Fans!</h2>
                 <p>
                     Auf dieser Seite könnt Ihr Euch alle Harry Potter Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
