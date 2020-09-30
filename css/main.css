@@ -130,6 +130,15 @@ body {
     top: -10px;
 }
 
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    font-weight: 100;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
 span.description {
     text-align: justify;
     line-height: 19pt;
@@ -162,15 +171,23 @@ span.description kbd {
 }
 
 .img_container.unknown6656 {
-    background-image: url('../images/unknown6656.png');
+    background-image: url('../images/channel-unknown6656.png');
 }
 
 .img_container.coldmirror {
-    background-image: url('../images/coldmirror.png');
+    background-image: url('../images/channel-coldmirror.png');
 }
 
 .img_container.duraphilms {
-    background-image: url('../images/duraphilms.jpg');
+    background-image: url('../images/channel-duraphilms.jpg');
+}
+
+.img_container.jnl {
+    background-image: url('../images/channel-jnl.png');
+}
+
+.img_container.jbb {
+    background-image: url('../images/channel-jbb.png');
 }
 
 #title {
@@ -759,6 +776,15 @@ select optiongroup {
     background-image: url('../images/sm-github.png');
 }
 
+#credit-icons td {
+    text-align: center;
+    align: center;
+}
+
+#credit-icons td * {
+    display: block;
+    margin: auto;
+}
 
 @keyframes fader{
     0% {
