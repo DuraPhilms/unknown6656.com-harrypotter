@@ -67,10 +67,11 @@
         <div id="main" class="main_font">
             <span class="description">
                 <h2>Wichtig: bitte hier abstimmen!</h2>
-                <iframe src="https://www.strawpoll.me/embed_1/21011398" width="720" height="400">
+                <iframe src="https://www.strawpoll.me/embed_1/21011398" width="720" height="450" style="overflow: hidden !important">
                 </iframe>
                 <hr/>
-                <h1>Willkommen liebe Pоttеr-Fans!</h1>
+                <br/>
+                <h1>Willkommen liebe Potter-Fans!</h1>
                 <p>
                     Auf dieser Seite könnt Ihr Euch alle Hаrry Pоttеr Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
                     <ul>
@@ -163,9 +164,9 @@
             <hr/>
             <div id="video-section" class="default">
                 <a name="video"></a>
-                <h3 id="video-title">
+                <h2 id="video-title">
                     <i>Bitte ein Video auswählen</i>
-                </h3>
+                </h2>
                 <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png" type="video/mp4" src=""></video>
                 <table width="100%">
                     <tr width="100%">
@@ -246,6 +247,18 @@
                     <td>(<a href="https://youtube.com/darthdustinKanal2" target="_blank">YouTube</a>)</td>
                 </tr>
                 <tr>
+                    <td>Thumbnails:</td>
+                    <td> &nbsp; </td>
+                    <td>&copy; Duraphilms, JNL, JBB</td>
+                    <td>2009-2020</td>
+                </tr>
+                <tr>
+                    <td>Untertitel:</td>
+                    <td> &nbsp; </td>
+                    <td>&copy; Unknown6656, JNL, JBB</td>
+                    <td>2020</td>
+                </tr>
+                <tr>
                     <td></td>
                     <td></td>
                     <td>&copy; Coldmirror,</td>
@@ -262,23 +275,38 @@
                     <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
                 </tr>
             </table>
-
             <br/>
-            <table>
+            <br/>
+            <table id="credit-icons" width="100%">
                 <tr>
                     <td>
                         <a href="https://youtube.com/darthdustinKanal2" target="_blank">
                             <div class="img_container duraphilms"></div>
+                            DURAPHILMS
                         </a>
                     </td>
                     <td>
                         <a href="https://youtube.com/coldmirror" target="_blank">
                             <div class="img_container coldmirror"></div>
+                            COLDMIRROR
                         </a>
                     </td>
                     <td>
                         <a href="https://youtube.com/Unknown6656" target="_blank">
                             <div class="img_container unknown6656"></div>
+                            unknown6656
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://github.com/lnjX" target="_blank">
+                            <div class="img_container jnl"></div>
+                            JNL
+                        </a>
+                    </td>
+                    <td>
+                        <a href="https://github.com/JBBgameich" target="_blank">
+                            <div class="img_container jbb"></div>
+                            JBB
                         </a>
                     </td>
                 </tr>
