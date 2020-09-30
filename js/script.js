@@ -1,5 +1,7 @@
 let part_selector = $('#partselector');
 let video_player = $('video#player');
+let video_player_source = $('video#player #player-source');
+let video_player_subtitle = $('video#player #player-subtitle');
 let video_title = $('#video-title');
 let video_section = $('#video-section');
 let download_single = $('#download-single');
@@ -67,6 +69,7 @@ function on_selector_changed(id)
 
     let entry = video_ids[id];
     let path = get_video_url(id);
+    let subtitle = 'subtitles/' + entry[0] + '/' + entry[1] + '.vtt';
     let thumbnail = 'thumbs/' + entry[0] + '/' + entry[1] + '.jpg';
     let friendly = entry[4] + (entry[2] > 1 ? ' (Part ' + entry[2] + ')' : '');
 
@@ -93,7 +96,8 @@ function on_selector_changed(id)
     video_section.attr('data-video-name', friendly);
     video_title.text(friendly);
     video_player.attr('poster', thumbnail);
-    video_player.attr('src', path);
+    video_player_source.attr('src', path);
+    video_player_subtitle.attr('src', path);
 
     scroll_to_anchor('video');
     on_video_updated(id);

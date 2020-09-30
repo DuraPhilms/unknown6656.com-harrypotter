@@ -167,7 +167,10 @@
                 <h2 id="video-title">
                     <i>Bitte ein Video auswählen</i>
                 </h2>
-                <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png" type="video/mp4" src=""></video>
+                <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png">
+                    <source id="player-source" type="video/mp4" src=""/>
+                    <track id="player-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default/>
+                </video>
                 <table width="100%">
                     <tr width="100%">
                         <td width="70%" valign="top">
