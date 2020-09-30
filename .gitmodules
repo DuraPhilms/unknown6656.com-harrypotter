@@ -1,0 +1,3 @@
+[submodule "subtitles"]
+	path = subtitles
+	url = https://github.com/DuraPhilms/Subtitles
