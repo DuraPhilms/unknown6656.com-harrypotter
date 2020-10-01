@@ -58,61 +58,55 @@
     </head>
     <a name="top"></a>
     <body>
-        <div id="title" class="title_font">
-            <!--
-            Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR
-            <div id="title_cover"></div>
-            -->
-        </div>
-        <div id="main" class="main_font">
-            <span class="description">
-                <h2>Wichtig: bitte hier abstimmen!</h2>
-                <iframe src="https://www.strawpoll.me/embed_1/21011398" width="720" height="450" style="overflow: hidden !important">
-                </iframe>
+        <div id="content">
+            <div id="title" class="title_font">
+                <!--
+                Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR
+                <div id="title_cover"></div>
+                -->
+            </div>
+            <div id="main" class="main_font">
+                <div id="back-blur">
+                </div>
+                <span class="description">
+                    <p>
+                        <h2>Wichtig: bitte hier abstimmen!</h2>
+                        <div class="strawpoll">
+                            <iframe src="https://www.strawpoll.me/embed_1/21011398">
+                            </iframe>
+                        </div>
+                    <p>
+                    <hr/>
+                    <h1>Willkommen liebe Potter-Fans!</h1>
+                    <p>
+                        Auf dieser Seite könnt Ihr Euch alle Hаrry Pоttеr Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen.
+                        <br/>
+                        Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor &mdash; die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
+                        Um einen spezifischen Part zu sehen, könnt ihr auf den entsprechenden Eintrag in der folgenden Tabelle klicken.
+                        Alternativ befindet sich unterhalb des Videofensters ein Auswahlmenü der verfügbaren Parts.
+                        <!--
+                            Um einen spezifischen Part zu sehen, müsst Ihr die entsprechende Nummer des Parts in das Nummernfeld unterhalb
+                            des Videos eintragen und mit <key>ENTER</key> bestätigen.
+                            Das eigentliche Video könnt Ihr herunterladen, indem Ihr mit der rechten Maustaste darauf klickt und <key>Speichern unter ...</key> auswählt.
+                        -->
+                    </p>
+                    <p>
+                        Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
+                        <br/>
+                        Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a>.
+                    </p>
+                    <!--
+                        <p>
+                            <i>Diese Webseite benötigt HTML5-Unterstützung.</i></i>
+                            <a href="https://html5test.com/" target="_blank" class="help">?</a>
+                        </p>
+                    -->
+                </span>
                 <hr/>
-                <br/>
-                <h1>Willkommen liebe Potter-Fans!</h1>
                 <p>
-                    Auf dieser Seite könnt Ihr Euch alle Hаrry Pоttеr Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen:
-                    <ul>
-                        <li>Hаrry Pоttеr und ein Stein (Coldmirror)</li>
-                        <li>Hаrry Pоttеr und der geheime P████keller (Coldmirror)</li>
-                        <li>Hаrry Pоttеr und der Plastikpokal (Coldmirror)</li>
-                        <li>Hаrry Pоttеr und der Penner von Alcatraz (Duraphilms)</li>
-                        <li>Hаrry Pоttеr und der Feuer-Elch (Duraphilms)</li>
-                        <li>Hаrry Pоttеr und der Ordern des Penners (Duraphilms)</li>
-                        <li>Hаrry Pоttеr und der Half-Life-Prinz (Duraphilms)</li>
-                    </ul>
-                </p>
-                <p>
-                    Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor &mdash; die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
-                    Um einen spezifischen Part zu sehen, könnt ihr auf den entsprechenden Eintrag in der folgenden Tabelle klicken.
-                    Alternativ befindet sich unterhalb des Videofensters ein Auswahlmenü der verfügbaren Parts.
-                    <!-- Um einen spezifischen Part zu sehen, müsst Ihr die entsprechende Nummer des Parts in das Nummernfeld unterhalb
-                    des Videos eintragen und mit <key>ENTER</key> bestätigen. -->
-                </p>
-                <p>
-                    Das eigentliche Video könnt Ihr herunterladen, indem Ihr mit der rechten Maustaste darauf klickt und <key>Speichern unter ...</key> auswählt.
-                    <!-- Auf mobilen Endgeräten kann man das Video durch ein [...] -->
-                    <!-- Alternativ findet Ihr unter dem Video auch den Download-Link für alle Parts.<br/> -->
-                </p>
-                <p>
-                    Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
-                </p>
-                <p>
-                    Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a>.
-                </p>
-                <p>
-                    <i>Diese Webseite benötigt HTML5-Unterstützung.</i></i>
-                    <a href="https://html5test.com/" target="_blank" class="help">?</a>
-                </p>
-            </span>
-            <br/>
-            <hr/>
-            <p>
-                Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen):
-                <table width="100%" id="parts">
-                    <tr width="100%">
+                    Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen):
+                    <table width="100%" id="parts">
+                        <tr width="100%">
 <?php
     $last = "";
 
@@ -121,12 +115,12 @@
         if ($last != $values[0])
         {
             ?>
-                    <td class="descr"><?=$values[3]?>:</td>
+                        <td class="descr"><?=$values[3]?>:</td>
             <?php
         }
 
         ?>
-                        <td --data-video-id="<?=$key?>" class="number"><span class="tooltip" text=""><?=$values[1]?></span></td>
+                            <td --data-video-id="<?=$key?>" class="number"><span class="tooltip" text=""><?=$values[1]?></span></td>
         <?php
 
         $last = $values[0];
@@ -134,66 +128,68 @@
         if ($key + 1 < count($video_ids) && $last != $video_ids[$key + 1][0])
         {
             ?>
-                </tr>
-                <tr width="100%">
+                    </tr>
+                    <tr width="100%">
             <?php
         }
     }
 ?>
-                    </tr>
-                    <tr width="100%" height="17px"></tr>
-                    <tr width="100%" class="legende">
-                        <td class="legende_desc">STATUS UNBEKANNT:</td>
-                        <td class="number"></td>
-                    </tr>
-                    <tr width="100%" class="legende">
-                        <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE:</td>
-                        <td class="number offline" style="cursor: default !important;"></td>
-                    </tr>
-                    <tr width="100%" class="legende">
-                        <td class="legende_desc">TEMPORÄR (KURZZEITIG) OFFLINE:</td>
-                        <td class="number temporary" style="cursor: default !important;"></td>
-                    </tr>
-                    <tr width="100%" class="legende">
-                        <td class="legende_desc">ONLINE:</td>
-                        <td class="number online" style="cursor: default !important;"></td>
-                    </tr>
-                </table>
-            </p>
-            <br/>
-            <hr/>
-            <div id="video-section" class="default">
-                <a name="video"></a>
-                <h2 id="video-title">
-                    <i>Bitte ein Video auswählen</i>
-                </h2>
-                <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png"  type="video/mp4" src="">
-                    <track id="player-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default/>
-                </video>
-                <table width="100%">
-                    <tr width="100%">
-                        <td width="70%" valign="top">
-                            <i style="font-size: 10pt">
-                                Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
-                                <br/>
-                                &nbsp;
-                            </i>
-                        </td>
-                        <td width="30%" valign="top" align="right">
-                            <div id="download-links">
-                                <a id="download-single" download>Dieses Video herunterladen</a>
-                                <br/>
-                                <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <br/>
-            <button id="prev-movie" disabled>◀◀ Vorheriger Film</button>
-            <button id="prev-part" disabled>◀ Vorheriger Part</button>
-            <select id="partselector">
-                <option selected disabled>Bitte Video auswählen</option>
+                        </tr>
+                        <tr width="100%" height="17px"></tr>
+                        <tr width="100%" class="legende">
+                            <td class="legende_desc">STATUS UNBEKANNT:</td>
+                            <td class="number"></td>
+                        </tr>
+                        <tr width="100%" class="legende">
+                            <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE:</td>
+                            <td class="number offline" style="cursor: default !important;"></td>
+                        </tr>
+                        <!--
+                            <tr width="100%" class="legende">
+                                <td class="legende_desc">TEMPORÄR (KURZZEITIG) OFFLINE:</td>
+                                <td class="number temporary" style="cursor: default !important;"></td>
+                            </tr>
+                        -->
+                        <tr width="100%" class="legende">
+                            <td class="legende_desc">ONLINE:</td>
+                            <td class="number online" style="cursor: default !important;"></td>
+                        </tr>
+                    </table>
+                </p>
+                <br/>
+                <hr/>
+                <div id="video-section" class="default">
+                    <a name="video"></a>
+                    <h2 id="video-title">
+                        <i>Bitte ein Video auswählen</i>
+                    </h2>
+                    <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/title.png"  type="video/mp4" src="">
+                        <track id="player-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default/>
+                    </video>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="70%" valign="top">
+                                <i style="font-size: 10pt">
+                                    Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+                                    <br/>
+                                    &nbsp;
+                                </i>
+                            </td>
+                            <td width="30%" valign="top" align="right">
+                                <div id="download-links">
+                                    <a id="download-single" download>Dieses Video herunterladen</a>
+                                    <br/>
+                                    <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <button id="prev-movie" disabled>◀◀ Vorheriger Film</button>
+                <button id="prev-part" disabled>◀ Vorheriger Part</button>
+                <select id="partselector">
+                    <option selected disabled>Bitte Video auswählen</option>
 <?php
     $group = "";
 
@@ -201,7 +197,7 @@
         if ($values[2] < 2)
         {
             ?>
-                <option value="<?=$key?>"><?=$values[3]?></option>
+                    <option value="<?=$key?>"><?=$values[3]?></option>
             <?php
         }
         else
@@ -209,149 +205,151 @@
             if ($group != $values[0])
             {
                 ?>
-                <optgroup label="<?=$info[0]?>">
+                    <optgroup label="<?=$info[0]?>">
                 <?php
             }
 
             ?>
-                <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
+                    <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
             <?php
 
             if ($values[1] > $values[2] - 1)
             {
                 ?>
-                </optgroup>
+                    </optgroup>
                 <?php
             }
 
             $group = $values[0];
         }
 ?>
-            </select>
-            <button id="next-part" disabled>Nächster Part ▶</button>
-            <button id="next-movie" disabled>Nächster Film ▶▶</button>
-            <br/>
-            <p>
-                Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
-            </p>
-            <br/>
-            <hr/>
-            <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
-            <a name="credits"></a>
-            <br/>
-            <table>
-                <tr>
-                    <td>Videomaterial:</td>
-                    <td> &nbsp; </td>
-                    <td>&copy; Duraphilms,</td>
-                    <td>2009-2015</td>
-                    <td> &nbsp; </td>
-                    <td>(<a href="https://youtube.com/darthdustinKanal2" target="_blank">YouTube</a>)</td>
-                </tr>
-                <tr>
-                    <td>Thumbnails:</td>
-                    <td> &nbsp; </td>
-                    <td>&copy; Duraphilms, LNJ, JBB</td>
-                    <td>2009-2020</td>
-                </tr>
-                <tr>
-                    <td>Untertitel:</td>
-                    <td> &nbsp; </td>
-                    <td>&copy; Unknown6656, LNJ, JBB</td>
-                    <td>2020</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>&copy; Coldmirror,</td>
-                    <td>2006-2008</td>
-                    <td></td>
-                    <td>(<a href="https://youtube.com/coldmirror" target="_blank">YouTube</a>)</td>
-                </tr>
-                <tr>
-                    <td>Webseite:</td>
-                    <td></td>
-                    <td>&copy; Unknown6656,</td>
-                    <td>2014-<?=date("Y")?></td>
-                    <td></td>
-                    <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
-                </tr>
-            </table>
-            <br/>
-            <br/>
-            <table id="credit-icons" width="100%">
-                <tr>
-                    <td>
-                        <a href="https://youtube.com/darthdustinKanal2" target="_blank">
-                            <div class="img_container duraphilms"></div>
-                            DURAPHILMS
-                        </a>
-                    </td>
-                    <td>
-                        <a href="https://youtube.com/coldmirror" target="_blank">
-                            <div class="img_container coldmirror"></div>
-                            COLDMIRROR
-                        </a>
-                    </td>
-                    <td>
-                        <a href="https://youtube.com/Unknown6656" target="_blank">
-                            <div class="img_container unknown6656"></div>
-                            unknown6656
-                        </a>
-                    </td>
-                    <td>
-                        <a href="https://github.com/lnjX" target="_blank">
-                            <div class="img_container lnj"></div>
-                            LNJ
-                        </a>
-                    </td>
-                    <td>
-                        <a href="https://github.com/JBBgameich" target="_blank">
-                            <div class="img_container jbb"></div>
-                            JBB
-                        </a>
-                    </td>
-                </tr>
-            </table>
-            <br/>
-            <hr/>
-            <br/>
-            <div id="feedback">
-                <smc>
-                    Fragen? Probleme? Kritik? Verbesserungsvorschläge?
-                </smc>
+                </select>
+                <button id="next-part" disabled>Nächster Part ▶</button>
+                <button id="next-movie" disabled>Nächster Film ▶▶</button>
                 <br/>
-                <a class="sm github" name="GitHub" href="https://github.com/Unknown6656" target="_blank"></a>
-                <a class="sm twitter" name="Twitter" href="https://twitter.com/Unknown6656" target="_blank"></a>
-                <a class="sm youtube" name="YouTube" href="https://youtube.com/unknown6656/about" target="_blank"></a>
-                <a class="sm facebook" name="Facebook" href="https://facebook.com/Unknown6656" target="_blank"></a>
+                <p>
+                    Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
+                </p>
                 <br/>
-            </span>
-            <br/>
-            <hr/>
-            <br/>
-            <a href="#top">Zurück zum Seitenanfang</a>
-        </div>
-        <div id="sidebar">
-            <span class="content main_font">
-                <a href="http://www.youtube.com/subscription_center?add_user=darthdustinKanal2" target="_blank">
-                    <div class="img_container duraphilms"></div>
-                    DURAPHILMS abonnieren
-                </a>
+                <hr/>
+                <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
+                <a name="credits"></a>
+                <br/>
+                <table>
+                    <tr>
+                        <td>Videomaterial:</td>
+                        <td> &nbsp; </td>
+                        <td>&copy; Duraphilms, LNJ</td>
+                        <td>2009-2015</td>
+                        <td> &nbsp; </td>
+                        <td>(<a href="https://youtube.com/darthdustinKanal2" target="_blank">YouTube</a>)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>&copy; Coldmirror</td>
+                        <td>2006-2008</td>
+                        <td></td>
+                        <td>(<a href="https://youtube.com/coldmirror" target="_blank">YouTube</a>)</td>
+                    </tr>
+                    <tr>
+                        <td>Thumbnails:</td>
+                        <td> &nbsp; </td>
+                        <td>&copy; Duraphilms, LNJ, JBB</td>
+                        <td>2009-2020</td>
+                    </tr>
+                    <tr>
+                        <td>Untertitel:</td>
+                        <td> &nbsp; </td>
+                        <td>&copy; Unknown6656, LNJ, JBB</td>
+                        <td>2020</td>
+                    </tr>
+                    <tr>
+                        <td>Webseite:</td>
+                        <td></td>
+                        <td>&copy; Unknown6656</td>
+                        <td>2014-<?=date("Y")?></td>
+                        <td></td>
+                        <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
+                    </tr>
+                </table>
                 <br/>
                 <br/>
-                <a href="http://www.youtube.com/subscription_center?add_user=coldmirror" target="_blank">
-                    <div class="img_container coldmirror"></div>
-                    COLDMIRROR abonnieren
-                </a>
+                <table id="credit-icons" width="100%">
+                    <tr>
+                        <td>
+                            <a href="https://youtube.com/darthdustinKanal2" target="_blank">
+                                <div class="img_container duraphilms"></div>
+                                DURAPHILMS
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://youtube.com/coldmirror" target="_blank">
+                                <div class="img_container coldmirror"></div>
+                                COLDMIRROR
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://youtube.com/Unknown6656" target="_blank">
+                                <div class="img_container unknown6656"></div>
+                                unknown6656
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://github.com/lnjX" target="_blank">
+                                <div class="img_container lnj"></div>
+                                LNJ
+                            </a>
+                        </td>
+                        <td>
+                            <a href="https://github.com/JBBgameich" target="_blank">
+                                <div class="img_container jbb"></div>
+                                JBB
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <hr/>
+                <br/>
+                <div id="feedback">
+                    <smc>
+                        Fragen? Probleme? Kritik? Verbesserungsvorschläge?
+                    </smc>
+                    <br/>
+                    <a class="sm github" name="GitHub" href="https://github.com/Unknown6656/duraphilms/" target="_blank"></a>
+                    <a class="sm twitter" name="Twitter" href="https://twitter.com/Unknown6656" target="_blank"></a>
+                    <a class="sm youtube" name="YouTube" href="https://youtube.com/unknown6656/about" target="_blank"></a>
+                    <a class="sm facebook" name="Facebook" href="https://facebook.com/Unknown6656" target="_blank"></a>
+                    <br/>
+                </span>
                 <br/>
                 <br/>
-                <a href="http://www.youtube.com/subscription_center?add_user=unknown6656" target="_blank">
-                    <div class="img_container unknown6656"></div>
-                    UNKNOWN6656 abonnieren
-                </a>
+                <hr/>
                 <br/>
-            </span>
+                <a href="#top">Zurück zum Seitenanfang</a>
+            </div>
+            <div id="sidebar">
+                <span class="content main_font">
+                    <a href="http://www.youtube.com/subscription_center?add_user=darthdustinKanal2" target="_blank">
+                        <div class="img_container duraphilms"></div>
+                        DURAPHILMS abonnieren
+                    </a>
+                    <br/>
+                    <br/>
+                    <a href="http://www.youtube.com/subscription_center?add_user=coldmirror" target="_blank">
+                        <div class="img_container coldmirror"></div>
+                        COLDMIRROR abonnieren
+                    </a>
+                    <br/>
+                    <br/>
+                    <a href="http://www.youtube.com/subscription_center?add_user=unknown6656" target="_blank">
+                        <div class="img_container unknown6656"></div>
+                        UNKNOWN6656 abonnieren
+                    </a>
+                    <br/>
+                </span>
+            </div>
         </div>
         <script type="text/javascript" language="javascript">
             let video_ids = [
@@ -359,7 +357,7 @@
     foreach ($video_ids as $key => $values)
     {
 ?>
-                ["<?=$values[0]?>", "<?=$values[1]?>", <?=$values[1]?>, <?=$values[2]?>, "<?=$values[3]?>"],
+                    ["<?=$values[0]?>", "<?=$values[1]?>", <?=$values[1]?>, <?=$values[2]?>, "<?=$values[3]?>"],
 <?php
     }
 ?>
