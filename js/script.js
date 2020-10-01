@@ -23,7 +23,7 @@ for (i = 0; i < video_ids.length; ++i)
         function()
         {
             $(table_id).addClass('online');
-            $(table_id + ' span.tooltip').attr('text', element[4] + '\nPart ' + part + ' ist online');
+            $(table_id + ' span.tooltip').attr('text', element[4] + '\nPart ' + part + ' ist online!');
         },
         function()
         {
