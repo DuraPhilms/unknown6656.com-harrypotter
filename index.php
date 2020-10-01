@@ -251,13 +251,13 @@
                 <tr>
                     <td>Thumbnails:</td>
                     <td> &nbsp; </td>
-                    <td>&copy; Duraphilms, JNL, JBB</td>
+                    <td>&copy; Duraphilms, LNJ, JBB</td>
                     <td>2009-2020</td>
                 </tr>
                 <tr>
                     <td>Untertitel:</td>
                     <td> &nbsp; </td>
-                    <td>&copy; Unknown6656, JNL, JBB</td>
+                    <td>&copy; Unknown6656, LNJ, JBB</td>
                     <td>2020</td>
                 </tr>
                 <tr>
@@ -301,8 +301,8 @@
                     </td>
                     <td>
                         <a href="https://github.com/lnjX" target="_blank">
-                            <div class="img_container jnl"></div>
-                            JNL
+                            <div class="img_container lnj"></div>
+                            LNJ
                         </a>
                     </td>
                     <td>
