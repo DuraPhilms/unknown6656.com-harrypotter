@@ -9,6 +9,11 @@ let prev_part_button = $('#prev-part');
 let next_part_button = $('#next-part');
 let prev_movie_button = $('#prev-movie');
 let next_movie_button = $('#next-movie');
+let gif_start = $('#gif-creator [name="gif-start"]');
+let gif_duration = $('#gif-creator [name="gif-length"]');
+let gif_resolution = $('#gif-creator [name="gif-resolution"]');
+let gif_create = $('#gif-creator [name="create-gif"]');
+let gif_result = $('#gif-creator [name="gif-result"]');
 
 
 for (i = 0; i < video_ids.length; ++i)
@@ -54,6 +59,11 @@ function on_selector_changed(id)
     if (typeof id != 'number')
         id = parseInt(id);
 
+    gif_start.attr('disabled', '');
+    gif_duration.attr('disabled', '');
+    gif_resolution.attr('disabled', '');
+    gif_create.attr('disabled', '');
+
     if (id == undefined)
     {
         video_title.html('<i>Bitte ein Video auswählen</i>');
@@ -61,9 +71,8 @@ function on_selector_changed(id)
 
         return;
     }
-    else
-        video_section.removeClass('default');
 
+    video_section.removeClass('default');
     part_selector.val(id);
 
     let entry = video_ids[id];
@@ -118,6 +127,10 @@ function on_video_updated(id)
             download_all.css('display', entry[3] > 1 ? 'inline' : 'none');
             download_all.attr('href', uri.replace(/\d+\.mp4$/ig, "all.zip"));
             download_single.attr('href', uri);
+            gif_start.removeAttr('disabled');
+            gif_duration.removeAttr('disabled');
+            gif_resolution.removeAttr('disabled');
+            gif_create.removeAttr('disabled');
         },
         function()
         {
@@ -168,6 +181,55 @@ next_movie_button.click(function()
 
     if (id < video_ids.length - 1)
         on_selector_changed(id + 1);
+});
+
+video_player.bind('timeupdate', function()
+{
+    let time = this.currentTime;
+    let hours = Math.floor(time / 6300).toString().padStart(2, "0");
+    let minutes = (Math.floor(time / 60) % 60).toString().padStart(2, "0");
+    let seconds = (Math.floor(time) % 60).toString().padStart(2, "0");
+
+    gif_start.val(`${hours}:${minutes}:${seconds}`);
+});
+
+gif_create.click(function()
+{
+    let captcha_response = $('[name=h-captcha-response]').val();
+
+    if (captcha_response === "" || captcha_response == undefined)
+        alert("Please complete the hCaptcha");
+    else
+    {
+        let entry = video_ids[part_selector.val()];
+        let start = $('[name="gif-start"]').val();
+        let length = $('[name="gif-length"]').val();
+        let resolution = $('[name="gif-resolution"]').val();
+        let base_url = document.URL.substr(0, document.URL.lastIndexOf('/'));
+        let url = `${base_url}/gifmaker.php?h-captcha-response=${captcha_response}&start=${start}&length=${length}&baseid=${entry[0]}&part=${entry[1]}&resolution=${resolution}`;
+
+        gif_create.attr('disabled', '');
+        gif_result.attr('data-gif-state', 'loading');
+
+        $.ajax({
+            url : url,
+            type : 'GET',
+            success : function(data)
+            {
+                gif_result.attr('data-gif-state', 'success');
+                gif_result.find('img').attr('src', data);
+                gif_result.find('a').attr('href', data);
+                gif_create.removeAttr('disabled');
+                hcaptcha.reset();
+            },
+            error : function()
+            {
+                gif_result.attr('data-gif-state', 'error');
+                gif_create.removeAttr('disabled');
+                hcaptcha.reset();
+            }
+        });
+    }
 });
 
 $('tr:not(.legende) td[--data-video-id]').click(function(event) {

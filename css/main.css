@@ -8,7 +8,8 @@
     --font-main: 'HelveticaNeueCyr', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
     --font-mono: 'Consolas', 'Courier New', 'Courier', 'Lucida Console', 'Ubuntu Mono', monospace;
     --color-fg: black;
-    --color-bg: #578B9C55;
+    --color-bg: #283b4226;
+    --color-links: #4fb9be;
     --blur-radius: 20px;
 }
 
@@ -37,7 +38,7 @@ a:visited {
     text-decoration: underline;
     /* font-style: italic; */
     cursor: pointer;
-    color: #123;
+    color: var(--color-links);
 }
 
 a:active {
@@ -127,8 +128,15 @@ html {
     /* hack for samsung internet: https://caniuse.com/background-attachment */
     border-radius: 0.00001px;
     background-color: black;
-    overflow-x: hidden;
+    margin: 0px auto;
     min-width: 900px;
+}
+
+@media all and (min-device-width: 880px) {
+    html {
+        overflow-x: hidden;
+    }
+    /* TODO : some desktop variant of the site */
 }
 
 /* Exclude iOS Safari: https://caniuse.com/mdn-css_properties_-webkit-touch-callout */
@@ -162,6 +170,10 @@ html {
     }
 }
 
+@media all and (min-device-width: 1000px) {
+    /* TODO : some desktop variant of the site */
+}
+
 #content {
     border: 1px solid var(--color-fg);
     border-radius: 40px;
@@ -177,14 +189,11 @@ html {
     top: -10px;
 }
 
-@media all and (min-device-width: 1000px) {
-    /* TODO : some desktop variant of the site */
-}
-
 #back-blur {
     -webkit-backdrop-filter: blur(var(--blur-radius));
             backdrop-filter: blur(var(--blur-radius));
 
+    border-radius: 39px;
     position: absolute;
     z-index: -1000;
     display: block;
@@ -199,12 +208,14 @@ html {
 #title {
     text-shadow: -1px -1px 4px rgba(200, 200, 255, 0.4),
                   2px 6px 12px #000;
-    border-bottom: 1px solid var(--color-fg);
+    border-top-right-radius: 38px;
+    border-top-left-radius: 38px;
+    border: 1px solid var(--color-fg);
     background-image: url('../images/banner.png');
     background-repeat: no-repeat;
     background-size: 100% auto;
-    background-color: black;
-    color: #9ee;
+    background-color: var(--color-fg);
+    color: var(--color-links);
 
     text-align: center;
     line-height: 100px;
@@ -213,7 +224,7 @@ html {
     z-index: 20;
     right: 0px;
     top: -20px;
-    left: 0px;
+    left: -1px;
 }
 
 #title,
@@ -319,10 +330,31 @@ span.description kbd {
     color: #caa;
 }
 
+@media all and (max-device-width: 699px) {
+    span.description {
+        text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+    }
+}
+
+div#sidebar {
+    display: none;
+}
+
+/*
+
+@media all and (max-device-width: 699px) {
+    div#sidebar {
+        display: none;
+    }
+}
+
 @media screen and (min-device-width: 700px) {
     #sidebar {
-        /* -webkit-backdrop-filter: blur(20px); */
-        /*         backdrop-filter: blur(20px); */
+        /* -webkit-backdrop-filter: blur(20px); * /
+        /*         backdrop-filter: blur(20px); * /
 
         border-bottom-left-radius: 15px;
         border-top-left-radius: 15px;
@@ -402,12 +434,7 @@ span.description kbd {
         width: 100px;
     }
 }
-
-@media all and (max-device-width: 699px) {
-    div#sidebar {
-        display: none;
-    }
-}
+*/
 
 table#parts {
     border-collapse: collapse;
@@ -625,17 +652,21 @@ input {
     border: 1px solid var(--color-fg);
     background-color: rgba(0, 0, 0, .4);
     color: var(--color-fg);
-    min-height: 23px;
+
+    vertical-align: middle;
+    /* min-height: 23px; */
+    height: 23px !important;
     margin: 0px 2px 0px 0px;
     padding: 3px 5px;
+    box-sizing: content-box;
+    display: inline-block;
     cursor: pointer;
 }
 
-input[disabled],
-button[disabled],
-select[disabled] {
-    opacity: .5;
+[disabled] {
+    pointer-events: none;
     cursor: default;
+    opacity: .5;
 }
 
 /* input:not([disabled]):hover, */
@@ -665,6 +696,70 @@ select:not([disabled]):active {
 #gif-creator select {
     text-align: right;
     width: 100px;
+}
+
+[data-gif-state] {
+    align-items: center;
+    text-align: center;
+    margin-left: 40px;
+    display: block;
+}
+
+[data-gif-state="empty"],
+[data-gif-state="error"] *,
+[data-gif-state="loading"] * {
+    display: none;
+}
+
+[data-gif-state="error"]::before {
+    content: 'Das GIF konnte nicht erstellt werden.\A Bitte überprüfe alle Eingabedaten\A oder versuche es später erneut.';
+    color: red;
+    text-align: center;
+    font-size: 1.7em;
+    font-variant: small-caps;
+    font-family: var(--font-main);
+    position: relative;
+    display: block;
+    padding: 40px 0px;
+    height: 40px;
+    width: 100%;
+    top: -1em;
+    z-index: 50;
+}
+
+[data-gif-state="loading"]::before {
+    content: 'GIF wird erstellt. Dies kann mehrere Minuten dauern ...';
+    color: var(--color-fg);
+    text-align: center;
+    font-size: 1.2em;
+    font-family: var(--font-main);
+    font-weight: bold;
+    position: relative;
+    display: block;
+    padding: 40px 0px;
+    height: 20px;
+    width: 100%;
+    top: -1em;
+    z-index: 50;
+}
+
+[data-gif-state="loading"]::after {
+    border-radius: 50%;
+    border: 10px solid transparent;
+    border-top: 10px solid var(--color-links);
+    content: '';
+    position: relative;
+    display: block;
+    height: 100px;
+    width: 100px;
+    left: calc(50% - 50px);
+    top: -50px;
+    z-index: 51;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-name: loading;
 }
 
 table#copyrights td {
@@ -742,6 +837,15 @@ table#copyrights td {
     margin: auto;
 }
 
+
+@keyframes loading{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 @keyframes fader{
     0% {

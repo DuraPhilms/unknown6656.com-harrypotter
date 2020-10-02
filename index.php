@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<?php
+<?php header('Access-Control-Allow-Origin: *');
+    //header('Access-Control-Allow-Methods: GET, POST');
+    //header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+
+    require_once "hcaptcha.php";
+
     $videos = [
         "hpues" => ["HP und ein Stein", 1],
         "hpudgpk" => ["HP und der geheime PKeller", 1],
@@ -15,12 +19,29 @@
         for ($i = 1; $i <= $info[1]; ++$i)
             array_push($video_ids, [$key, str_pad($i, 2, '0', STR_PAD_LEFT), $info[1], $info[0]]);
 ?>
+<!DOCTYPE html>
 <html lang="de" prefix="og: http://ogp.me/ns#">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
-        <meta name="viewport" content="width=800, user-scalable=yes"/>
+<?php
+    $iPod   = stripos($_SERVER['HTTP_USER_AGENT'], "iPod");
+    $iPhone = stripos($_SERVER['HTTP_USER_AGENT'], "iPhone");
+
+    if ($iPod || $iPhone)
+    {
+        ?>
+        <meta name="viewport" content="width=850, user-scalable=yes"/>
+        <?php
+    }
+    else
+    {
+        ?>
+        <meta name="viewport" content="width=900, user-scalable=yes"/>
+        <?php
+    }
+?>
         <meta name="copyright" content="unknown6656"/>
         <meta name="designer" content="unknown6656"/>
         <meta name="owner" content="unknown6656"/>
@@ -165,7 +186,7 @@
                     <h2 id="video-title">
                         <i>Bitte ein Video auswählen</i>
                     </h2>
-                    <video id="player" width="700" height="400" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/placeholder.png"  type="video/mp4" src="">
+                    <video id="player" width="740" height="416" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/placeholder.png"  type="video/mp4" src="">
                         <track id="player-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default/>
                     </video>
                     <table width="100%">
@@ -200,7 +221,7 @@
                         &nbsp;
                         Vorheriger Part
                     </button>
-                    <select id="partselector">
+                    <select id="partselector" width="200">
                         <option selected disabled>Bitte Video auswählen</option>
 <?php
     $group = "";
@@ -249,22 +270,47 @@
                     </button>
                 </div>
                 <br/>
-                <div class="navigation">
-                    <b>GIF erstellen</b>
+                <br/>
+                <div id="gif-creator">
+                    <br/>
+                    <b>GIF erstellen ⟨beta⟩</b>
                     <table style="margin-left: 40px">
                         <tr>
                             <td>Start-Zeitstempel:</td>
                             <td>
-                                <input type="time" name="gif-start" step="1" disabled/>
+                                <input type="time" name="gif-start" step="1" disabled value="00:00:00"/>
+                            </td>
+                            <td rowspan="3">
+                                <div class="h-captcha" data-sitekey="<?=hCaptcha::SITEKEY?>" data-theme="dark" data-size="todo-compact"></div>
+                                <button name="create-gif" disabled> >> ERSTELLEN << </button>
                             </td>
                         </tr>
                         <tr>
-                            <td>Länge (in Sekunden, zwischen 1 und 25):</td>
+                            <td>Länge (Sekunden, zw. 1 und 15):</td>
                             <td>
-                                <input type="number" name="gif-length" step="1" min="1" max="25" disabled/>
+                                <input type="number" name="gif-length" step="1" min="1" max="15" disabled value="5"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Horizontale Auflösung:</td>
+                            <td>
+                                <select name="gif-resolution" disabled>
+                                    <option value="240">240p</option>
+                                    <option value="360">360p</option>
+                                    <option value="480" selected>480p</option>
+                                    <option value="560">560p</option>
+                                </select>
                             </td>
                         </tr>
                     </table>
+                    <br/>
+                    <div name="gif-result" data-gif-state="empty">
+                        <hr/>
+                        <br/>
+                        <img/>
+                        <br/>
+                        <a href download>GIF speichern</a>
+                    </div>
                 </div>
                 <br/>
                 <hr/>
@@ -395,5 +441,6 @@
         </script>
         <script type="text/javascript" language="javascript" src="js/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" language="javascript" src="js/script.js"></script>
+        <script type="text/javascript" language="javascript" src="https://hcaptcha.com/1/api.js" async defer></script>
     </body>
 </html>
