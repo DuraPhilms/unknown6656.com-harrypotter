@@ -1,3 +1,6 @@
 [submodule "subtitles"]
 	path = subtitles
 	url = https://github.com/DuraPhilms/Subtitles
+[submodule "gif-creator"]
+	path = gif-creator
+	url = https://github.com/DuraPhilms/GIF-Creator
