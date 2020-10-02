@@ -207,7 +207,11 @@ html {
     #back-blur {
         -webkit-backdrop-filter: blur(var(--blur-radius));
                 backdrop-filter: blur(var(--blur-radius));
-        background-color: transparent;
+        background-color: #ffffff66;
+    }
+
+    :root {
+        --color-links: #0048c5;
     }
 }
 
@@ -215,7 +219,11 @@ html {
     #back-blur {
         -webkit-backdrop-filter: blur(var(--blur-radius));
                 backdrop-filter: blur(var(--blur-radius));
-        background-color: transparent;
+        background-color: #ffffff66;
+    }
+
+    :root {
+        --color-links: #0048c5;
     }
 }
 
