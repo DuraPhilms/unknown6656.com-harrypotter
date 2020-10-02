@@ -317,7 +317,7 @@
                         Fragen? Probleme? Kritik? Verbesserungsvorschläge?
                     </smc>
                     <br/>
-                    <a class="sm github" name="GitHub" href="https://github.com/Unknown6656/duraphilms/" target="_blank"></a>
+                    <a class="sm github" name="GitHub" href="https://github.com/DuraPhilms/unknown6656.com-harrypotter/" target="_blank"></a>
                     <a class="sm twitter" name="Twitter" href="https://twitter.com/Unknown6656" target="_blank"></a>
                     <a class="sm youtube" name="YouTube" href="https://youtube.com/unknown6656/about" target="_blank"></a>
                     <a class="sm facebook" name="Facebook" href="https://facebook.com/Unknown6656" target="_blank"></a>
