@@ -76,15 +76,6 @@ a.help:active {
     color: rgba(255, 220, 220, 0.8);
 }
 
-html {
-    background-image: url('../images/background.jpg');
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: black;
-    overflow-x: hidden;
-}
-
 .img_container {
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -132,6 +123,45 @@ html {
     float: right;
 }
 
+html {
+    /* hack for samsung internet: https://caniuse.com/background-attachment */
+    border-radius: 0.00001px;
+    background-color: black;
+    overflow-x: hidden;
+    min-width: 900px;
+}
+
+/* Exclude iOS Safari: https://caniuse.com/mdn-css_properties_-webkit-touch-callout */
+@supports not (-webkit-touch-callout: none) {
+    html {
+        background-image: url('../images/background.jpg');
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+/* iOS Safari only: https://caniuse.com/mdn-css_properties_-webkit-touch-callout */
+@supports (-webkit-touch-callout: none) {
+    .ios-only {
+        background-image: url('../images/background.jpg');
+        background-attachment: local;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        background-attachment: local;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        bottom: 0px;
+        right: 0px;
+        left: 0px;
+        top: 0px;
+        z-index: -10000000;
+    }
+}
+
 #content {
     border: 1px solid var(--color-fg);
     border-radius: 40px;
@@ -145,6 +175,10 @@ html {
     display: block;
     width: 800px;
     top: -10px;
+}
+
+@media all and (min-device-width: 1000px) {
+    /* TODO : some desktop variant of the site */
 }
 
 #back-blur {
@@ -573,18 +607,10 @@ table#parts td span.tooltip:hover::before {
     display: none;
 }
 
-.navigation {
-    display: block;
-    margin: 0px auto;
-    width: 720px;
-}
-
-
 video {
     background-color: rgba(0, 0, 0, .4);
-
     width: calc(100% - 20px) !important;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     margin-right: 10px;
     margin-left: 10px;
 }
@@ -603,15 +629,6 @@ input {
     margin: 0px 2px 0px 0px;
     padding: 3px 5px;
     cursor: pointer;
-}
-
-input {
-    text-align: right;
-    width: 100px;
-}
-
-select {
-    width: 200px;
 }
 
 input[disabled],
@@ -636,6 +653,18 @@ button:not([disabled]):active,
 select:not([disabled]):active {
     background-color: #15a;
     color: white;
+}
+
+#gif-creator {
+    display: block;
+    margin: 0px auto;
+    width: 720px;
+}
+
+#gif-creator input,
+#gif-creator select {
+    text-align: right;
+    width: 100px;
 }
 
 table#copyrights td {

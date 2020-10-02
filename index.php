@@ -57,6 +57,8 @@
         -->
     </head>
     <a name="top"></a>
+    <div class="ios-only">
+    </div>
     <body>
         <div id="content">
             <div id="title" class="title_font">
