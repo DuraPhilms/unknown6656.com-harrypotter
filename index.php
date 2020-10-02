@@ -237,12 +237,12 @@
             if ($group != $values[0])
             {
                 ?>
-                        <optgroup label="<?=$info[0]?>">
+                        <optgroup label="<?=$values[3]?>">
                 <?php
             }
 
             ?>
-                        <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
+                            <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
             <?php
 
             if ($values[1] > $values[2] - 1)
