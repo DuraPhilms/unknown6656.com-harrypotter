@@ -208,6 +208,9 @@ gif_create.click(function()
         let base_url = document.URL.substr(0, document.URL.lastIndexOf('/'));
         let url = `${base_url}/gifmaker.php?h-captcha-response=${captcha_response}&start=${start}&length=${length}&baseid=${entry[0]}&part=${entry[1]}&resolution=${resolution}`;
 
+        gif_start.attr('disabled', '');
+        gif_duration.attr('disabled', '');
+        gif_resolution.attr('disabled', '');
         gif_create.attr('disabled', '');
         gif_result.attr('data-gif-state', 'loading');
 
@@ -219,12 +222,18 @@ gif_create.click(function()
                 gif_result.attr('data-gif-state', 'success');
                 gif_result.find('img').attr('src', data);
                 gif_result.find('a').attr('href', data);
+                gif_start.removeAttr('disabled');
+                gif_duration.removeAttr('disabled');
+                gif_resolution.removeAttr('disabled');
                 gif_create.removeAttr('disabled');
                 hcaptcha.reset();
             },
             error : function()
             {
                 gif_result.attr('data-gif-state', 'error');
+                gif_start.removeAttr('disabled');
+                gif_duration.removeAttr('disabled');
+                gif_resolution.removeAttr('disabled');
                 gif_create.removeAttr('disabled');
                 hcaptcha.reset();
             }
