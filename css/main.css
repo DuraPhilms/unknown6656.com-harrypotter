@@ -190,9 +190,7 @@ html {
 }
 
 #back-blur {
-    -webkit-backdrop-filter: blur(var(--blur-radius));
-            backdrop-filter: blur(var(--blur-radius));
-
+    background-color: #49505d;
     border-radius: 39px;
     position: absolute;
     z-index: -1000;
@@ -203,6 +201,22 @@ html {
     right: 0px;
     left: 0px;
     top: 0px;
+}
+
+@supports (-webkit-backdrop-filter: blur(20px)) {
+    #back-blur {
+        -webkit-backdrop-filter: blur(var(--blur-radius));
+                backdrop-filter: blur(var(--blur-radius));
+        background-color: transparent;
+    }
+}
+
+@supports (backdrop-filter: blur(20px)) {
+    #back-blur {
+        -webkit-backdrop-filter: blur(var(--blur-radius));
+                backdrop-filter: blur(var(--blur-radius));
+        background-color: transparent;
+    }
 }
 
 #title {
@@ -353,9 +367,6 @@ div#sidebar {
 
 @media screen and (min-device-width: 700px) {
     #sidebar {
-        /* -webkit-backdrop-filter: blur(20px); * /
-        /*         backdrop-filter: blur(20px); * /
-
         border-bottom-left-radius: 15px;
         border-top-left-radius: 15px;
         border: 1px solid var(--color-fg);
