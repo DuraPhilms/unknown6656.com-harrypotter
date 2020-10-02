@@ -186,10 +186,20 @@
                     </table>
                 </div>
                 <br/>
-                <button id="prev-movie" disabled>◀◀ Vorheriger Film</button>
-                <button id="prev-part" disabled>◀ Vorheriger Part</button>
-                <select id="partselector">
-                    <option selected disabled>Bitte Video auswählen</option>
+                <div class="navigation">
+                    <button id="prev-movie" disabled>
+                        <div class="triangle-left"></div>
+                        <div class="triangle-left"></div>
+                        &nbsp;
+                        Vorheriger Film
+                    </button>
+                    <button id="prev-part" disabled>
+                        <div class="triangle-left"></div>
+                        &nbsp;
+                        Vorheriger Part
+                    </button>
+                    <select id="partselector">
+                        <option selected disabled>Bitte Video auswählen</option>
 <?php
     $group = "";
 
@@ -197,7 +207,7 @@
         if ($values[2] < 2)
         {
             ?>
-                    <option value="<?=$key?>"><?=$values[3]?></option>
+                        <option value="<?=$key?>"><?=$values[3]?></option>
             <?php
         }
         else
@@ -205,72 +215,90 @@
             if ($group != $values[0])
             {
                 ?>
-                    <optgroup label="<?=$info[0]?>">
+                        <optgroup label="<?=$info[0]?>">
                 <?php
             }
 
             ?>
-                    <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
+                        <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
             <?php
 
             if ($values[1] > $values[2] - 1)
             {
                 ?>
-                    </optgroup>
+                        </optgroup>
                 <?php
             }
 
             $group = $values[0];
         }
 ?>
-                </select>
-                <button id="next-part" disabled>Nächster Part ▶</button>
-                <button id="next-movie" disabled>Nächster Film ▶▶</button>
+                    </select>
+                    <button id="next-part" disabled>
+                        Nächster Part
+                        &nbsp;
+                        <div class="triangle-right"></div>
+                    </button>
+                    <button id="next-movie" disabled>
+                        Nächster Film
+                        &nbsp;
+                        <div class="triangle-right"></div>
+                        <div class="triangle-right"></div>
+                    </button>
+                </div>
                 <br/>
-                <p>
-                    Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
-                </p>
+                <div class="navigation">
+                    <b>GIF erstellen</b>
+                    <table style="margin-left: 40px">
+                        <tr>
+                            <td>Start-Zeitstempel:</td>
+                            <td>
+                                <input type="time" name="gif-start" step="1" disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Länge (in Sekunden, zwischen 1 und 25):</td>
+                            <td>
+                                <input type="number" name="gif-length" step="1" min="1" max="25" disabled/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <br/>
                 <hr/>
                 <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
                 <a name="credits"></a>
                 <br/>
-                <table>
+                <table id="copyrights">
                     <tr>
                         <td>Videomaterial:</td>
-                        <td> &nbsp; </td>
                         <td>&copy; Duraphilms, LNJ</td>
                         <td>2009-2015</td>
-                        <td> &nbsp; </td>
                         <td>(<a href="https://youtube.com/darthdustinKanal2" target="_blank">YouTube</a>)</td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td></td>
                         <td>&copy; Coldmirror</td>
                         <td>2006-2008</td>
-                        <td></td>
                         <td>(<a href="https://youtube.com/coldmirror" target="_blank">YouTube</a>)</td>
                     </tr>
                     <tr>
                         <td>Thumbnails:</td>
-                        <td> &nbsp; </td>
                         <td>&copy; Duraphilms, LNJ, JBB</td>
                         <td>2009-2020</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Untertitel:</td>
-                        <td> &nbsp; </td>
                         <td>&copy; Unknown6656, LNJ, JBB</td>
                         <td>2020</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Webseite:</td>
-                        <td></td>
                         <td>&copy; Unknown6656</td>
                         <td>2014-<?=date("Y")?></td>
-                        <td></td>
-                        <td>(<a href="https://youtube.com/unknown6656" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
+                        <td>(<a href="https://youtube.com/unknown6656/" target="_blank">YouTube</a>, <a href="https://github.com/unknown6656" target="_blank">GitHub</a>)</td>
                     </tr>
                 </table>
                 <br/>
