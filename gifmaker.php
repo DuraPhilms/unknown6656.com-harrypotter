@@ -1,6 +1,4 @@
 <?php
-    require_once "hcaptcha.php";
-
     $start = $_GET["start"];
     $length = max(min((int)$_GET["length"], 15), 1);
     $baseid = $_GET["baseid"];
@@ -15,8 +13,9 @@
         preg_match('/^\d+$/', $resolution) &&
         preg_match('/^\d+$/', $fps))
     {
+        $hcaptcha_secret = trim(file("hcaptcha.txt")[1]);
         $data = array(
-            'secret' => hCaptcha::SECRET,
+            'secret' => $hcaptcha_secret,
             'response' => $_GET['h-captcha-response']
         );
         $verify = curl_init();
@@ -29,10 +28,12 @@
         $response = curl_exec($verify);
         $responseData = json_decode($response);
 
-        if($responseData->success)
+        if ($responseData->success)
         {
-            $output = './gif-creator/.'.uniqid(true).'.gif';
-            $res = exec('python ./gif-creator/gif-creator.py "'.$baseid.'" -p '.$part.' -s '.$start.' -d '.$length.' -r '.$resolution.' -f '.$fps.' "'.$output.'"');
+            $output = '.'.uniqid(true).'.gif';
+            $command = 'python ./gif-creator/gif-creator.py -p '.$part.' -s "'.$start.'" -d "'.$length.'" -r '.$resolution.' -f '.$fps.' "'.$baseid.'" "'.$output.'"';
+
+            exec($command);
 
             if (file_exists($output))
             {
