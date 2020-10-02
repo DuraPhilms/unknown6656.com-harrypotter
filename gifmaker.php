@@ -31,7 +31,7 @@
         if ($responseData->success)
         {
             $output = '.'.uniqid(true).'.gif';
-            $command = 'python ./gif-creator/gif-creator.py -p '.$part.' -s "'.$start.'" -d "'.$length.'" -r '.$resolution.' -f '.$fps.' "'.$baseid.'" "'.$output.'"';
+            $command = 'python3.9 ./gif-creator/gif-creator.py -p '.$part.' -s "'.$start.'" -d "'.$length.'" -r '.$resolution.' -f '.$fps.' "'.$baseid.'" "'.$output.'"';
 
             exec($command);
 
