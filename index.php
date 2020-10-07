@@ -188,57 +188,77 @@
                         <i>Bitte ein Video auswählen</i>
                     </h2>
                     <figure id="video-container">
-                        <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/placeholder.png"  type="video/mp4" src="">
+                        <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
                         </video>
-                        <div id="video-controls" class="hidden">
-                            <button id="vc-previous">Prev.</button>
-                            <button id="vc-back15">&lt;15</button>
-                            <button id="vc-playpause" data-state="play">PP</button>
-                            <button id="vc-forward15">&gt;15</button>
-                            <button id="vc-next">Next</button>
-                            <button id="vc-stop">S</button>
-                            <div class="progress">
-                                <button id="vc-volume-mute" data-state="mute">U/Mute</button>
-                                <button id="vc-volume-down" hidden>-</button>
-                                <input id="vc-volume" type="range" value="100" min="0" max="100"/>
-                                <button id="vc-volume-up" hidden>+</button>
-                                <span id="vc-volume-text">100%</span>
-                            </div>
-                            <div class="progress">
-                                <input id="vc-progress" type="range" value="0" min="0"/>
-                                <span id="vc-progress-text">0:00:00 / 0:00:00</span>
-                            </div>
-                            <button id="vc-subtitle" data-state="subtitles">sub</button>
-                            <button id="vc-slower">&lt;&lt;</button>
-                            <span id="vc-speed-text">1x</span>
-                            <button id="vc-faster">&gt;&gt;</button>
-                            <button id="vc-fullscreen" data-state="enter">FS</button>
-                            <button id="vc-pip" data-state="enter">PiP</button>
-                            <button id="vc-info">info</button>
-                        </div>
-                        <figcaption>
-                            [TODO : auto copyright]
-                            <table width="100%">
-                                <tr width="100%">
-                                    <td width="70%" valign="top">
-                                        <i style="font-size: 10pt">
-                                            Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
-                                            <br/>
-                                            &nbsp;
-                                        </i>
-                                    </td>
-                                    <td width="30%" valign="top" align="right">
-                                        <div id="download-links">
-                                            <a id="download-single" download>Dieses Video herunterladen</a>
-                                            <br/>
-                                            <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </figcaption>
+                        <table id="video-controls">
+                            <colgroup>
+                                <col/>
+                                <col/>
+                                <col/>
+                                <col width="100%"/>
+                                <col/>
+                                <col/>
+                                <col/>
+                                <col/>
+                            </colgroup>
+                            <tr>
+                                <td><button id="vc-previous"></button></td>
+                                <td><button id="vc-stop"></button></td>
+                                <td><button id="vc-next"></button></td>
+                                <td>
+                                    <table width="100%">
+                                        <tr width="100%">
+                                            <td style="width: 100%"></td>
+                                            <!-- <td><button id="vc-volume-down"></button></td> -->
+                                            <td><input id="vc-volume" type="range" value="100" min="0" max="100"/></td>
+                                            <!-- <td><button id="vc-volume-up"></button></td> -->
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td><button id="vc-volume-mute" data-state="mute"></button></td>
+                                <td><button id="vc-slower"></button></td>
+                                <td><span id="vc-speed-text">1x</span></td>
+                                <td><button id="vc-faster"></button></td>
+                            </tr>
+                            <tr>
+                                <td><button id="vc-back15"></button></td>
+                                <td><button id="vc-playpause" data-state="play"></button></td>
+                                <td><button id="vc-forward15"></button></td>
+                                <td>
+                                    <table width="100%">
+                                        <tr width="100%">
+                                            <td><span id="vc-progress-text">00:00:00</span></td>
+                                            <td style="width: 100%"><input id="vc-progress" type="range" value="0" min="0"/></td>
+                                            <td><span id="vc-duration">00:00:00</span></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td><button id="vc-subtitle" data-state="subtitles"></button></td>
+                                <td><button id="vc-fullscreen" data-state="enter"></button></td>
+                                <td><button id="vc-pip" data-state="enter"></button></td>
+                                <td><button id="vc-info"></button></td>
+                            </tr>
+                        </table>
                     </figure>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td width="70%" valign="top">
+                                <i style="font-size: 10pt">
+                                    Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+                                    <br/>
+                                    &nbsp;
+                                </i>
+                            </td>
+                            <td width="30%" valign="top" align="right">
+                                <div id="download-links">
+                                    <a id="download-single" download>Dieses Video herunterladen</a>
+                                    <br/>
+                                    <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <br/>
                 <!--///////////////////////////////////////////////// NAVIGATION + GIF CREATOR /////////////////////////////////////////////////-->

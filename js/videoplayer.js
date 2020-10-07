@@ -3,8 +3,7 @@
 let video_container = $('#video-container');
 // let video_player = $('#video-container video');
 // let video_controls = $('#video-controls');
-let video_dom = video_player[0];
-
+// let video_dom = video_player[0];
 
 
 $(document).ready(function()
@@ -33,9 +32,9 @@ $(document).ready(function()
         let vc_vol_mute = video_controls.find("#vc-volume-mute");
         let vc_vol_inc = video_controls.find("#vc-volume-up");
         let vc_vol_dec = video_controls.find("#vc-volume-down");
-        let vc_vol_txt = video_controls.find('#vc-volume-text');
         let vc_prog_bar = video_controls.find('#vc-progress');
         let vc_prog_txt = video_controls.find('#vc-progress-text');
+        let vc_dur_txt = video_controls.find('#vc-duration');
         let vc_subs = video_controls.find('#vc-subtitle');
         let vc_slow = video_controls.find('#vc-slower');
         let vc_speed_txt = video_controls.find('#vc-speed-text');
@@ -44,9 +43,8 @@ $(document).ready(function()
         let vc_pip = video_controls.find('#vc-pip');
 
 
-        video_controls.removeClass('hidden');
-        // video_player.prop('controls', false);
-        // video_controls.addClass('hidden');
+        // video_controls.enable();
+        video_player.prop('controls', false);
 
 
         let fn_change_volume = cmd =>
@@ -69,16 +67,42 @@ $(document).ready(function()
         let fn_update_volume_controls = () =>
         {
             vc_vol_bar.val(video_dom.volume * 100);
-            vc_vol_txt.text(`${Math.round(video_dom.volume * 100)}%`);
             vc_vol_mute.attr(attr, video_dom.muted ? 'unmute' : 'mute');
+
+            if (video_dom.muted)
+                vc_vol_bar.disable();
+            else
+                vc_vol_bar.enable();
+
+            if (video_dom.volume < 1)
+                vc_vol_inc.enable();
+            else
+                vc_vol_inc.disable();
+
+            if (video_dom.volume > 0)
+                vc_vol_dec.enable();
+            else
+                vc_vol_dec.disable();
         };
         let fn_update_time_controls = () =>
         {
             vc_prog_bar.val(video_dom.currentTime);
             vc_prog_bar.attr('max', video_dom.duration);
-            vc_prog_txt.text(`${to_time(video_dom.currentTime)} / ${to_time(video_dom.duration)}`);
+            vc_prog_txt.text(to_time(video_dom.currentTime));
+            vc_dur_txt.text(to_time(video_dom.duration));
+
+            if (video_dom.currentTime < video_dom.duration - 1)
+                vc_forw15.enable();
+            else
+                vc_forw15.enable();
+
         };
-        let fn_update_playpause = () => vc_playpause.attr(attr, video_dom.paused || video_dom.ended ? 'play' : 'pause');
+        let fn_update_playpause = () =>
+        {
+            vc_playpause.attr(attr, video_dom.paused || video_dom.ended ? 'play' : 'pause');
+
+            fn_update_time_controls();
+        };
         let fn_is_fullscreen = () => !!(document.fullScreen ||
                                         document.webkitIsFullScreen ||
                                         document.mozFullScreen ||
@@ -92,16 +116,20 @@ $(document).ready(function()
         let fn_process_fullscreen = exit =>
         {
             if (exit)
-            {
-                if (document.exitFullscreen)
-                    document.exitFullscreen();
-                else if (document.mozCancelFullScreen)
-                    document.mozCancelFullScreen();
-                else if (document.webkitCancelFullScreen)
-                    document.webkitCancelFullScreen();
-                else if (document.msExitFullscreen)
-                    document.msExitFullscreen();
-            }
+                try
+                {
+                    if (document.exitFullscreen)
+                        document.exitFullscreen();
+                    else if (document.mozCancelFullScreen)
+                        document.mozCancelFullScreen();
+                    else if (document.webkitCancelFullScreen)
+                        document.webkitCancelFullScreen();
+                    else if (document.msExitFullscreen)
+                        document.msExitFullscreen();
+                }
+                catch (e)
+                {
+                }
             else
             {
                 let elem = video_container[0];
@@ -151,7 +179,7 @@ $(document).ready(function()
         });
         vc_vol_inc.click(() => fn_change_volume(volume_cmd.UP));
         vc_vol_dec.click(() => fn_change_volume(volume_cmd.DOWN));
-        vc_full.click(() => fn_set_fullscreen(!fn_is_fullscreen()));
+        vc_full.click(() => fn_process_fullscreen(fn_is_fullscreen()));
         vc_prog_bar.change(() => video_dom.currentTime = vc_prog_bar.val());
         vc_vol_bar.click(() => video_dom.volume = vc_vol_bar.val() / 100.0);
         vc_back15.click(() => video_dom.currentTime = Math.max(0, video_dom.currentTime - 10));
@@ -160,6 +188,7 @@ $(document).ready(function()
         vc_next.click(() =>
         {
             vc_stop.click();
+            vc_next.blur();
 
             var id = part_selector.val();
 
@@ -172,6 +201,7 @@ $(document).ready(function()
         vc_prev.click(() =>
         {
             vc_stop.click();
+            vc_prev.blur();
 
             var id = part_selector.val();
 
@@ -195,18 +225,18 @@ $(document).ready(function()
                 let disabled = video_dom.readyState === 0 || !document.pictureInPictureEnabled || video_dom.disablePictureInPicture;
 
                 if (disabled)
-                    vc_pip.attr('disabled', '');
+                    vc_pip.disable();
                 else
-                    vc_pip.removeAttr('disabled');
+                    vc_pip.enable();
             };
 
             video_player.bind('emptied', update_pip_button);
             video_player.bind('loadedmetadata', update_pip_button);
-            video_player.bind('enterpictureinpicture', e => vc_full.attr(attr, 'exit'));
-            video_player.bind('leavepictureinpicture', e => vc_full.attr(attr, 'enter'));
+            video_player.bind('enterpictureinpicture', e => vc_pip.attr(attr, 'exit'));
+            video_player.bind('leavepictureinpicture', e => vc_pip.attr(attr, 'enter'));
             vc_pip.click(async e =>
             {
-                vc_pip.attr('disabled', '');
+                vc_pip.disable();
 
                 try
                 {
@@ -220,12 +250,12 @@ $(document).ready(function()
                 }
                 finally
                 {
-                    vc_pip.removeAttr('disabled');
+                    vc_pip.enable();
                 }
             });
         }
         else
-            vc_pip[0].hidden = true;
+            vc_pip.disable();
     }
 });
 

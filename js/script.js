@@ -5,6 +5,7 @@ let video_title = $('#video-title');
 let video_section = $('#video-section');
 let video_controls = $('#video-controls');
 let video_player = $('#video-container video');
+let video_dom = video_player[0];
 let video_player_subtitle = $('#video-container video #video-subtitle');
 let download_single = $('#download-single');
 let download_all = $('#download-all');
@@ -19,33 +20,46 @@ let gif_create = $('#gif-creator [name="create-gif"]');
 let gif_result = $('#gif-creator [name="gif-result"]');
 
 
+jQuery.fn.extend({
+    disable: function() { this.each(() => this.attr('disabled', '')); },
+    enable: function () { this.each(() => this.removeAttr('disabled')); },
+    disabled: function()
+    {
+        let dis = this.attr('disabled');
+
+        return typeof dis !== typeof undefined && dis !== false;
+    }
+});
+
+
 for (var i = 0; i < video_ids.length; ++i)
 {
     let element = video_ids[i];
     let key = element[0];
     let part = element[1];
-    let table_id = 'td[--data-video-id="' + i + '"]';
+    let table_id = `td[--data-video-id="${i}"]`;
 
     ping_uri(
-        'videos/' + key + '/' + part + '.mp4',
+        `videos/${key}/${part}.mp4`,
         function()
         {
             $(table_id).addClass('online');
-            $(table_id + ' span.tooltip').attr('text', element[4] + '\nPart ' + part + ' ist online!');
+            $(table_id + ' span.tooltip').attr('text', `${element[4]}\nPart ${part} ist online!`);
         },
         function()
         {
             $(table_id).addClass('offline');
-            $(table_id + ' span.tooltip').attr('text', element[4] + '\nPart ' + part + ' ist leider (noch) nicht online');
+            $(table_id + ' span.tooltip').attr('text', `${element[4]}\nPart ${part} ist leider (noch) nicht online.`);
         }
     );
 }
 
 
-function get_video_url(id)
-{
-    return 'videos/' + video_ids[id][0] + '/' + video_ids[id][1] + '.mp4';
-}
+let get_video_url = id => `videos/${video_ids[id][0]}/${video_ids[id][1]}.mp4`;
+
+let get_subtitle_url = id => `subtitles/${video_ids[id][0]}/${video_ids[id][1]}.vtt`;
+
+let get_thumbnail_url = id => `thumbs/${video_ids[id][0]}/${video_ids[id][1]}.jpg`;
 
 function ping_uri(uri, success, failure)
 {
@@ -62,49 +76,50 @@ function on_selector_changed(id)
     if (typeof id != 'number')
         id = parseInt(id);
 
-    gif_start.attr('disabled', '');
-    gif_duration.attr('disabled', '');
-    gif_resolution.attr('disabled', '');
-    gif_create.attr('disabled', '');
+    gif_start.disable();
+    gif_duration.disable();
+    gif_resolution.disable();
+    gif_create.disable();
+    video_dom.pause();
 
     if (id == undefined)
     {
         video_title.html('<i>Bitte ein Video auswählen</i>');
         video_section.addClass('default');
-        video_controls.addClass('hidden');
+        video_controls.addClass('disabled');
 
         return;
     }
 
-    video_controls.removeClass('hidden');
-    video_section.removeClass('default');
+    video_controls.enable();
+    video_section.enable();
     part_selector.val(id);
 
-    let entry = video_ids[id];
     let path = get_video_url(id);
-    let subtitle = 'subtitles/' + entry[0] + '/' + entry[1] + '.vtt';
-    let thumbnail = 'thumbs/' + entry[0] + '/' + entry[1] + '.jpg';
+    let subtitle = get_subtitle_url(id);
+    let thumbnail = get_thumbnail_url(id);
+    let entry = video_ids[id];
     let friendly = entry[4] + (entry[2] > 1 ? ' (Part ' + entry[2] + ')' : '');
 
     if (entry[2] > 1)
-        prev_part_button.removeAttr('disabled');
+        prev_part_button.enable();
     else
-        prev_part_button.attr('disabled', '');
+        prev_part_button.disable();
 
     if (entry[2] < entry[3] - 1)
-        next_part_button.removeAttr('disabled');
+        next_part_button.enable();
     else
-        next_part_button.attr('disabled', '');
+        next_part_button.disable();
 
     if (id - video_ids[id][2] >= 0)
-        prev_movie_button.removeAttr('disabled');
+        prev_movie_button.enable();
     else
-        prev_movie_button.attr('disabled', '');
+        prev_movie_button.disable();
 
     if (id - video_ids[id][2] + video_ids[id][3] < video_ids.length - 1)
-        next_movie_button.removeAttr('disabled');
+        next_movie_button.enable();
     else
-        next_movie_button.attr('disabled', '');
+        next_movie_button.disable();
 
     video_section.attr('data-video-name', friendly);
     video_title.text(friendly);
@@ -125,6 +140,8 @@ function on_video_updated(id)
         function()
         {
             video_section.removeClass('offline');
+            video_dom.pause();
+            video_dom.currentTime = 0;
 
             let entry = video_ids[id];
 
@@ -132,10 +149,10 @@ function on_video_updated(id)
             download_all.css('display', entry[3] > 1 ? 'inline' : 'none');
             download_all.attr('href', uri.replace(/\d+\.mp4$/ig, "all.zip"));
             download_single.attr('href', uri);
-            gif_start.removeAttr('disabled');
-            gif_duration.removeAttr('disabled');
-            gif_resolution.removeAttr('disabled');
-            gif_create.removeAttr('disabled');
+            gif_start.enable();
+            gif_duration.enable();
+            gif_resolution.enable();
+            gif_create.enable();
         },
         function()
         {
@@ -185,7 +202,7 @@ next_movie_button.click(function()
         on_selector_changed(id + 1);
 });
 
-video_player.bind('timeupdate', () => gif_start.val(to_time(this.currentTime)));
+video_player.bind('timeupdate', () => gif_start.val(to_time(video_dom.currentTime)));
 
 gif_create.click(function()
 {
@@ -202,10 +219,10 @@ gif_create.click(function()
         let base_url = document.URL.substr(0, document.URL.lastIndexOf('/'));
         let url = `${base_url}/gifmaker.php?h-captcha-response=${captcha_response}&start=${start}&length=${length}&baseid=${entry[0]}&part=${entry[1]}&resolution=${resolution}`;
 
-        gif_start.attr('disabled', '');
-        gif_duration.attr('disabled', '');
-        gif_resolution.attr('disabled', '');
-        gif_create.attr('disabled', '');
+        gif_start.disable();
+        gif_duration.disable();
+        gif_resolution.disable();
+        gif_create.disable();
         gif_result.attr('data-gif-state', 'loading');
 
         $.ajax({
@@ -225,10 +242,10 @@ gif_create.click(function()
             error : function()
             {
                 gif_result.attr('data-gif-state', 'error');
-                gif_start.removeAttr('disabled');
-                gif_duration.removeAttr('disabled');
-                gif_resolution.removeAttr('disabled');
-                gif_create.removeAttr('disabled');
+                gif_start.enable();
+                gif_duration.enable();
+                gif_resolution.enable();
+                gif_create.enable();
                 hcaptcha.reset();
             }
         });
@@ -289,3 +306,5 @@ function scroll_to_anchor(aid)
     if (target != current)
         element.animate({ scrollTop: target }, 1000);
 }
+
+
