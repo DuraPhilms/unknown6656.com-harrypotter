@@ -69,6 +69,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
         <link rel="icon" type="image/x-icon" href="favicon.ico"/>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/videoplayer.css"/>
         <link rel="index" title="unknown6656 | Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR" href="/harrypotter/"/>
         <!--
             <link rel="author" href="/humans.txt" type="text/plain">
@@ -180,34 +181,67 @@
                 </p>
                 <br/>
                 <hr/>
+                <!--///////////////////////////////////////////////// VIDEO SECTION /////////////////////////////////////////////////-->
                 <div id="video-section" class="default">
                     <a name="video"></a>
                     <h2 id="video-title">
                         <i>Bitte ein Video auswählen</i>
                     </h2>
-                    <video id="player" width="740" height="416" controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/placeholder.png"  type="video/mp4" src="">
-                        <track id="player-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default/>
-                    </video>
-                    <table width="100%">
-                        <tr width="100%">
-                            <td width="70%" valign="top">
-                                <i style="font-size: 10pt">
-                                    Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
-                                    <br/>
-                                    &nbsp;
-                                </i>
-                            </td>
-                            <td width="30%" valign="top" align="right">
-                                <div id="download-links">
-                                    <a id="download-single" download>Dieses Video herunterladen</a>
-                                    <br/>
-                                    <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <figure id="video-container">
+                        <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" poster="images/placeholder.png"  type="video/mp4" src="">
+                            <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
+                        </video>
+                        <div id="video-controls" class="hidden">
+                            <button id="vc-previous">Prev.</button>
+                            <button id="vc-back15">&lt;15</button>
+                            <button id="vc-playpause" data-state="play">PP</button>
+                            <button id="vc-forward15">&gt;15</button>
+                            <button id="vc-next">Next</button>
+                            <button id="vc-stop">S</button>
+                            <div class="progress">
+                                <button id="vc-volume-mute" data-state="mute">U/Mute</button>
+                                <button id="vc-volume-down" hidden>-</button>
+                                <input id="vc-volume" type="range" value="100" min="0" max="100"/>
+                                <button id="vc-volume-up" hidden>+</button>
+                                <span id="vc-volume-text">100%</span>
+                            </div>
+                            <div class="progress">
+                                <input id="vc-progress" type="range" value="0" min="0"/>
+                                <span id="vc-progress-text">0:00:00 / 0:00:00</span>
+                            </div>
+                            <button id="vc-subtitle" data-state="subtitles">sub</button>
+                            <button id="vc-slower">&lt;&lt;</button>
+                            <span id="vc-speed-text">1x</span>
+                            <button id="vc-faster">&gt;&gt;</button>
+                            <button id="vc-fullscreen" data-state="enter">FS</button>
+                            <button id="vc-pip" data-state="enter">PiP</button>
+                            <button id="vc-info">info</button>
+                        </div>
+                        <figcaption>
+                            [TODO : auto copyright]
+                            <table width="100%">
+                                <tr width="100%">
+                                    <td width="70%" valign="top">
+                                        <i style="font-size: 10pt">
+                                            Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
+                                            <br/>
+                                            &nbsp;
+                                        </i>
+                                    </td>
+                                    <td width="30%" valign="top" align="right">
+                                        <div id="download-links">
+                                            <a id="download-single" download>Dieses Video herunterladen</a>
+                                            <br/>
+                                            <a id="download-all" download>Alle Parts (1-<span id="part-count"></span>) herunterladen</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </figcaption>
+                    </figure>
                 </div>
                 <br/>
+                <!--///////////////////////////////////////////////// NAVIGATION + GIF CREATOR /////////////////////////////////////////////////-->
                 <div class="navigation">
                     <button id="prev-movie" disabled>
                         <div class="triangle-left"></div>
@@ -440,6 +474,7 @@
         </script>
         <script type="text/javascript" language="javascript" src="js/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" language="javascript" src="js/script.js"></script>
+        <script type="text/javascript" language="javascript" src="js/videoplayer.js"></script>
         <script type="text/javascript" language="javascript" src="https://hcaptcha.com/1/api.js" async defer></script>
     </body>
 </html>

@@ -21,6 +21,13 @@
     font-smooth: always;
 }
 
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   /* overflow: auto !important; */
+}
+
 
 .title_font {
     font-family: var(--font-title);
@@ -653,13 +660,48 @@ table#parts td span.tooltip:hover::before {
     display: none;
 }
 
-video {
-    background-color: rgba(0, 0, 0, .4);
-    width: calc(100% - 20px) !important;
-    /* border-radius: 10px; */
-    margin-right: 10px;
-    margin-left: 10px;
+#video-container {
+    display: block;
+    margin: 0px;
+    width: 100%;
 }
+
+#video-container video {
+    background-color: rgba(0, 0, 0, .4);
+    /* object-fit: cover; */
+    width: 100%;
+}
+
+/*
+#video-container[data-fullscreen=true] video::-webkit-media-controls {
+    display: none !important;
+}
+
+#video-container[data-fullscreen=true] #video-controls {
+    z-index :2147483647;
+}
+*/
+
+#video-controls {
+    width: 100%;
+    height: 8%;
+    position: relative;
+    opacity: 1;
+
+    transition: opacity 1s;
+}
+
+#video-controls.hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
+
+
+
+
+
+
 
 input,
 button,

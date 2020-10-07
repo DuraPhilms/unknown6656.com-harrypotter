@@ -1,8 +1,11 @@
+'use strict';
+
 let part_selector = $('#partselector');
-let video_player = $('video#player');
-let video_player_subtitle = $('video#player #player-subtitle');
 let video_title = $('#video-title');
 let video_section = $('#video-section');
+let video_controls = $('#video-controls');
+let video_player = $('#video-container video');
+let video_player_subtitle = $('#video-container video #video-subtitle');
 let download_single = $('#download-single');
 let download_all = $('#download-all');
 let prev_part_button = $('#prev-part');
@@ -16,7 +19,7 @@ let gif_create = $('#gif-creator [name="create-gif"]');
 let gif_result = $('#gif-creator [name="gif-result"]');
 
 
-for (i = 0; i < video_ids.length; ++i)
+for (var i = 0; i < video_ids.length; ++i)
 {
     let element = video_ids[i];
     let key = element[0];
@@ -68,10 +71,12 @@ function on_selector_changed(id)
     {
         video_title.html('<i>Bitte ein Video auswählen</i>');
         video_section.addClass('default');
+        video_controls.addClass('hidden');
 
         return;
     }
 
+    video_controls.removeClass('hidden');
     video_section.removeClass('default');
     part_selector.val(id);
 
@@ -139,10 +144,7 @@ function on_video_updated(id)
     );
 }
 
-part_selector.change(function()
-{
-    on_selector_changed(part_selector.val());
-});
+part_selector.change(() => on_selector_changed(part_selector.val()));
 
 prev_part_button.click(function()
 {
@@ -183,15 +185,7 @@ next_movie_button.click(function()
         on_selector_changed(id + 1);
 });
 
-video_player.bind('timeupdate', function()
-{
-    let time = this.currentTime;
-    let hours = Math.floor(time / 6300).toString().padStart(2, "0");
-    let minutes = (Math.floor(time / 60) % 60).toString().padStart(2, "0");
-    let seconds = (Math.floor(time) % 60).toString().padStart(2, "0");
-
-    gif_start.val(`${hours}:${minutes}:${seconds}`);
-});
+video_player.bind('timeupdate', () => gif_start.val(to_time(this.currentTime)));
 
 gif_create.click(function()
 {
@@ -241,7 +235,8 @@ gif_create.click(function()
     }
 });
 
-$('tr:not(.legende) td[--data-video-id]').click(function(event) {
+$('tr:not(.legende) td[--data-video-id]').click(function(event)
+{
     let id = parseInt($(event.target).parent().attr('--data-video-id'));
 
     on_selector_changed(id);
@@ -276,6 +271,15 @@ $('a[href*=#]:not([href=#])').click(function() {
 });
 */
 
+function to_time(total)
+{
+    let hours = Math.floor(total / 6300).toString().padStart(2, "0");
+    let minutes = (Math.floor(total / 60) % 60).toString().padStart(2, "0");
+    let seconds = (Math.floor(total) % 60).toString().padStart(2, "0");
+
+    return `${hours}:${minutes}:${seconds}`;
+}
+
 function scroll_to_anchor(aid)
 {
     let element = $('html');
@@ -283,7 +287,5 @@ function scroll_to_anchor(aid)
     let current = Math.floor(element.scrollTop());
 
     if (target != current)
-        element.animate({
-            scrollTop: target
-        }, 1000);
+        element.animate({ scrollTop: target }, 1000);
 }
