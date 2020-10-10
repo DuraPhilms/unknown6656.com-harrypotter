@@ -93,11 +93,17 @@
                 </div>
                 <span class="description">
                     <p>
+                        <h2 style="font-size: 2em">
+                            Breaking News - <a href="https://discord.gg/ZTzhXAF" target="_blank">Wir haben einen DISCORD Server!</a>
+                        </h2>
+                        <br/>
+<!--
                         <h2>Wichtig: bitte hier abstimmen!</h2>
                         <div class="strawpoll">
                             <iframe src="https://www.strawpoll.me/embed_1/21011398">
                             </iframe>
                         </div>
+-->
                     <p>
                     <hr/>
                     <h1>Willkommen liebe Potter-Fans!</h1>
