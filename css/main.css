@@ -8,8 +8,9 @@
     --font-main: 'HelveticaNeueCyr', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
     --font-mono: 'Consolas', 'Courier New', 'Courier', 'Lucida Console', 'Ubuntu Mono', monospace;
     --color-fg: black;
-    --color-bg: #283b4226;
-    --color-links: #4fb9be;
+    --color-bg: #73858b70;
+    /* --color-links: #4fb9be; */
+    --color-links: #003289;
     --blur-radius: 20px;
 }
 
@@ -28,6 +29,11 @@
    /* overflow: auto !important; */
 }
 
+[disabled] {
+    pointer-events: none;
+    cursor: default !important;
+    opacity: .5;
+}
 
 .title_font {
     font-family: var(--font-title);
@@ -198,7 +204,7 @@ html {
 }
 
 #back-blur {
-    background-color: #49505d;
+    background-color: #ffffff99;
     border-radius: 39px;
     position: absolute;
     z-index: -1000;
@@ -217,10 +223,6 @@ html {
                 backdrop-filter: blur(var(--blur-radius));
         background-color: #ffffff66;
     }
-
-    :root {
-        --color-links: #0048c5;
-    }
 }
 
 @supports (backdrop-filter: blur(20px)) {
@@ -228,10 +230,6 @@ html {
         -webkit-backdrop-filter: blur(var(--blur-radius));
                 backdrop-filter: blur(var(--blur-radius));
         background-color: #ffffff66;
-    }
-
-    :root {
-        --color-links: #0048c5;
     }
 }
 
@@ -652,8 +650,9 @@ table#parts td span.tooltip:hover::before {
     font-weight: bold;
 }
 
-#video-section.offline #download-section {
-    display: none;
+#video-section.offline #video-container,
+#video-section.default #video-container {
+    pointer-events: none;
 }
 
 #video-section.offline #download-links,
@@ -674,28 +673,64 @@ table#parts td span.tooltip:hover::before {
     color: white;
 }
 
+#video-container,
+#video-container * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+}
+
+#video-container.hidden-controls {
+    cursor: none;
+}
+
 #video-container video {
     background-color: black;
+    padding-bottom: calc(var(--video-control-size) * 2);
     object-fit: contain;
     display: block;
     width: 100%;
-    padding: var(--video-control-size) 0px;
+    z-index: 50;
 }
 
-/*
-#video-container[data-fullscreen=true] video::-webkit-media-controls {
+#video-container.pip video {
+    pointer-events: none;
+    filter: blur(20px);
+}
+
+#video-container.pip::after {
+    background-image: url(../images/videoplayer/enter-pip.svg);
+    background-repeat: no-repeat;
+    background-position: 0px;
+    background-size: 40px;
+    filter: invert(1);
+    color: black;
+    content: 'Playing picture-in-picture ...';
+    position: absolute;
+    font-size: 2em;
+    padding: 0px 0px 0px 50px;
+    z-index: 55;
+    left: 50px;
+    top: 50px;
+}
+
+#video-container.fullscreen video::-webkit-media-controls {
     display: none !important;
 }
 
-#video-container[data-fullscreen=true] #video-controls {
+#video-container.fullscreen #video-controls {
     z-index :2147483647;
 }
-*/
 
 #video-controls {
     position: absolute;
     display: block;
     opacity: 1;
+    z-index: 70;
     padding: 0px;
     margin: 4px;
     bottom: 0px;
@@ -705,14 +740,48 @@ table#parts td span.tooltip:hover::before {
     transition: opacity 1s;
 }
 
-#video-controls.hidden {
+#video-controls.disabled {
+    pointer-events: none;
+    display: none !important;
+}
+
+#video-container.hidden-controls:not(.paused) #video-controls {
     pointer-events: none;
     opacity: 0;
 }
 
-#video-controls.disabled {
-    pointer-events: none;
-    display: none !important;
+#video-controls::before {
+    /* box-shadow: 0px 0px 15px black; */
+    text-shadow: 0px 0px 5px black;
+    white-space: nowrap;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.3em;
+    position: absolute;
+    display: block;
+    content: '';
+    opacity: 0;
+    width: 100%;
+
+    transition: opacity 1s;
+}
+
+#video-controls[tooltip]:hover::before {
+    content: attr(tooltip);
+    /* left: 50%; */
+
+    opacity: 1;
+}
+
+#video-controls::after {
+    background: linear-gradient(0deg, black 50%, transparent);
+    position: absolute;
+    display: block;
+    content: '';
+    height: calc(3 * var(--video-control-size));
+    bottom: 0px;
+    width: 100%;
+    z-index: -1;
 }
 
 #video-controls table,
@@ -733,6 +802,11 @@ table#parts td span.tooltip:hover::before {
     line-height: var(--video-control-size);
 }
 
+#video-controls tr.slim:first-of-type > td {
+    position: relative;
+    top: 10px;
+}
+
 #video-controls button {
     border-radius: 50%;
     border: 0px solid transparent;
@@ -746,12 +820,19 @@ table#parts td span.tooltip:hover::before {
     cursor: pointer;
 }
 
+#video-controls button:hover {
+    filter: invert(0.6);
+}
+
+#video-controls button:active {
+    filter: invert(0.4);
+}
+
 #video-controls button:focus {
     outline: none;
 }
 
-#vc-prgress-text,
-#vc-duration,
+#vc-progress-text,
 #vc-speed-text {
     vertical-align: middle;
     display: inline-block;
@@ -759,9 +840,18 @@ table#parts td span.tooltip:hover::before {
     padding: 0px 4px;
 }
 
+#vc-progress-text {
+    white-space: nowrap;
+    line-height: 14px;
+    text-align: right;
+    font-size: 15px;
+    display: block;
+}
+
 #vc-volume {
     clip-path: polygon(100% 0, 0 75%, 100% 75%);
     background-color: gray;
+    cursor: pointer;
     width: 100px;
     height: 20px;
     margin: 2px;
@@ -785,6 +875,7 @@ table#parts td span.tooltip:hover::before {
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
     background-color: gray;
     position: absolute;
+    cursor: pointer;
     margin: 10px;
     height: 5px;
     width: calc(100% - 20px);
@@ -802,88 +893,13 @@ table#parts td span.tooltip:hover::before {
     background-color: white;
     border-radius: 50%;
     position: absolute;
+    cursor: pointer;
     left: calc(var(--progress) * (100% - 20px));
     height: 15px;
     width: 15px;
     margin: 5px;
     top: 0px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-input[type="range"] {
-    /* fix for FF unable to apply focus style bug  */
-    border: 1px solid white;
-
-    -webkit-appearance: none;
-}
-
-input[type="range"]::-moz-range-track,
-input[type="range"]::-webkit-slider-runnable-track {
-    /* width: 300px; */
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-
-input[type="range"]::-ms-track {
-    height: 5px;
-    background: transparent;
-    border-color: transparent;
-    border-width: 6px 0;
-    color: transparent;
-}
-
-input[type="range"]::-ms-thumb,
-input[type="range"]::-moz-range-thumb,
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-    /* margin-top: -4px; */
-}
-
-input[type="range"]::-moz-range-progress,
-input[type="range"]::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
-}
-
-input[type="range"]::-moz-range-track,
-input[type="range"]::-ms-fill-upper {
-    background: #ddd;
-    border-radius: 10px;
-}
-
-/*hide the outline behind the border*/
-input[type="range"]:-moz-focusring{
-    outline: 1px solid white;
-    outline-offset: -1px;
-}
-
-
-
-
-
-
-
-
-
 
 #vc-download {
     background-image: url(../images/videoplayer/download.svg);
@@ -959,12 +975,6 @@ input[type="range"]:-moz-focusring{
 
 
 
-
-[disabled] {
-    pointer-events: none;
-    cursor: default !important;
-    opacity: .5;
-}
 
 
 

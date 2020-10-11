@@ -193,11 +193,12 @@
                     <h2 id="video-title">
                         <i>Bitte ein Video auswählen</i>
                     </h2>
-                    <figure id="video-container">
+                    <figure id="video-container" tabindex="0">
                         <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
                         </video>
-                        <table id="video-controls" class="hidden">
+                        <div id="video-info"></div>
+                        <table id="video-controls" class="disabled">
                             <colgroup>
                                 <col/>
                                 <col/>
@@ -206,50 +207,54 @@
                                 <col/>
                                 <col/>
                                 <col/>
-                                <col/>
                             </colgroup>
                             <tr class="slim">
-                                <td><button id="vc-previous"></button></td>
-                                <td><button id="vc-stop"></button></td>
-                                <td><button id="vc-next"></button></td>
+                                <td><button id="vc-previous" tooltip="Vorheriger Part/Film"></button></td>
+                                <td><button id="vc-stop" tooltip="Wiedergabe anhalten"></button></td>
+                                <td><button id="vc-next" tooltip="Nächster Part/Film"></button></td>
                                 <td>
                                     <table width="100%">
                                         <tr width="100%">
+                                            <td><button id="vc-slower" tooltip="Wiedergabe um 0.25x verlangsamen"></button></td>
+                                            <td><span id="vc-speed-text">1x</span></td>
+                                            <td><button id="vc-faster" tooltip="Wiedergabe um 0.25x beschleunigen"></button></td>
                                             <td style="width: 100%"></td>
-                                            <td>
+                                            <td tooltip="">
                                                 <div id="vc-volume" style="--percentage:100%" value="100"></div>
                                             </td>
-                                            <td><button id="vc-volume-mute" data-state="mute"></button></td>
                                         </tr>
                                     </table>
                                 </td>
-                                <td><button id="vc-slower"></button></td>
-                                <td><span id="vc-speed-text">1x</span></td>
-                                <td><button id="vc-faster"></button></td>
-                                <td><button id="vc-info"></button></td>
+                                <td><button id="vc-volume-mute" data-state="mute" tooltip="Wiedergabe stumm schalten"></button></td>
+                                <td><button id="vc-info" tooltip="Videoinformationen"></button></td>
+                                <td><button id="vc-download" tooltip="Film/Part herunterladen"></button></td>
                             </tr>
                             <tr class="slim">
-                                <td><button id="vc-back15"></button></td>
-                                <td><button id="vc-playpause" data-state="play"></button></td>
-                                <td><button id="vc-forward15"></button></td>
+                                <td><button id="vc-back15" tooltip="Um 15 Sekunden zurückspulen"></button></td>
+                                <td><button id="vc-playpause" tooltip="Wiedergabe pausieren/fortsetzen" data-state="play"></button></td>
+                                <td><button id="vc-forward15" tooltip="Um 15 Sekunden vorspulen"></button></td>
                                 <td>
                                     <table width="100%">
                                         <tr width="100%">
-                                            <td><span id="vc-progress-text">00:00:00</span></td>
-                                            <td style="width: 100%">
+                                            <td>
+                                                <span id="vc-progress-text">
+                                                    0:00
+                                                    <br/>
+                                                    / 0:00
+                                                </span>
+                                            </td>
+                                            <td style="width: 100%" tooltip="">
                                                 <div id="vc-progress" style="--progress:0">
                                                     <div class="track"></div>
                                                     <div class="thumb"></div>
                                                 </div>
                                             </td>
-                                            <td><span id="vc-duration">00:00:00</span></td>
                                         </tr>
                                     </table>
                                 </td>
-                                <td><button id="vc-subtitle" data-state="subtitles"></button></td>
-                                <td><button id="vc-fullscreen" data-state="enter"></button></td>
-                                <td><button id="vc-pip" data-state="enter"></button></td>
-                                <td><button id="vc-download"></button></td>
+                                <td><button id="vc-subtitle" tooltip="Untertitel einblenden/ausblenden" data-state="subtitles"></button></td>
+                                <td><button id="vc-pip" tooltip="Picture-in-Picture einschalten/ausschalten" data-state="enter"></button></td>
+                                <td><button id="vc-fullscreen" tooltip="Vollbildmodus einschalten/ausschalten" data-state="enter"></button></td>
                             </tr>
                         </table>
                     </figure>
@@ -421,30 +426,35 @@
                         <td>
                             <a href="https://youtube.com/darthdustinKanal2" target="_blank">
                                 <div class="img_container duraphilms"></div>
+                                <br/>
                                 DURAPHILMS
                             </a>
                         </td>
                         <td>
                             <a href="https://youtube.com/coldmirror" target="_blank">
                                 <div class="img_container coldmirror"></div>
+                                <br/>
                                 COLDMIRROR
                             </a>
                         </td>
                         <td>
                             <a href="https://youtube.com/Unknown6656" target="_blank">
                                 <div class="img_container unknown6656"></div>
+                                <br/>
                                 unknown6656
                             </a>
                         </td>
                         <td>
                             <a href="https://github.com/lnjX" target="_blank">
                                 <div class="img_container lnj"></div>
+                                <br/>
                                 LNJ
                             </a>
                         </td>
                         <td>
                             <a href="https://github.com/JBBgameich" target="_blank">
                                 <div class="img_container jbb"></div>
+                                <br/>
                                 JBB
                             </a>
                         </td>

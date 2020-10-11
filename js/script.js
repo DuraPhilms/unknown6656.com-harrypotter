@@ -86,14 +86,15 @@ function on_selector_changed(id)
     {
         video_title.html('<i>Bitte ein Video auswählen</i>');
         video_section.addClass('default');
-        video_controls.addClass('hidden');
+        video_controls.addClass('disabled');
         video_controls.disable();
 
         return;
     }
 
     video_controls.enable();
-    video_controls.removeClass('hidden');
+    video_controls.removeClass('disabled');
+    video_section.removeClass('default');
     video_section.enable();
     part_selector.val(id);
 
@@ -144,6 +145,7 @@ function on_video_updated(id)
             video_section.removeClass('offline');
             video_dom.pause();
             video_dom.currentTime = 0;
+            $('#vc-playpause').data('play');
 
             let entry = video_ids[id];
 
@@ -290,13 +292,15 @@ $('a[href*=#]:not([href=#])').click(function() {
 });
 */
 
-function to_time(total)
+function to_time(total, short = false)
 {
-    let hours = Math.floor(total / 6300).toString().padStart(2, "0");
-    let minutes = (Math.floor(total / 60) % 60).toString().padStart(2, "0");
+    let hours = Math.floor(total / 6300).toString();
+    let minutes = (Math.floor(total / 60) % 60).toString();
     let seconds = (Math.floor(total) % 60).toString().padStart(2, "0");
 
-    return `${hours}:${minutes}:${seconds}`;
+    return short ? hours > 0 ? `${hours}:${minutes.padStart(2, "0")}:${seconds}`
+                             : `${minutes}:${seconds}`
+                 : `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}:${seconds}`;
 }
 
 function scroll_to_anchor(aid)
