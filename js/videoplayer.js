@@ -30,9 +30,8 @@ $(document).ready(function()
         let vc_stop = video_controls.find('#vc-stop');
         let vc_vol_bar = video_controls.find("#vc-volume");
         let vc_vol_mute = video_controls.find("#vc-volume-mute");
-        let vc_vol_inc = video_controls.find("#vc-volume-up");
-        let vc_vol_dec = video_controls.find("#vc-volume-down");
         let vc_prog_bar = video_controls.find('#vc-progress');
+        let vc_prog_bar_track = video_controls.find('#vc-progress .track');
         let vc_prog_txt = video_controls.find('#vc-progress-text');
         let vc_dur_txt = video_controls.find('#vc-duration');
         let vc_subs = video_controls.find('#vc-subtitle');
@@ -41,53 +40,26 @@ $(document).ready(function()
         let vc_fast = video_controls.find('#vc-faster');
         let vc_full = video_controls.find('#vc-fullscreen');
         let vc_pip = video_controls.find('#vc-pip');
+        let vc_downl = video_controls.find('#vc-download');
 
 
         // video_controls.enable();
         video_player.prop('controls', false);
 
 
-        let fn_change_volume = cmd =>
-        {
-            if (cmd != volume_cmd.TOGGLE_MUTE)
-            {
-                var volume = vc_vol_bar.val();
-
-                if (cmd === volume_cmd.UP)
-                    volume += 10;
-                else if (cmd === volume_cmd.DOWN)
-                    volume -= 10;
-
-                volume = volume > 100 ? 100 : volume < 0 ? 0 : volume;
-                vc_vol_bar.val(volume);
-            }
-
-            fn_update_volume_controls()
-        };
         let fn_update_volume_controls = () =>
         {
-            vc_vol_bar.val(video_dom.volume * 100);
+            vc_vol_bar.css('--percentage', `${video_dom.volume * 100}%`);
             vc_vol_mute.attr(attr, video_dom.muted ? 'unmute' : 'mute');
 
             if (video_dom.muted)
                 vc_vol_bar.disable();
             else
                 vc_vol_bar.enable();
-
-            if (video_dom.volume < 1)
-                vc_vol_inc.enable();
-            else
-                vc_vol_inc.disable();
-
-            if (video_dom.volume > 0)
-                vc_vol_dec.enable();
-            else
-                vc_vol_dec.disable();
         };
         let fn_update_time_controls = () =>
         {
-            vc_prog_bar.val(video_dom.currentTime);
-            vc_prog_bar.attr('max', video_dom.duration);
+            vc_prog_bar.css('--progress', video_dom.currentTime / video_dom.duration);
             vc_prog_txt.text(to_time(video_dom.currentTime));
             vc_dur_txt.text(to_time(video_dom.duration));
 
@@ -172,16 +144,10 @@ $(document).ready(function()
         {
             video_dom.muted = !video_dom.muted;
 
-            if (video_dom.volume == 0)
-                video_dom.volume = 1;
-
-            fn_change_volume(volume_cmd.TOGGLE_MUTE);
+            fn_update_volume_controls();
         });
-        vc_vol_inc.click(() => fn_change_volume(volume_cmd.UP));
-        vc_vol_dec.click(() => fn_change_volume(volume_cmd.DOWN));
         vc_full.click(() => fn_process_fullscreen(fn_is_fullscreen()));
-        vc_prog_bar.change(() => video_dom.currentTime = vc_prog_bar.val());
-        vc_vol_bar.click(() => video_dom.volume = vc_vol_bar.val() / 100.0);
+        // vc_vol_bar.click(() => video_dom.volume = vc_vol_bar.val() / 100.0);
         vc_back15.click(() => video_dom.currentTime = Math.max(0, video_dom.currentTime - 10));
         vc_forw15.click(() => video_dom.currentTime = Math.min(video_dom.duration, video_dom.currentTime + 10));
         vc_subs.click(() => video_dom.textTracks[0].mode = video_dom.textTracks[0].mode == "hidden" ? "showing" : "hidden");
@@ -211,6 +177,52 @@ $(document).ready(function()
             if (id > 0)
                 on_selector_changed(id - 1);
         });
+        vc_downl.click(() => download_single.click());
+
+
+
+        var bar_mousedown = 0;
+
+        let fn_progress_moved = e =>
+        {
+            if (bar_mousedown)
+            {
+                let w = vc_prog_bar_track.width();
+                let x = e.clientX - vc_prog_bar_track.offset().left - 7.5;
+                let p = x < 0 ? 0 : x > w ? 1 : x / w;
+
+                // vc_prog_bar.css('--progress', p);
+                video_dom.currentTime = p * video_dom.duration;
+            }
+        };
+
+        $(document).bind('mousemove', fn_progress_moved);
+        // vc_prog_bar.click(fn_progress_moved);
+        vc_prog_bar.bind('mousedown', () => bar_mousedown = 1);
+        $(document).bind('mouseup', e =>
+        {
+            fn_progress_moved(e);
+
+            bar_mousedown = 0;
+        });
+
+        // startEvent: ['mousedown', 'touchstart', 'pointerdown'],
+        // moveEvent: ['mousemove', 'touchmove', 'pointermove'],
+        // endEvent: ['mouseup', 'touchend', 'pointerup']
+
+
+        // .draggable({
+        //     axis: "x", 
+        //     containment: "parent",
+        //     drag: function(event, ui)
+        //     {
+        //         ui.position.left = Math.min(ui.position.left, ui.helper.next().offset().left + ui.helper.next().width() - dragDistance); 
+        //         ui.position.left = Math.max(ui.position.left, ui.helper.prev().offset().left + dragDistance);
+
+        //         resize();
+        //     }
+        // });
+
 
 
         $(document).bind('fullscreenchange', e => fn_set_fullscreen(document.fullScreen || document.fullscreenElement));

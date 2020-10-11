@@ -134,6 +134,7 @@ a.help:active {
 html {
     /* hack for samsung internet: https://caniuse.com/background-attachment */
     border-radius: 0.00001px;
+    -webkit-overflow-scrolling: touch;
     background-color: black;
     margin: 0px auto;
     min-width: 900px;
@@ -715,17 +716,17 @@ table#parts td span.tooltip:hover::before {
 }
 
 #video-controls table,
-#video-controls tr {
-    width: 100%;
-}
-
-#video-controls table,
 #video-controls tr,
 #video-controls td {
     border: 0px solid transparent;
     /* height: var(--video-control-size); */
     padding: 0px;
     margin: 0px;
+}
+
+#video-controls table,
+#video-controls tr {
+    width: 100%;
 }
 
 #video-controls td {
@@ -742,13 +743,10 @@ table#parts td span.tooltip:hover::before {
     height: var(--video-control-size);
     padding: 4px;
     filter: invert();
+    cursor: pointer;
 }
 
-#video-controls button,
-#video-controls input,
-#video-controls button:focus,
-#video-controls input:focus {
-    cursor: pointer;
+#video-controls button:focus {
     outline: none;
 }
 
@@ -761,13 +759,60 @@ table#parts td span.tooltip:hover::before {
     padding: 0px 4px;
 }
 
+#vc-volume {
+    clip-path: polygon(100% 0, 0 75%, 100% 75%);
+    background-color: gray;
+    width: 100px;
+    height: 20px;
+    margin: 2px;
+}
+
+#vc-volume::before {
+    width: var(--percentage);
+    background-color: white;
+    display: block;
+    height: 100%;
+    content: '';
+}
+
 #vc-progress {
+    position: relative;
+    height: 25px;
     width: 100%;
 }
 
-#vc-volume {
-    width: 100px;
+#vc-progress .track {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+    background-color: gray;
+    position: absolute;
+    margin: 10px;
+    height: 5px;
+    width: calc(100% - 20px);
 }
+
+#vc-progress .track::before {
+    width: calc(var(--progress) * 100%);
+    background-color: white;
+    display: block;
+    height: 100%;
+    content: '';
+}
+
+#vc-progress .thumb {
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(var(--progress) * (100% - 20px));
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+    top: 0px;
+}
+
+
+
+
+
 
 
 
@@ -839,6 +884,10 @@ input[type="range"]:-moz-focusring{
 
 
 
+
+#vc-download {
+    background-image: url(../images/videoplayer/download.svg);
+}
 
 #vc-previous {
     background-image: url(../images/videoplayer/previous.svg);

@@ -197,7 +197,7 @@
                         <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
                         </video>
-                        <table id="video-controls">
+                        <table id="video-controls" class="hidden">
                             <colgroup>
                                 <col/>
                                 <col/>
@@ -208,7 +208,7 @@
                                 <col/>
                                 <col/>
                             </colgroup>
-                            <tr>
+                            <tr class="slim">
                                 <td><button id="vc-previous"></button></td>
                                 <td><button id="vc-stop"></button></td>
                                 <td><button id="vc-next"></button></td>
@@ -216,18 +216,19 @@
                                     <table width="100%">
                                         <tr width="100%">
                                             <td style="width: 100%"></td>
-                                            <!-- <td><button id="vc-volume-down"></button></td> -->
-                                            <td><input id="vc-volume" type="range" value="100" min="0" max="100"/></td>
-                                            <!-- <td><button id="vc-volume-up"></button></td> -->
+                                            <td>
+                                                <div id="vc-volume" style="--percentage:100%" value="100"></div>
+                                            </td>
+                                            <td><button id="vc-volume-mute" data-state="mute"></button></td>
                                         </tr>
                                     </table>
                                 </td>
-                                <td><button id="vc-volume-mute" data-state="mute"></button></td>
                                 <td><button id="vc-slower"></button></td>
                                 <td><span id="vc-speed-text">1x</span></td>
                                 <td><button id="vc-faster"></button></td>
+                                <td><button id="vc-info"></button></td>
                             </tr>
-                            <tr>
+                            <tr class="slim">
                                 <td><button id="vc-back15"></button></td>
                                 <td><button id="vc-playpause" data-state="play"></button></td>
                                 <td><button id="vc-forward15"></button></td>
@@ -235,7 +236,12 @@
                                     <table width="100%">
                                         <tr width="100%">
                                             <td><span id="vc-progress-text">00:00:00</span></td>
-                                            <td style="width: 100%"><input id="vc-progress" type="range" value="0" min="0"/></td>
+                                            <td style="width: 100%">
+                                                <div id="vc-progress" style="--progress:0">
+                                                    <div class="track"></div>
+                                                    <div class="thumb"></div>
+                                                </div>
+                                            </td>
                                             <td><span id="vc-duration">00:00:00</span></td>
                                         </tr>
                                     </table>
@@ -243,7 +249,7 @@
                                 <td><button id="vc-subtitle" data-state="subtitles"></button></td>
                                 <td><button id="vc-fullscreen" data-state="enter"></button></td>
                                 <td><button id="vc-pip" data-state="enter"></button></td>
-                                <td><button id="vc-info"></button></td>
+                                <td><button id="vc-download"></button></td>
                             </tr>
                         </table>
                     </figure>

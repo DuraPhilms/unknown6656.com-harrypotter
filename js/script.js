@@ -86,12 +86,14 @@ function on_selector_changed(id)
     {
         video_title.html('<i>Bitte ein Video auswählen</i>');
         video_section.addClass('default');
-        video_controls.addClass('disabled');
+        video_controls.addClass('hidden');
+        video_controls.disable();
 
         return;
     }
 
     video_controls.enable();
+    video_controls.removeClass('hidden');
     video_section.enable();
     part_selector.val(id);
 
