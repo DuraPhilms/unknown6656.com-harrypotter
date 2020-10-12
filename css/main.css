@@ -673,6 +673,10 @@ table#parts td span.tooltip:hover::before {
     color: white;
 }
 
+#video-container.native {
+    --video-control-size: 35px;
+}
+
 #video-container,
 #video-container * {
     -webkit-touch-callout: none;
@@ -684,13 +688,17 @@ table#parts td span.tooltip:hover::before {
             user-select: none;
 }
 
+#video-container:focus {
+    outline: 0px solid transparent;
+}
+
 #video-container.hidden-controls {
     cursor: none;
 }
 
 #video-container video {
-    background-color: black;
     padding-bottom: calc(var(--video-control-size) * 2);
+    background-color: black;
     object-fit: contain;
     display: block;
     width: 100%;
@@ -706,10 +714,10 @@ table#parts td span.tooltip:hover::before {
     background-image: url(../images/videoplayer/enter-pip.svg);
     background-repeat: no-repeat;
     background-position: 0px;
-    background-size: 40px;
+    background-size: 35px;
     filter: invert(1);
     color: black;
-    content: 'Playing picture-in-picture ...';
+    content: 'Wiedergabe im PiP-Modus  ...';
     position: absolute;
     font-size: 2em;
     padding: 0px 0px 0px 50px;
@@ -724,6 +732,107 @@ table#parts td span.tooltip:hover::before {
 
 #video-container.fullscreen #video-controls {
     z-index :2147483647;
+
+}
+
+#video-container #video-finished {
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    z-index: 200;
+    opacity: 1;
+    width: 100%;
+    top: 25%;
+
+    pointer-events: none;
+    opacity: 0;
+
+    transition: opacity 1s;
+}
+
+#video-container.finished #video-finished {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#video-finished button {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    outline: 0px solid transparent;
+    background-color: #aaaaaa77;
+    border: 5px solid black;
+    border-radius: 50%;
+    filter: invert();
+    cursor: pointer;
+    display: block;
+    margin: 20px;
+    height: 150px;
+    width: 150px;
+    float: left;
+}
+
+#video-finished button:hover {
+    filter: brightness(0.3) invert();
+}
+
+#vc-replay {
+    background-image: url('../images/videoplayer/replay.svg');
+}
+
+#vc-nextpart {
+    background-image: url('../images/videoplayer/next.svg');
+}
+
+#video-info {
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    display: flex;
+    z-index: 200;
+    opacity: 0;
+    width: 100%;
+    top: 75%;
+
+    transition: all .3s;
+}
+
+#video-container.info #video-info {
+    opacity: 1;
+    top: 25%;
+}
+
+#video-info .content {
+    border: 1px solid white;
+    border-top-width: 10px;
+    background-color: var(--color-bg);
+    backdrop-filter: blur(20px);
+    padding: 50px 20px 20px 20px;
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+    #video-info .content {
+        background-color: #aaaaaabb;
+        border-color: black;
+        color: black;
+        padding: 20px;
+    }
+}
+
+@supports(backdrop-filter: blur(20px)) {
+    #video-info .content::before {
+        content: 'Videoinformationen';
+        font-variant: small-caps;
+        position: absolute;
+        display: block;
+        padding: 10px;
+        left: 0px;
+        top: 0px;
+    }
+}
+
+#video-info .content tr > td:last-child {
+    font-family: var(--font-mono);
 }
 
 #video-controls {
@@ -813,6 +922,7 @@ table#parts td span.tooltip:hover::before {
     background-size: 90%;
     background-position: center;
     background-color: transparent;
+    background-repeat: no-repeat;
     width: var(--video-control-size);
     height: var(--video-control-size);
     padding: 4px;
@@ -849,15 +959,23 @@ table#parts td span.tooltip:hover::before {
 }
 
 #vc-volume {
-    clip-path: polygon(100% 0, 0 75%, 100% 75%);
-    background-color: gray;
     cursor: pointer;
-    width: 100px;
-    height: 20px;
     margin: 2px;
+    width: 70px;
 }
 
-#vc-volume::before {
+#vc-progress {
+    position: relative;
+    width: 100%;
+}
+
+#video-container:not(.native) #vc-volume {
+    clip-path: polygon(100% 0, 0 75%, 100% 75%);
+    background-color: gray;
+    height: 20px;
+}
+
+#video-container:not(.native) #vc-volume::before {
     width: var(--percentage);
     background-color: white;
     display: block;
@@ -865,13 +983,11 @@ table#parts td span.tooltip:hover::before {
     content: '';
 }
 
-#vc-progress {
-    position: relative;
-    height: 25px;
-    width: 100%;
+#video-container:not(.native) #vc-progress {
+    height: var(--video-control-size);
 }
 
-#vc-progress .track {
+#video-container:not(.native) #vc-progress .track {
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
     background-color: gray;
     position: absolute;
@@ -881,7 +997,7 @@ table#parts td span.tooltip:hover::before {
     width: calc(100% - 20px);
 }
 
-#vc-progress .track::before {
+#video-container:not(.native) #vc-progress .track::before {
     width: calc(var(--progress) * 100%);
     background-color: white;
     display: block;
@@ -889,7 +1005,7 @@ table#parts td span.tooltip:hover::before {
     content: '';
 }
 
-#vc-progress .thumb {
+#video-container:not(.native) #vc-progress .thumb {
     background-color: white;
     border-radius: 50%;
     position: absolute;
@@ -899,6 +1015,34 @@ table#parts td span.tooltip:hover::before {
     width: 15px;
     margin: 5px;
     top: 0px;
+}
+
+#video-container.native input[type="range"] {
+    border-radius: calc(var(--video-control-size) / 2);
+}
+
+#video-container.native input[type="range"],
+#video-container.native input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#video-container.native input[type=range]::-webkit-slider-thumb {
+    border-radius: 50%;
+    border: 0px solid transparent;
+    background-color: white;
+    /* margin-top: calc(-0.25 * var(--video-control-size)); */
+    height: calc(var(--video-control-size) / 2);
+    width: calc(var(--video-control-size) / 2);
+}
+
+#video-container.native input[type=range]::-webkit-slider-runnable-track {
+    border-radius: calc(var(--video-control-size) / 4);
+    border: 0.2px solid white;
+    background-color: black;
+    height: calc(var(--video-control-size) / 2);
+    width: 100%;
 }
 
 #vc-download {
@@ -972,16 +1116,6 @@ table#parts td span.tooltip:hover::before {
 #vc-info {
     background-image: url(../images/videoplayer/information.svg);
 }
-
-
-
-
-
-
-
-
-
-
 
 #gif-creator input,
 #gif-creator button,

@@ -121,8 +121,8 @@
                     </p>
                     <p>
                         Eine Kopie aller DURAPHILMS-Parts findet ihr auch auf der Webseite <a href="https://duraphilms.tk/" target="_blank">duraphilms.tk</a>!
-                        <br/>
-                        Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a>.
+                        <!-- <br/>
+                        Credits und Copyright findet Ihr am <a href="#credits">Ende dieser Seite</a>. -->
                     </p>
                     <!--
                         <p>
@@ -133,7 +133,7 @@
                 </span>
                 <hr/>
                 <p>
-                    Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen):
+                    <!-- Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen): -->
                     <table width="100%" id="parts">
                         <tr width="100%">
 <?php
@@ -193,11 +193,44 @@
                     <h2 id="video-title">
                         <i>Bitte ein Video auswählen</i>
                     </h2>
-                    <figure id="video-container" tabindex="0">
+                    <figure id="video-container">
                         <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
                         </video>
-                        <div id="video-info"></div>
+                        <div id="video-finished">
+                            <button id="vc-replay"></button>
+                            <button id="vc-nextpart"></button>
+                        </div>
+                        <div id="video-info">
+                            <div class="content">
+                                <table>
+                                    <tr>
+                                        <td>ID:</td>
+                                        <td id="info-id">---</td>
+                                    </tr>
+                                    <tr>
+                                        <td>URL:</td>
+                                        <td><a id="info-uri" href target="_blank" style="color:white">---</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Untertitel:</td>
+                                        <td id="info-sub">---</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Codec:</td>
+                                        <td id="info-codec">---</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Länge:</td>
+                                        <td id="info-duration">---</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zeitstempel:</td>
+                                        <td id="info-time">---</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                         <table id="video-controls" class="disabled">
                             <colgroup>
                                 <col/>

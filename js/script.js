@@ -18,6 +18,12 @@ let gif_duration = $('#gif-creator [name="gif-length"]');
 let gif_resolution = $('#gif-creator [name="gif-resolution"]');
 let gif_create = $('#gif-creator [name="create-gif"]');
 let gif_result = $('#gif-creator [name="gif-result"]');
+let info_id = $('#info-id');
+let info_uri = $('#info-uri');
+let info_sub = $('#info-sub');
+let info_codec = $('#info-codec');
+let info_time = $('#info-time');
+let info_dur = $('#info-duration');
 
 
 jQuery.fn.extend({
@@ -140,7 +146,7 @@ function on_video_updated(id)
 
     ping_uri(
         uri,
-        function()
+        () =>
         {
             video_section.removeClass('offline');
             video_dom.pause();
@@ -157,11 +163,28 @@ function on_video_updated(id)
             gif_duration.enable();
             gif_resolution.enable();
             gif_create.enable();
+            info_id.text(`${entry[0]}${entry[1]} (${id})`);
+            info_uri.attr('href', uri);
+            info_uri.html(uri);
+            info_codec.text('???');
+            info_dur.text(video_dom.duration);
+            info_time.text(video_dom.currentTime);
+
+            ping_uri(
+                get_subtitle_url(id),
+                () =>
+                {
+                    $('#vc-subtitle').enable();
+                    info_sub.text('Ja');
+                },
+                () =>
+                {
+                    $('#vc-subtitle').disable();
+                    info_sub.text('Nein');
+                }
+            );
         },
-        function()
-        {
-            video_section.addClass('offline');
-        }
+        () => video_section.addClass('offline')
     );
 }
 
