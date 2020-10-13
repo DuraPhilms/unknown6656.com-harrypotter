@@ -277,10 +277,7 @@
                                                 </span>
                                             </td>
                                             <td style="width: 100%" tooltip="">
-                                                <div id="vc-progress" style="--progress:0">
-                                                    <div class="track"></div>
-                                                    <div class="thumb"></div>
-                                                </div>
+                                                <input type="range" id="vc-progress" min="0" max="0" value="0" step="0.05"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -297,7 +294,83 @@
                                 <i style="font-size: 10pt">
                                     Falls das Video hängen sollte, bitte einige Minuten warten und das Video laden lassen.
                                     <br/>
-                                    &nbsp;
+                                    <details>
+                                        <summary>Tastaturbefehle für das Videofenster.</summary>
+                                        <table class="keycuts">
+                                            <tr>
+                                                <td><kbd>[SPACE]</kbd>, <kbd>[ENTER]</kbd>, <kbd>[K]</kbd></td>
+                                                <td>Wiedergabe pausieren oder fortsetzen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[S]</kbd></td>
+                                                <td>Wiedergabe stoppen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[D]</kbd></td>
+                                                <td>Video herunterladen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[↑]</kbd></td>
+                                                <td>Lautstärke um 10% erhöhen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[↓]</kbd></td>
+                                                <td>Lautstärke um 10% verringern</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[←]</kbd>, <kbd>[L]</kbd></td>
+                                                <td>Um 15 Sekunden zurückspulen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[→]</kbd>, <kbd>[J]</kbd></td>
+                                                <td>Um 15 Sekunden vorspulen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[M]</kbd></td>
+                                                <td>Lautstärke stumm schalten</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[C]</kbd></td>
+                                                <td>Untertitel ein-/ausblenden</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[F]</kbd></td>
+                                                <td>Vollbildmodus ein-/ausschalten</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[I]</kbd></td>
+                                                <td>PiP-Modus ein-/ausschalten</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[N]</kbd></td>
+                                                <td>Nächsten Part/Film anschauen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[P]</kbd></td>
+                                                <td>Vorherigen Part/Film anschauen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[.]</kbd></td>
+                                                <td>Geschwindigkeit um 25% erhöhen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[,]</kbd></td>
+                                                <td>Geschwindigkeit um 25% verringern</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[0]</kbd> ... <kbd>[9]</kbd></td>
+                                                <td>Durch den Film scrollen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[Pos1]</kbd></td>
+                                                <td>Zum Filmanfang springen</td>
+                                            </tr>
+                                            <tr>
+                                                <td><kbd>[End]</kbd></td>
+                                                <td>Zum Filmende springen</td>
+                                            </tr>
+                                        </table>
+                                    </details>
                                 </i>
                             </td>
                             <td width="30%" valign="top" align="right">

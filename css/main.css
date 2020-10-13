@@ -808,6 +808,7 @@ table#parts td span.tooltip:hover::before {
     background-color: var(--color-bg);
     backdrop-filter: blur(20px);
     padding: 50px 20px 20px 20px;
+    color: white;
 }
 
 @supports not (backdrop-filter: blur(20px)) {
@@ -983,67 +984,78 @@ table#parts td span.tooltip:hover::before {
     content: '';
 }
 
-#video-container:not(.native) #vc-progress {
-    height: var(--video-control-size);
-}
-
-#video-container:not(.native) #vc-progress .track {
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
-    background-color: gray;
-    position: absolute;
-    cursor: pointer;
-    margin: 10px;
-    height: 5px;
-    width: calc(100% - 20px);
-}
-
-#video-container:not(.native) #vc-progress .track::before {
-    width: calc(var(--progress) * 100%);
-    background-color: white;
-    display: block;
-    height: 100%;
-    content: '';
-}
-
-#video-container:not(.native) #vc-progress .thumb {
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    cursor: pointer;
-    left: calc(var(--progress) * (100% - 20px));
-    height: 15px;
-    width: 15px;
-    margin: 5px;
-    top: 0px;
-}
-
-#video-container.native input[type="range"] {
-    border-radius: calc(var(--video-control-size) / 2);
-}
-
-#video-container.native input[type="range"],
-#video-container.native input[type="range"]::-webkit-slider-thumb {
+#video-container input[type="range"] {
     -webkit-appearance: none;
+            appearance: none;
+
+    border-radius: calc(var(--video-control-size) / 3);
+    height: calc(var(--video-control-size) / 3);
+    border: 1px solid white;
     cursor: pointer;
+
+    --color-progress: #555;
+}
+
+#video-container input[type="range"]:focus {
     outline: none;
 }
 
-#video-container.native input[type=range]::-webkit-slider-thumb {
+#video-container input[type="range"]::-ms-thumb {
     border-radius: 50%;
     border: 0px solid transparent;
     background-color: white;
-    /* margin-top: calc(-0.25 * var(--video-control-size)); */
     height: calc(var(--video-control-size) / 2);
     width: calc(var(--video-control-size) / 2);
+    margin-top: 0px;
+    cursor: pointer;
 }
 
-#video-container.native input[type=range]::-webkit-slider-runnable-track {
-    border-radius: calc(var(--video-control-size) / 4);
-    border: 0.2px solid white;
-    background-color: black;
+#video-container input[type="range"]::-moz-range-thumb {
+    border-radius: 50%;
+    border: 0px solid transparent;
+    background-color: white;
     height: calc(var(--video-control-size) / 2);
-    width: 100%;
+    width: calc(var(--video-control-size) / 2);
+    margin-top: 0px;
+    cursor: pointer;
 }
+
+#video-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+            appearance: none;
+
+    border-radius: 50%;
+    border: 0px solid transparent;
+    background-color: white;
+    height: calc(var(--video-control-size) / 2);
+    width: calc(var(--video-control-size) / 2);
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+#video-container input[type="range"]::-ms-track {
+    background: transparent;
+    border: none;
+}
+
+#video-container input[type="range"]::-moz-range-track {
+    background: transparent;
+    border: none;
+}
+
+#video-container input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+            appearance: none;
+    background: transparent;
+    border: none;
+}
+
+/* 
+#video-container input[type="range"]::-ms-fill-lower,
+#video-container input[type="range"]::-moz-range-progress {
+    background-color: var(--color-progress);
+}
+*/
 
 #vc-download {
     background-image: url(../images/videoplayer/download.svg);
@@ -1116,6 +1128,13 @@ table#parts td span.tooltip:hover::before {
 #vc-info {
     background-image: url(../images/videoplayer/information.svg);
 }
+
+table.keycuts {
+    padding: 10px 0px 0px 30px;
+    font-style: normal;
+    font-size: 10pt;
+}
+
 
 #gif-creator input,
 #gif-creator button,

@@ -50,7 +50,7 @@ $(document).ready(function()
         let vc_stop = $('#vc-stop');
         let vc_vol_mute = $("#vc-volume-mute");
         var vc_vol_bar = $("#vc-volume");
-        var vc_prog_bar = $('#vc-progress');
+        let vc_prog_bar = $('#vc-progress');
         let vc_prog_txt = $('#vc-progress-text');
         let vc_subs = $('#vc-subtitle');
         let vc_slow = $('#vc-slower');
@@ -64,8 +64,6 @@ $(document).ready(function()
         if (is_mobile)
         {
             video_container.addClass('native');
-            vc_prog_bar.parent().html('<input type="range" id="vc-progress" min="0" max="0" value="0" step="0.05"/>');
-            vc_prog_bar = $('#vc-progress');
             vc_vol_bar.parent().html('<input type="range" id="vc-volume" min="0" max="100" value="100" step="1"/>');
             vc_vol_bar = $('#vc-volume');
         }
@@ -99,76 +97,77 @@ $(document).ready(function()
 
         var vol_mousedown = 0;
         var bar_mousedown = 0;
-        var bar_timeout = null;
         var was_playing = null;
 
-        function fn_update_bars_native()
+        function fn_update_progress_bar()
         {
             if (bar_mousedown)
             {
                 video_dom.currentTime = vc_prog_bar.val();
                 video_controls.attr('tooltip', `Video-Zeitstempel: ${to_time(video_dom.currentTime, true)} / ${to_time(video_dom.duration, true)}`);
 
-                setTimeout(fn_update_bars_native, 50);
+                setTimeout(fn_update_progress_bar, 50);
             }
-
+        };
+        function fn_update_volume_bar_native()
+        {
             if (vol_mousedown)
             {
                 video_dom.volume = vc_vol_bar.val() / 100.0;
                 video_controls.attr('tooltip', `Lautstärke: ${Math.round(vc_vol_bar.val())} %`);
 
-                setTimeout(fn_update_bars_native, 50);
+                setTimeout(fn_update_volume_bar_native, 50);
             }
         };
 
+
+        vc_prog_bar.click(() =>
+        {
+            was_playing = !(video_dom.paused || video_dom.ended);
+            video_dom.currentTime = vc_prog_bar.val();
+            bar_mousedown = 0;
+
+            if (was_playing)
+                video_dom.play();
+
+            was_playing = null;
+        });
+        vc_prog_bar.on('mousedown touchstart pointerdown click', () =>
+        {
+            bar_mousedown = 1;
+
+            if (was_playing == null)
+                was_playing = !(video_dom.paused || video_dom.ended);
+
+            video_dom.pause();
+
+            fn_update_progress_bar()
+        });
+        vc_prog_bar.on('mouseup touchend touchcancel pointerup mouseleave', () =>
+        {
+            if (was_playing)
+                video_dom.play();
+
+            was_playing = null;
+            bar_mousedown = 0;
+        });
+
         if (is_mobile)
         {
+            vc_vol_bar.click(() => video_dom.volume = vc_prog_bar.val() / 100);
             vc_vol_bar.on('mousedown touchstart pointerdown', () =>
             {
                 vol_mousedown = 1;
 
-                fn_update_bars_native()
+                fn_update_volume_bar_native()
             });
             vc_vol_bar.on('mouseup touchend touchcancel pointerup mouseleave', () => vol_mousedown = 0);
-            vc_prog_bar.on('mousedown touchstart pointerdown', () =>
-            {
-                bar_mousedown = 1;
-
-                if (was_playing == null)
-                    was_playing = !(video_dom.paused || video_dom.ended);
-
-                video_dom.pause();
-
-                fn_update_bars_native()
-            });
-            vc_prog_bar.on('mouseup touchend touchcancel pointerup mouseleave', () =>
-            {
-                if (was_playing)
-                    video_dom.play();
-
-                was_playing = null;
-                bar_mousedown = 0;
-            });
         }
         else
         {
             let fn_mouse_moved = e =>
             {
-                if (e.target == vc_prog_bar[0])
-                {
-                    let w = vc_prog_bar.width();
-                    let x = e.clientX - vc_prog_bar.offset().left - 7.5;
-                    let p = x < 0 ? 0 : x > w ? 1 : x / w;
-
-                    video_controls.attr('tooltip', `Video-Zeitstempel: ${to_time(p * video_dom.duration, true)} / ${to_time(video_dom.duration, true)}`);
-
-                    if (bar_mousedown)
-                    {
-                        clearTimeout(bar_timeout);
-                        bar_timeout = setTimeout(() => video_dom.currentTime = p * video_dom.duration, 0);
-                    }
-                }
-                else if (e.target == vc_vol_bar[0])
+                if (e.target == vc_vol_bar[0])
                 {
                     let w = vc_vol_bar.width();
                     let x = e.clientX - vc_vol_bar.offset().left;
@@ -188,17 +187,7 @@ $(document).ready(function()
                 // }
             };
 
-            // vc_prog_bar.add(vc_vol_bar).click(fn_mouse_moved);
             vc_vol_bar.on('mousedown touchstart pointerdown', () => vol_mousedown = 1);
-            vc_prog_bar.on('mousedown touchstart pointerdown', () =>
-            {
-                bar_mousedown = 1;
-
-                if (was_playing == null)
-                    was_playing = !(video_dom.paused || video_dom.ended);
-
-                video_dom.pause();
-            });
             $(document).on('mousemove touchmove pointermove', fn_mouse_moved);
             $(document).on('mouseup touchend touchcancel pointerup mouseleave', e =>
             {
@@ -228,9 +217,10 @@ $(document).ready(function()
 
                 if (is_mobile)
                 {
-                    fn_update_bars_native();
+                    fn_update_volume_bar_native();
 
                     vc_vol_bar.val(volume);
+                    vc_prog_bar.css('background', `linear-gradient(to right, var(--color-progress) ${volume}%, transparent ${volume}%`);
                 }
                 else
                     vc_vol_bar.css('--percentage', `${volume}%`);
@@ -246,21 +236,20 @@ $(document).ready(function()
         let fn_update_time_controls = () =>
         {
             let paused = video_dom.paused || video_dom.ended;
+            let percent = video_dom.currentTime / video_dom.duration * 100;
 
             info_time.text(video_dom.currentTime);
             info_dur.text(video_dom.duration);
 
             if (!bar_mousedown)
-                if (is_mobile)
-                {
-                    fn_update_bars_native();
+            {
+                fn_update_progress_bar();
 
-                    vc_prog_bar.prop('max', Math.floor(video_dom.duration));
-                    vc_prog_bar.val(Math.floor(video_dom.currentTime));
-                }
-                else
-                    vc_prog_bar.css('--progress', video_dom.currentTime / video_dom.duration);
+                vc_prog_bar.prop('max', Math.floor(video_dom.duration));
+                vc_prog_bar.val(Math.floor(video_dom.currentTime));
+            }
 
+            vc_prog_bar.css('background', `linear-gradient(to right, var(--color-progress) ${percent}%, transparent ${percent}%`);
             vc_prog_txt.html(`${to_time(video_dom.currentTime, true)}<br/>/ ${to_time(video_dom.duration, true)}`);
             vc_speed_txt.text(video_dom.playbackRate + 'x');
             vc_playpause.attr('data-state', paused ? 'play' : 'pause');
@@ -359,9 +348,14 @@ $(document).ready(function()
             fn_set_fullscreen(!exit);
         };
 
+        vc_prog_bar.add(vc_vol_bar).change();   
 
         video_player.bind('volumechange', fn_update_volume_controls);
-        video_player.bind('loadedmetadata', () => video_container.removeAttr('info'));
+        video_player.bind('loadedmetadata', () =>
+        {
+            video_container.removeAttr('info');
+            video_controls.attr('tooltip', $('video-title').text());
+        });
         video_player.on('play pause ended timeupdate loadedmetadata onratechange', fn_update_time_controls);
         video_player.dblclick(() => fn_process_fullscreen(fn_is_fullscreen()));
         video_player.add(vc_playpause).click(() =>
@@ -440,11 +434,10 @@ $(document).ready(function()
         video_player.on('play pause ended loadedmetadata onratechange volumechange', fn_focus_video);
         video_container.bind('keydown', e =>
         {
+            e.preventDefault();
+
             if (e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 75) // [ENTER], [SPACE], [K]
-            {
-                e.preventDefault();
                 vc_playpause.click();
-            }
             else if (e.keyCode == 83) // [S]
                 vc_stop.click();
             else if (e.keyCode == 68) // [D]
@@ -453,9 +446,9 @@ $(document).ready(function()
                 video_dom.volume += .1;
             else if (e.keyCode == 40) // [down]
                 video_dom.volume -= .1;
-            else if (e.keyCode == 37, e.keyCode == 76) // [left], [L]
+            else if (e.keyCode == 37, e.keyCode == 74) // [left], [L]
                 vc_back15.click();
-            else if (e.keyCode == 74, e.keyCode == 39) // [right], [J]
+            else if (e.keyCode == 39, e.keyCode == 76) // [right], [J]
                 vc_forw15.click();
             else if (e.keyCode == 77) // [M]
                 vc_vol_mute.click();
@@ -463,6 +456,8 @@ $(document).ready(function()
                 vc_subs.click();
             else if (e.keyCode == 70) // [F]
                 vc_full.click();
+            else if (e.keyCode == 73) // [I]
+                vc_pip.click();
             else if (e.keyCode == 78) // [N]
                 vc_next.click();
             else if (e.keyCode == 80) // [P]
@@ -471,13 +466,16 @@ $(document).ready(function()
                 vc_fast.click();
             else if (e.keyCode == 188) // [,]
                 vc_slow.click();
-
-            // TODO : numpad
-            // TODO : digit
+            else if (e.keyCode >= 48 && e.keyCode <= 57) // digits [0...9]
+                video_dom.currentTime = (e.keyCode - 48) / 9.0 * video_dom.duration;
+            else if (e.keyCode >= 96 && e.keyCode <= 105) // numpad [0...9]
+                video_dom.currentTime = (e.keyCode - 96) / 9.0 * video_dom.duration;
+            else if (e.keyCode == 36) // [Home]
+                video_dom.currentTime = 0;
+            else if (e.keyCode == 35) // [End]
+                video_dom.currentTime = video_dom.duration;
         });
 
-
-        // TODO: test on touch
         // TODO: scroll input (?)
         // TODO: fix codec info button
         // TODO: add keyboard help
