@@ -478,9 +478,10 @@ $(document).ready(function()
 
         // TODO: scroll input (?)
         // TODO: fix codec info button
-        // TODO: add keyboard help
+        // TODO: fix touch click bug
 
-
+        video_section.find('details').click(fn_focus_video);
+        video_controls.find('button,input').click(fn_focus_video);
         $(document).bind('fullscreenchange', e => fn_set_fullscreen(document.fullScreen || document.fullscreenElement));
         $(document).bind('webkitfullscreenchange', () => fn_set_fullscreen(!!document.webkitIsFullScreen));
         $(document).bind('mozfullscreenchange', () => fn_set_fullscreen(!!document.mozFullScreen));

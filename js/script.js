@@ -87,6 +87,7 @@ function on_selector_changed(id)
     gif_resolution.disable();
     gif_create.disable();
     video_dom.pause();
+    $(`table#parts td`).removeClass('selected');
 
     if (id == undefined)
     {
@@ -97,6 +98,8 @@ function on_selector_changed(id)
 
         return;
     }
+    
+    $(`table#parts td[--data-video-id="${id}"]`).addClass('selected');
 
     video_controls.enable();
     video_controls.removeClass('disabled');

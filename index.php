@@ -96,6 +96,7 @@
                         <h2 style="font-size: 2em">
                             Breaking News - <a href="https://discord.gg/ZTzhXAF" target="_blank">Wir haben einen DISCORD Server!</a>
                         </h2>
+                        <!-- TODO : discrod widget embedden -->
                         <br/>
 <!--
                         <h2>Wichtig: bitte hier abstimmen!</h2>
@@ -248,9 +249,9 @@
                                 <td>
                                     <table width="100%">
                                         <tr width="100%">
-                                            <td><button id="vc-slower" tooltip="Wiedergabe um 0.25x verlangsamen"></button></td>
+                                            <td><button id="vc-slower" tooltip="Wiedergabe um 0.25x verringern"></button></td>
                                             <td><span id="vc-speed-text">1x</span></td>
-                                            <td><button id="vc-faster" tooltip="Wiedergabe um 0.25x beschleunigen"></button></td>
+                                            <td><button id="vc-faster" tooltip="Wiedergabe um 0.25x erhöhen"></button></td>
                                             <td style="width: 100%"></td>
                                             <td tooltip="">
                                                 <div id="vc-volume" style="--percentage:100%" value="100"></div>
