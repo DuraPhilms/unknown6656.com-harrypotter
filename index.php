@@ -94,7 +94,7 @@
                 <span class="description">
                     <p>
                         <h2 style="font-size: 2em">
-                            Breaking News - <a href="https://discord.gg/ZTzhXAF" target="_blank">Wir haben einen DISCORD Server!</a>
+                            <a href="https://discord.gg/byd5qP6" target="_blank">Breaking News - Wir haben einen DISCORD Server!</a>
                         </h2>
                         <!-- TODO : discrod widget embedden -->
                         <br/>
