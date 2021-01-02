@@ -1,0 +1,7 @@
+@font-face {
+    src: url("./bahnschrift.woff2") format("woff2-variations"),
+         url("./bahnschrift.ttf") format("truetype");
+    font-family:'Bahnschrift';
+    font-stretch: semi-condensed;
+    font-style: normal;
+}
