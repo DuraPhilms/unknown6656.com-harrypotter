@@ -1,7 +1,7 @@
 'use strict';
 
 let part_selector = $('#partselector');
-let video_title = $('#video-title');
+let video_title = $('.video-title');
 let video_section = $('#video-section');
 let video_controls = $('#video-controls');
 let video_player = $('#video-container video');
@@ -98,7 +98,7 @@ function on_selector_changed(id)
 
         return;
     }
-    
+
     $(`table#parts td[--data-video-id="${id}"]`).addClass('selected');
 
     video_controls.enable();
@@ -338,5 +338,3 @@ function scroll_to_anchor(aid)
     if (target != current)
         element.animate({ scrollTop: target }, 1000);
 }
-
-

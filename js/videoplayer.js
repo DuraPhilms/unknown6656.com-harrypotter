@@ -59,6 +59,7 @@ $(document).ready(function()
         let vc_full = $('#vc-fullscreen');
         let vc_pip = video_controls.find('#vc-pip');
         let vc_downl = $('#vc-download');
+        let vc_share = $('#vc-share');
         let vc_info = $('#vc-info');
 
         if (is_mobile)
@@ -348,13 +349,13 @@ $(document).ready(function()
             fn_set_fullscreen(!exit);
         };
 
-        vc_prog_bar.add(vc_vol_bar).change();   
+        vc_prog_bar.add(vc_vol_bar).change();
 
         video_player.bind('volumechange', fn_update_volume_controls);
         video_player.bind('loadedmetadata', () =>
         {
             video_container.removeAttr('info');
-            video_controls.attr('tooltip', $('video-title').text());
+            video_controls.attr('tooltip', $('.video-title').text());
         });
         video_player.on('play pause ended timeupdate loadedmetadata onratechange', fn_update_time_controls);
         video_player.dblclick(() => fn_process_fullscreen(fn_is_fullscreen()));
@@ -429,6 +430,16 @@ $(document).ready(function()
                 video_container.removeClass('info');
             else
                 video_container.addClass('info');
+        });
+        vc_share.click(() =>
+        {
+            if (!video_dom.paused)
+                video_dom.pause();
+
+            if (video_container.hasClass('share'))
+                video_container.removeClass('share');
+            else
+                video_container.addClass('share');
         });
         video_controls.on('click mousedown mouseup pointerdown pointerup dblclick', fn_focus_video);
         video_player.on('play pause ended loadedmetadata onratechange volumechange', fn_focus_video);
