@@ -1,11 +1,11 @@
 @charset "UTF-8";
 @import '../font/harrypotter.css';
-@import '../font/HelveticaNeue.css';
+@import '../font/bahnschrift.css';
 
 
 :root {
-    --font-title: 'HarryPotter', 'HelveticaNeueCyr', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
-    --font-main: 'HelveticaNeueCyr', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+    --font-title: 'HarryPotter', 'Bahnschrift', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
+    --font-main: 'Bahnschrift', 'Helvetica', 'Arial', 'Lucida Grande', sans-serif;
     --font-mono: 'Consolas', 'Courier New', 'Courier', 'Lucida Console', 'Ubuntu Mono', monospace;
     --color-fg: black;
     --color-bg: #73858b70;
@@ -1072,7 +1072,7 @@ table#parts td.selected::after {
     border: none;
 }
 
-/* 
+/*
 #video-container input[type="range"]::-ms-fill-lower,
 #video-container input[type="range"]::-moz-range-progress {
     background-color: var(--color-progress);
@@ -1157,7 +1157,7 @@ table#parts td.selected::after {
     text-align: center;
     font-weight: bold;
     border-radius: 50%;
-    line-height: 15px;
+    /* line-height: 15px; */
     display: block;
     content: '?';
     height: 15px;
