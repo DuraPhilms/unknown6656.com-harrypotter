@@ -166,7 +166,6 @@ html {
 body > div.background {
     background-image: url('../images/background-static.jpg');
     background-color: transparent;
-        background-repeat: no-repeat;
     background-attachment: local;
     background-repeat: no-repeat;
     background-position: center;
@@ -200,14 +199,11 @@ body > div.background {
 body > div.background .castle {
     background-image: url('../images/background-masked.png');
     background-color: transparent;
-        background-image: url('../images/background.jpg');
     background-attachment: local;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     position: absolute;
-        background-attachment: local;
-        position: fixed;
     height: 100%;
     width: 100%;
     margin: 0px;
@@ -382,11 +378,6 @@ hr {
     color: var(--color-fg);
     width: calc(100% + 10px);
     margin: 0px -5px;
-}
-
-h1, h2, h3, h4 {
-    font-family: var(--font-title);
-    font-weight: 500;
 }
 
 h1 {
@@ -808,7 +799,7 @@ table#parts td.selected::after {
     z-index :2147483647;
 }
 
-#video-container #video-finished {
+#video-finished {
     position: absolute;
     justify-content: center;
     display: flex;
@@ -855,6 +846,14 @@ table#parts td.selected::after {
 
 #vc-nextpart {
     background-image: url('../images/videoplayer/next.svg');
+}
+
+#video-watermark {
+    position: absolute;
+    margin: 4px;
+    width: calc(100% - 8px);
+    right: 0px;
+    top: 0px;
 }
 
 #video-info {
@@ -908,6 +907,41 @@ table#parts td.selected::after {
 #video-info .content tr > td:last-child {
     font-family: var(--font-mono);
 }
+
+#video-share {
+    background-color: #00000090;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    /* display: flex; */
+    opacity: 0;
+    z-index: 300;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+
+    transition: all .3s;
+}
+
+#video-container.share #video-share {
+    pointer-events: initial;
+    opacity: 1;
+}
+
+#video-share .content {
+    color: white;
+    padding: 50px;
+    margin: auto;
+}
+
+#video-share .content input[type="text"] {
+    width: 450px;
+}
+
+
+
+
 
 #video-controls {
     --spacing: 4px;
@@ -1206,6 +1240,10 @@ table#parts td.selected::after {
     background-image: url(../images/videoplayer/information.svg);
 }
 
+#vc-share {
+    background-image: url(../images/videoplayer/share.svg);
+}
+
 #video-section details::before {
     border: 1px solid var(--color-fg);
     position: absolute;
@@ -1242,10 +1280,10 @@ table.keycuts {
     font-size: 10pt;
 }
 
-
 #gif-creator input,
 #gif-creator button,
 #gif-creator select,
+#video-share input,
 .navigation button,
 .navigation select {
     transition: all 0.3s;
@@ -1265,6 +1303,7 @@ table.keycuts {
     cursor: pointer;
 }
 
+#video-share input:hover,
 #gif-creator input:hover,
 #gif-creator button:hover,
 #gif-creator select:hover,
@@ -1283,7 +1322,7 @@ select:active {
 
 #gif-creator {
     display: block;
-    margin: 0px auto;
+    /* margin: 0px auto; */
     width: 720px;
 }
 
@@ -1429,9 +1468,18 @@ table#copyrights td {
 
 #credit-icons td * {
     display: block;
-    margin: auto;
+    margin: 0px auto 5px auto;
 }
 
+
+@keyframes clouds{
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
 
 @keyframes loading{
     0% {
