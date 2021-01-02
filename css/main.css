@@ -138,8 +138,16 @@ a.help:active {
 }
 
 html {
+    /* The following image is only for pre-loading */
+    background-image: url('../images/background-downscaled.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
     /* hack for samsung internet: https://caniuse.com/background-attachment */
     border-radius: 0.00001px;
+
     -webkit-overflow-scrolling: touch;
     background-color: black;
     margin: 0px auto;
@@ -153,36 +161,83 @@ html {
     /* TODO : some desktop variant of the site */
 }
 
-/* Exclude iOS Safari: https://caniuse.com/mdn-css_properties_-webkit-touch-callout */
-@supports not (-webkit-touch-callout: none) {
-    html {
-        background-image: url('../images/background.jpg');
-        background-attachment: fixed;
+
+/*//////////////////////////////////// STATIC BACKGROUND ////////////////////////////////////*/
+body > div.background {
+    background-image: url('../images/background-static.jpg');
+    background-color: transparent;
         background-repeat: no-repeat;
-        background-size: cover;
-    }
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    z-index: -2000;
 }
 
-/* iOS Safari only: https://caniuse.com/mdn-css_properties_-webkit-touch-callout */
-@supports (-webkit-touch-callout: none) {
-    .ios-only {
-        background-image: url('../images/background.jpg');
-        background-attachment: local;
-        background-repeat: no-repeat;
-        background-size: cover;
+/*//////////////////////////////////// DYNAMIC BACKGROUND ////////////////////////////////////*/
+/*
 
+body > div.background {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    z-index: -2000;
+}
+
+body > div.background .castle {
+    background-image: url('../images/background-masked.png');
+    background-color: transparent;
+        background-image: url('../images/background.jpg');
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
         background-attachment: local;
         position: fixed;
-        height: 100%;
-        width: 100%;
-        margin: 0px;
-        bottom: 0px;
-        right: 0px;
-        left: 0px;
-        top: 0px;
-        z-index: -10000000;
-    }
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    z-index: -1000;
 }
+
+body > div.background .clouds {
+    background-image: url('../images/background-clouds.jpg');
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4800px 999px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: -1500;
+
+    animation-name: clouds;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+*/
+
 
 @media all and (min-device-width: 1000px) {
     /* TODO : some desktop variant of the site */
