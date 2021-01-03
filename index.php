@@ -9,7 +9,7 @@
         "hpudpp" => ["HP und der Plastikpokal", 1],
         "hpudfe" => ["HP und der Feuer-Elch", 1],
         "hpudpva" => ["HP und der Penner von Alcatraz", 14],
-        "hpudodp" => ["HP und der Orden des Penners", 13],
+        "hpudodp" => ["HP und der Orden des Penners", 14],
         "hpudhlp" => ["HP und der Half-Life-Prinz", 1],
     ];
     $video_ids = array();
@@ -49,7 +49,7 @@
         <meta name="twitter:site" content="@unknown6656">
         <meta name="fb:page_id" content="381982338582331"/>
         <meta name="og:url" content="https://unknown6656.com/harrypotter"/>
-        <meta name="og:site_name" content="unknown6656 | Hаrry Pоttеr Synchronisation by DURAPHILMS / COLDMIRROR"/>
+        <meta name="og:site_name" content="unknown6656 | Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-touch-fullscreen" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -78,7 +78,9 @@
         -->
     </head>
     <a name="top"></a>
-    <div class="ios-only">
+    <div class="background">
+        <div class="clouds"></div>
+        <div class="castle"></div>
     </div>
     <body>
         <div id="content">
@@ -92,24 +94,29 @@
                 <div id="back-blur">
                 </div>
                 <span class="description">
-                    <p>
-                        <h2 style="font-size: 2em">
-                            <a href="https://discord.gg/byd5qP6" target="_blank">Breaking News - Wir haben einen DISCORD Server!</a>
-                        </h2>
-                        <!-- TODO : discrod widget embedden -->
-                        <br/>
 <!--
-                        <h2>Wichtig: bitte hier abstimmen!</h2>
-                        <div class="strawpoll">
-                            <iframe src="https://www.strawpoll.me/embed_1/21011398">
-                            </iframe>
-                        </div>
+                    <h2>Wichtig: bitte hier abstimmen!</h2>
+                    <div class="strawpoll">
+                        <iframe src="https://www.strawpoll.me/embed_1/21011398">
+                        </iframe>
+                    </div>
 -->
+                    <br/>
+                    <h1 class="title_font">Willkommen liebe Potter-Fans!</h1>
                     <p>
-                    <hr/>
-                    <h1>Willkommen liebe Potter-Fans!</h1>
+                        <h2>
+                            <a href="https://discord.gg/byd5qP6" target="_blank">Breaking News - Wir haben einen DISCORD Server!</a>
+                            <br/>
+                            <iframe src="https://discordapp.com/widget?id=760488636382445590&theme=dark"
+                                    height="300" width="750"
+                                    allowtransparency="true"
+                                    frameborder="0"
+                                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                            </iframe>
+                        </h2>
+                    </p>
                     <p>
-                        Auf dieser Seite könnt Ihr Euch alle Hаrry Pоttеr Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen.
+                        Auf dieser Seite könnt Ihr Euch alle Harry Potter Parodien/Synchronisationen von DURAPHILMS und COLDMIRROR anschauen.
                         <br/>
                         Die COLDMIRROR-Parodien liegen in einem zusammenhängenden Video vor &mdash; die Parodien von DURAPHILMS sind jedoch in mehrere Parts aufgeteilt.
                         Um einen spezifischen Part zu sehen, könnt ihr auf den entsprechenden Eintrag in der folgenden Tabelle klicken.
@@ -134,6 +141,7 @@
                 </span>
                 <hr/>
                 <p>
+                    <h2>Bitte ein Video auswählen</h2>
                     <!-- Folgende Teile sind zurzeit online bzw. offline (Klicke auf die Nummer um den Part anzuschauen): -->
                     <table width="100%" id="parts">
                         <tr width="100%">
@@ -145,7 +153,7 @@
         if ($last != $values[0])
         {
             ?>
-                        <td class="descr"><?=$values[3]?>:</td>
+                        <td class="descr"><?=$values[3]?>: &nbsp;</td>
             <?php
         }
 
@@ -165,35 +173,30 @@
     }
 ?>
                         </tr>
-                        <tr width="100%" height="17px"></tr>
+                        <tr width="100%" height="15px"></tr>
                         <tr width="100%" class="legende">
-                            <td class="legende_desc">STATUS UNBEKANNT:</td>
+                            <td class="legende_desc">STATUS UNBEKANNT: &nbsp;</td>
                             <td class="number"></td>
                         </tr>
                         <tr width="100%" class="legende">
-                            <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE:</td>
+                            <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE: &nbsp;</td>
                             <td class="number offline" style="cursor: default !important;"></td>
                         </tr>
                         <!--
                             <tr width="100%" class="legende">
-                                <td class="legende_desc">TEMPORÄR (KURZZEITIG) OFFLINE:</td>
+                                <td class="legende_desc">TEMPORÄR (KURZZEITIG) OFFLINE: &nbsp;</td>
                                 <td class="number temporary" style="cursor: default !important;"></td>
                             </tr>
                         -->
                         <tr width="100%" class="legende">
-                            <td class="legende_desc">ONLINE:</td>
+                            <td class="legende_desc">ONLINE: &nbsp;</td>
                             <td class="number online" style="cursor: default !important;"></td>
                         </tr>
                     </table>
                 </p>
-                <br/>
-                <hr/>
                 <!--///////////////////////////////////////////////// VIDEO SECTION /////////////////////////////////////////////////-->
                 <div id="video-section" class="default">
                     <a name="video"></a>
-                    <h2 id="video-title">
-                        <i>Bitte ein Video auswählen</i>
-                    </h2>
                     <figure id="video-container">
                         <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
@@ -201,33 +204,83 @@
                         <div id="video-finished">
                             <button id="vc-replay"></button>
                             <button id="vc-nextpart"></button>
+                            <br/>
+                            <!-- TODO: add share sheet -->
                         </div>
                         <div id="video-info">
                             <div class="content">
                                 <table>
                                     <tr>
                                         <td>ID:</td>
+                                        <td>&nbsp;</td>
                                         <td id="info-id">---</td>
                                     </tr>
                                     <tr>
                                         <td>URL:</td>
+                                        <td>&nbsp;</td>
                                         <td><a id="info-uri" href target="_blank" style="color:white">---</a></td>
                                     </tr>
                                     <tr>
                                         <td>Untertitel:</td>
+                                        <td>&nbsp;</td>
                                         <td id="info-sub">---</td>
                                     </tr>
                                     <tr>
                                         <td>Codec:</td>
+                                        <td>&nbsp;</td>
                                         <td id="info-codec">---</td>
                                     </tr>
                                     <tr>
                                         <td>Länge:</td>
+                                        <td>&nbsp;</td>
                                         <td id="info-duration">---</td>
                                     </tr>
                                     <tr>
                                         <td>Zeitstempel:</td>
+                                        <td>&nbsp;</td>
                                         <td id="info-time">---</td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                Zum Schließen dieses Fensters bitte auf den<br/>
+                                <img src="images/videoplayer/information.svg" height="16" width="16" style="display:inline-block;filter:invert();margin:auto;"/>-Knopf in der Steuerleiste klicken.
+                            </div>
+                        </div>
+                        <div id="video-watermark">
+                            <table width="100%">
+                                <tr width="100%">
+                                    <td class="video-title" width="50%" align="left"></td>
+                                    <td width="50%" align="right">unknown6656.com</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="video-share">
+                            <div id="share-close">
+                            </div>
+                            <div class="content">
+                                <h2 style="font-size:1.8em"><span class="video-title"></span> teilen</h2>
+                                <p>
+                                    <input type="text" id="share-url" readonly/>
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="share-include-time" id="share-include-time"/>
+                                    <label for="share-include-time">
+                                        Zeitstempel hinzufügen &nbsp;
+                                        <input type="time" id="share-time" step="1" min="00:00:00" max="00:00:00" value="00:00:00" disabled/>
+                                    </label>
+                                </p>
+                                <table>
+                                    <tr>
+                                        <td><button id="share-wa">WhatsApp</button></td>
+                                        <td><button id="share-tw">Twitter</button></td>
+                                        <td><button id="share-fb">Facebook</button></td>
+                                        <td><button id="share-ms">Messenger</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button id="share-ig">Instagram</button></td>
+                                        <td><button id="share-th">Threema</button></td>
+                                        <td><button id="share-re">Reddit</button></td>
+                                        <td><button id="share-em">E-Mail</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -249,18 +302,19 @@
                                 <td>
                                     <table width="100%">
                                         <tr width="100%">
-                                            <td><button id="vc-slower" tooltip="Wiedergabe um 0.25x verringern"></button></td>
+                                            <td><button id="vc-slower" tooltip="Wiedergabegeschwindigkeit um 0.25x verringern"></button></td>
                                             <td><span id="vc-speed-text">1x</span></td>
-                                            <td><button id="vc-faster" tooltip="Wiedergabe um 0.25x erhöhen"></button></td>
+                                            <td><button id="vc-faster" tooltip="Wiedergabegeschwindigkeit um 0.25x erhöhen"></button></td>
                                             <td style="width: 100%"></td>
                                             <td tooltip="">
                                                 <div id="vc-volume" style="--percentage:100%" value="100"></div>
                                             </td>
+                                            <td><button id="vc-volume-mute" data-state="mute" tooltip="Wiedergabe stumm schalten"></button></td>
                                         </tr>
                                     </table>
                                 </td>
-                                <td><button id="vc-volume-mute" data-state="mute" tooltip="Wiedergabe stumm schalten"></button></td>
-                                <td><button id="vc-info" tooltip="Videoinformationen"></button></td>
+                                <td><button id="vc-info" tooltip="Videoinformationen einblenden/ausblenden"></button></td>
+                                <td><button id="vc-share" tooltip="Video teilen"></button></td>
                                 <td><button id="vc-download" tooltip="Film/Part herunterladen"></button></td>
                             </tr>
                             <tr class="slim">
@@ -447,7 +501,6 @@
                     </button>
                 </div>
                 <br/>
-                <br/>
                 <div id="gif-creator">
                     <br/>
                     <b>GIF erstellen ⟨beta⟩</b>
@@ -455,7 +508,7 @@
                         <tr>
                             <td>Start-Zeitstempel:</td>
                             <td>
-                                <input type="time" name="gif-start" step="1" disabled value="00:00:00"/>
+                                <input type="time" name="gif-start" step="1" disabled value="00:00:00" min="00:00:00" max="00:00:00"/>
                             </td>
                             <td rowspan="3">
                                 <div class="h-captcha" data-sitekey="<?=$hcaptcha_sitekey?>" data-theme="dark" data-size="todo-compact"></div>
@@ -493,7 +546,7 @@
                 <hr/>
                 <!--///////////////////////////////////////////////// CREDIT SECTION /////////////////////////////////////////////////-->
                 <a name="credits"></a>
-                <br/>
+                <h3>Credits</h3>
                 <table id="copyrights">
                     <tr>
                         <td>Videomaterial:</td>
@@ -527,41 +580,35 @@
                     </tr>
                 </table>
                 <br/>
-                <br/>
                 <table id="credit-icons" width="100%">
                     <tr>
                         <td>
                             <a href="https://youtube.com/darthdustinKanal2" target="_blank">
                                 <div class="img_container duraphilms"></div>
-                                <br/>
                                 DURAPHILMS
                             </a>
                         </td>
                         <td>
                             <a href="https://youtube.com/coldmirror" target="_blank">
                                 <div class="img_container coldmirror"></div>
-                                <br/>
                                 COLDMIRROR
                             </a>
                         </td>
                         <td>
                             <a href="https://youtube.com/Unknown6656" target="_blank">
                                 <div class="img_container unknown6656"></div>
-                                <br/>
                                 unknown6656
                             </a>
                         </td>
                         <td>
                             <a href="https://github.com/lnjX" target="_blank">
                                 <div class="img_container lnj"></div>
-                                <br/>
                                 LNJ
                             </a>
                         </td>
                         <td>
                             <a href="https://github.com/JBBgameich" target="_blank">
                                 <div class="img_container jbb"></div>
-                                <br/>
                                 JBB
                             </a>
                         </td>
@@ -625,5 +672,25 @@
         <script type="text/javascript" language="javascript" src="js/script.js"></script>
         <script type="text/javascript" language="javascript" src="js/videoplayer.js"></script>
         <script type="text/javascript" language="javascript" src="https://hcaptcha.com/1/api.js" async defer></script>
+<?php
+    preg_match('/^([_a-zA-Z]+)(\d+)$/', isset($_GET['v']) ? $_GET['v'] : '', $selected_video);
+
+    if (strlen($selected_video[1]) > 0)
+    {
+        $selected_video = array($selected_video[1], $selected_video[2]);
+        $selected_time = isset($_GET['t']) ? $_GET['t'] : "00:00:00";
+?>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(() => setTimeout(() =>
+            {
+                scroll_to_anchor('video');
+
+                // TODO !!
+
+            }, 1000));
+        </script>
+<?php
+    }
+?>
     </body>
 </html>
