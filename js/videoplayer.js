@@ -62,6 +62,12 @@ $(document).ready(function()
         let vc_share = $('#vc-share');
         let vc_info = $('#vc-info');
 
+        let share_url = $('#share-url');
+        let share_time = $('#share-time');
+        let share_checkbox = $('#share-include-time');
+        let share_close = $('#share-close');
+
+
         if (is_mobile)
         {
             video_container.addClass('native');
@@ -204,6 +210,16 @@ $(document).ready(function()
         }
 
 
+        let update_share_url = () =>
+        {
+            let entry = video_ids[part_selector.val()];
+            var uri = `https://unknown6656.com/harrypotter?v=${entry[0]}${entry[1]}`;
+
+            if (share_checkbox[0].checked)
+                uri = `${uri}&t=${share_time.val()}`;
+
+            share_url.val(uri);
+        };
         let fn_focus_video = () =>
         {
             video_container.attr('tabindex', '0');
@@ -255,6 +271,10 @@ $(document).ready(function()
             vc_speed_txt.text(video_dom.playbackRate + 'x');
             vc_playpause.attr('data-state', paused ? 'play' : 'pause');
 
+            share_time.val(to_time(video_dom.currentTime));
+            share_time.attr('max', to_time(video_dom.duration));
+            update_share_url();
+
             if (video_dom.currentTime > 0)
                 vc_back15.enable();
             else
@@ -276,6 +296,7 @@ $(document).ready(function()
                 vc_fast.enable();
 
             vc_stop.enable();
+            share_close.click();
             video_container.removeClass('paused');
             video_container.removeClass('finished');
 
@@ -436,10 +457,8 @@ $(document).ready(function()
             if (!video_dom.paused)
                 video_dom.pause();
 
-            if (video_container.hasClass('share'))
-                video_container.removeClass('share');
-            else
-                video_container.addClass('share');
+            video_container.addClass('share');
+            vc_share.disable();
         });
         video_controls.on('click mousedown mouseup pointerdown pointerup dblclick', fn_focus_video);
         video_player.on('play pause ended loadedmetadata onratechange volumechange', fn_focus_video);
@@ -491,6 +510,23 @@ $(document).ready(function()
         // TODO: fix codec info button
         // TODO: fix touch click bug
 
+        share_time.bind('keyup change paste input blur', update_share_url);
+        share_checkbox.click(() =>
+        {
+            if (share_checkbox[0].checked)
+                share_time.enable();
+            else
+                share_time.disable();
+
+            update_share_url();
+        });
+        share_close.click(() =>
+        {
+            if (video_container.hasClass('share'))
+                video_container.removeClass('share');
+
+            vc_share.enable();
+        });
         video_section.find('details').click(fn_focus_video);
         video_controls.find('button,input').click(fn_focus_video);
         $(document).bind('fullscreenchange', e => fn_set_fullscreen(document.fullScreen || document.fullscreenElement));
