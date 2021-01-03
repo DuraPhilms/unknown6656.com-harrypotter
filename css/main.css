@@ -911,6 +911,8 @@ table#parts td.selected::after {
 #video-share {
     background-color: #00000090;
     justify-content: center;
+    align-content: center;
+    text-align: center;
     pointer-events: none;
     position: absolute;
     /* display: flex; */
@@ -930,18 +932,150 @@ table#parts td.selected::after {
 }
 
 #video-share .content {
+    text-align: left;
+    display: inline-block;
     color: white;
     padding: 50px;
     margin: auto;
 }
 
 #video-share .content input[type="text"] {
-    width: 450px;
+    width: 460px;
 }
 
+#video-share input {
+    border-radius: 5px;
+    border: 1px solid var(--color-fg);
+    background-color: #ffffff80;
+    color: var(--color-fg);
 
+    vertical-align: middle;
+    box-sizing: content-box;
+    display: inline-block;
+    height: 23px !important;
+    margin: 0px 2px 0px 0px;
+    padding: 3px 5px;
+    cursor: pointer;
 
+    transition: all 0.3s;
+}
 
+#video-share button {
+    border: 1px solid var(--color-fg);
+    border-radius: 5px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    height: 30px !important;
+    font-family: var(--font-main);
+    font-size: 1.15em;
+    padding: 3px 5px 3px 20px;
+    margin: 2px;
+    width: 110px;
+    cursor: pointer;
+
+    transition: all 0.3s;
+}
+
+#video-share button::before {
+    content: '';
+    background-size: 100%;
+    position: absolute;
+    display: block;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+}
+
+#video-share button#share-wa {
+    background-color: #7DCEA0;
+}
+
+#video-share button#share-tw {
+    background-color: #85C1E9;
+}
+
+#video-share button#share-fb {
+    background-color: #7FB3D5;
+}
+
+#video-share button#share-ms {
+    background-color: #C39BD3;
+}
+
+#video-share button#share-ig {
+    background-color: #F1948A;
+}
+
+#video-share button#share-th {
+    background-color: #82E0AA;
+}
+
+#video-share button#share-re {
+    background-color: #F0B27A;
+}
+
+#video-share button#share-em {
+    background-color: #B2BABB;
+}
+
+#video-share button#share-wa::before {
+    background-image: url('../images/videoplayer/share-wa.svg');
+}
+
+#video-share button#share-tw::before {
+    background-image: url('../images/videoplayer/share-tw.svg');
+}
+
+#video-share button#share-fb::before {
+    background-image: url('../images/videoplayer/share-fb.svg');
+}
+
+#video-share button#share-ms::before {
+    background-image: url('../images/videoplayer/share-ms.svg');
+}
+
+#video-share button#share-ig::before {
+    background-image: url('../images/videoplayer/share-ig.svg');
+}
+
+#video-share button#share-th::before {
+    background-image: url('../images/videoplayer/share-th.svg');
+}
+
+#video-share button#share-re::before {
+    background-image: url('../images/videoplayer/share-re.svg');
+}
+
+#video-share button#share-in::before {
+    background-image: url('../images/videoplayer/share-in.svg');
+}
+
+#video-share button#share-em::before {
+    background-image: url('../images/videoplayer/share-em.svg');
+}
+
+#share-close {
+    background-repeat: no-repeat;
+    background-image: url('../images/videoplayer/close.svg');
+    background-size: 100%;
+    position: absolute;
+    cursor: pointer;
+    filter: invert();
+    padding: 0px;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    right: 0px;
+    top: 0px;
+
+    transition: all 0.3s;
+}
+
+#share-close:hover {
+    filter: invert(.5);
+}
 
 #video-controls {
     --spacing: 4px;
@@ -1283,7 +1417,6 @@ table.keycuts {
 #gif-creator input,
 #gif-creator button,
 #gif-creator select,
-#video-share input,
 .navigation button,
 .navigation select {
     transition: all 0.3s;
