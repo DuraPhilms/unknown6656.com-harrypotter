@@ -232,7 +232,11 @@ next_movie_button.click(function()
         on_selector_changed(id + 1);
 });
 
-video_player.bind('timeupdate', () => gif_start.val(to_time(video_dom.currentTime)));
+video_player.bind('timeupdate', () =>
+{
+    gif_start.val(to_time(video_dom.currentTime));
+    gif_start.attr('max', to_time(video_dom.duration));
+});
 
 gif_create.click(function()
 {
