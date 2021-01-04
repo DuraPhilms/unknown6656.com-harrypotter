@@ -739,6 +739,14 @@ table#parts td.selected::after {
 }
 
 #video-container.native {
+    --video-control-size: 0px;
+}
+
+#video-container.native *:not(video) {
+    display: none;
+}
+
+#video-container.mobile {
     --video-control-size: 35px;
 }
 
@@ -939,8 +947,8 @@ table#parts td.selected::after {
     margin: auto;
 }
 
-#video-share .content input[type="text"] {
-    width: 460px;
+#video-share .content input#share-url {
+    width: 575px;
 }
 
 #video-share input {
@@ -949,6 +957,8 @@ table#parts td.selected::after {
     background-color: #ffffff80;
     color: var(--color-fg);
 
+    font-family: var(--font-main);
+    font-size: 1em;
     vertical-align: middle;
     box-sizing: content-box;
     display: inline-block;
@@ -968,6 +978,7 @@ table#parts td.selected::after {
     display: inline-block;
     position: relative;
     height: 30px !important;
+    background-color: white;
     font-family: var(--font-main);
     font-size: 1.15em;
     padding: 3px 5px 3px 20px;
@@ -989,14 +1000,17 @@ table#parts td.selected::after {
 }
 
 #video-share button#share-wa {
-    background-color: #7DCEA0;
+    background-color: #52BE80;
 }
 
-#video-share button#share-tw {
+#video-share button#share-tw,
+#video-share button#share-tg {
     background-color: #85C1E9;
 }
 
-#video-share button#share-fb {
+#video-share button#share-fb,
+#video-share button#share-vk,
+#video-share button#share-sk {
     background-color: #7FB3D5;
 }
 
@@ -1005,7 +1019,7 @@ table#parts td.selected::after {
 }
 
 #video-share button#share-ig {
-    background-color: #F1948A;
+    background-color: #FFAAFF;
 }
 
 #video-share button#share-th {
@@ -1014,6 +1028,22 @@ table#parts td.selected::after {
 
 #video-share button#share-re {
     background-color: #F0B27A;
+}
+
+#video-share button#share-in {
+    background-color: #5499C7;
+}
+
+#video-share button#share-tb {
+    background-color: #AEB6BF;
+}
+
+#video-share button#share-pi {
+    background-color: #D98880;
+}
+
+#video-share button#share-cp {
+    background-color: #D5DBDB;
 }
 
 #video-share button#share-em {
@@ -1052,8 +1082,40 @@ table#parts td.selected::after {
     background-image: url('../images/videoplayer/share-in.svg');
 }
 
+#video-share button#share-tb::before {
+    background-image: url('../images/videoplayer/share-tb.svg');
+}
+
+#video-share button#share-tg::before {
+    background-image: url('../images/videoplayer/share-tg.svg');
+}
+
+#video-share button#share-pi::before {
+    background-image: url('../images/videoplayer/share-pi.svg');
+}
+
+#video-share button#share-vk::before {
+    background-image: url('../images/videoplayer/share-vk.svg');
+}
+
+#video-share button#share-sk::before {
+    background-image: url('../images/videoplayer/share-sk.svg');
+}
+
+#video-share button#share-sms::before {
+    background-image: url('../images/videoplayer/share-sms.svg');
+}
+
+#video-share button#share-cp::before {
+    background-image: url('../images/videoplayer/share-cp.svg');
+}
+
 #video-share button#share-em::before {
     background-image: url('../images/videoplayer/share-em.svg');
+}
+
+#video-share button#share-native::before {
+    background-image: url('../images/videoplayer/share-native.svg');
 }
 
 #share-close {
@@ -1215,13 +1277,13 @@ table#parts td.selected::after {
     width: 100%;
 }
 
-#video-container:not(.native) #vc-volume {
+#video-container #vc-volume {
     clip-path: polygon(100% 0, 0 75%, 100% 75%);
     background-color: gray;
     height: 20px;
 }
 
-#video-container:not(.native) #vc-volume::before {
+#video-container #vc-volume::before {
     width: var(--percentage);
     background-color: white;
     display: block;
