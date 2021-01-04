@@ -42,7 +42,7 @@ $(document).ready(function()
             document.webkitFullscreenEnabled ||
             document.createElement('video').webkitRequestFullScreen
         ) &&
-        !is_iphone)
+        !custom_video_controls_unsupported)
     {
         const volume_cmd = { UP: 1, DOWN: 2, TOGGLE_MUTE: 3 };
 
@@ -82,7 +82,7 @@ $(document).ready(function()
         }
 
         video_controls.enable();
-        video_player.prop('controls', false);
+        video_player.removeAttr('controls');
         video_dom.playbackRate = 1;
 
 
