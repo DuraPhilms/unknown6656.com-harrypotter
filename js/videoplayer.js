@@ -28,6 +28,11 @@ let is_mobile = ua.indexOf('iPad') > -1
 
 $(document).ready(function()
 {
+    if (custom_video_controls_unsupported)
+        return;
+    else
+        video_container.removeClass('native');
+
     if ((document.createElement('progress').max !== undefined) &&
         !!document.createElement('video').canPlayType &&
         !!(document.fullscreenEnabled ||
@@ -36,7 +41,8 @@ $(document).ready(function()
             document.webkitSupportsFullscreen ||
             document.webkitFullscreenEnabled ||
             document.createElement('video').webkitRequestFullScreen
-        ))
+        ) &&
+        !is_iphone)
     {
         const volume_cmd = { UP: 1, DOWN: 2, TOGGLE_MUTE: 3 };
 
@@ -70,12 +76,12 @@ $(document).ready(function()
 
         if (is_mobile)
         {
-            video_container.addClass('native');
+            video_container.addClass('mobile');
             vc_vol_bar.parent().html('<input type="range" id="vc-volume" min="0" max="100" value="100" step="1"/>');
             vc_vol_bar = $('#vc-volume');
         }
 
-        // video_controls.enable();
+        video_controls.enable();
         video_player.prop('controls', false);
         video_dom.playbackRate = 1;
 
@@ -219,6 +225,9 @@ $(document).ready(function()
                 uri = `${uri}&t=${share_time.val()}`;
 
             share_url.val(uri);
+
+            if (video_container.hasClass('share'))
+                share_url.focus();
         };
         let fn_focus_video = () =>
         {
@@ -511,6 +520,7 @@ $(document).ready(function()
         // TODO: fix touch click bug
 
         share_time.bind('keyup change paste input blur', update_share_url);
+        share_url.focus(() => share_url.select());
         share_checkbox.click(() =>
         {
             if (share_checkbox[0].checked)
@@ -528,7 +538,30 @@ $(document).ready(function()
             vc_share.enable();
         });
         video_section.find('details').click(fn_focus_video);
-        video_controls.find('button,input').click(fn_focus_video);
+        video_controls.find('button,input:not(#share-url)').click(fn_focus_video);
+
+
+        let share_handler = (selector, cb) => $(selector).click(() => window.open(cb(share_url.val(), $('.video-title').first().text()), '_blank'));
+
+        // whatsapp://send/?text=
+        share_handler('#share-wa', (u, t) => `https://api.whatsapp.com/send?text=${encodeURI(`${t}\n${u}`)}`);
+        share_handler('#share-tw', (u, t) => `https://twitter.com/intent/tweet?url=${encodeURI(u)}&text=${encodeURI(t)}`);
+        share_handler('#share-fb', u => `https://www.facebook.com/sharer/sharer.php?u=${encodeURI(`${t}\n${u}`)}`);
+        share_handler('#share-ms', u => `${encodeURI(u)}`);
+        share_handler('#share-ig', u => `${encodeURI(u)}`);
+        share_handler('#share-th', u => `threema://compose?text=${encodeURI(`${t}\n${u}`)}`);
+        share_handler('#share-re', (u, t) => `https://reddit.com/submit?url=${encodeURI(u)}&title=${encodeURI(t)}`);
+        share_handler('#share-in', u => `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(u)}`);
+        share_handler('#share-tg', u => `https://telegram.me/share/url?url=${encodeURI(u)}&text=${encodeURI(t)}`);
+        share_handler('#share-tb', (u, t) => `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodeURI(u)}&title=${encodeURI(t)}&caption=${encodeURI(t)}`);
+        share_handler('#share-pi', u => `http://pinterest.com/pin/create/link/?url=${encodeURI(u)}`);
+        share_handler('#share-vk', u => `http://vk.com/share.php?url=${encodeURI(u)}&title=${encodeURI(t)}&comment=${encodeURI(t)}`);
+        share_handler('#share-sk', (u, t) => `https://web.skype.com/share?url=${encodeURI(u)}&text=${encodeURI(t)}`);
+        share_handler('#share-sms', (u, t) => `sms:?body=${encodeURI(`${t}\n${u}`)}`);
+        share_handler('#share-em', (u, t) => `mailto:?subject=${encodeURI(t)}&body=${encodeURI(u)}`);
+        $('#share-cp').click(() => navigator.clipboard.writeText(share_url.val()));
+        $('#share-native').click(() => navigator.share(share_url.val()));
+
         $(document).bind('fullscreenchange', e => fn_set_fullscreen(document.fullScreen || document.fullscreenElement));
         $(document).bind('webkitfullscreenchange', () => fn_set_fullscreen(!!document.webkitIsFullScreen));
         $(document).bind('mozfullscreenchange', () => fn_set_fullscreen(!!document.mozFullScreen));
