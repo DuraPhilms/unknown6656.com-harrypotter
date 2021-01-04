@@ -139,7 +139,7 @@ function on_selector_changed(id)
     video_player.attr('src', path);
     video_player_subtitle.attr('src', subtitle);
 
-    scroll_to_anchor('video');
+    scroll_to_video();
     on_video_updated(id);
 }
 
@@ -333,12 +333,27 @@ function to_time(total, short = false)
                  : `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}:${seconds}`;
 }
 
-function scroll_to_anchor(aid)
+function scroll_to_video()
 {
     let element = $('html');
-    let target = Math.floor($("a[name='"+ aid +"']").offset().top);
+    let target = Math.floor($("a[name='video']").offset().top - 75);
     let current = Math.floor(element.scrollTop());
 
     if (target != current)
         element.animate({ scrollTop: target }, 1000);
 }
+
+function start_video(id, time)
+{
+    part_selector.val(id);
+    part_selector.trigger('change');
+    video_dom.addEventListener('loadeddata', () =>
+    {
+        video_dom.currentTime = time;
+        video_dom.play();
+    }, {
+        once: true,
+        capture: false
+    });
+}
+
