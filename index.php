@@ -32,12 +32,18 @@
     {
         ?>
         <meta name="viewport" content="width=850, user-scalable=yes"/>
+        <script type="text/javascript" language="javascript">
+            const custom_video_controls_unsupported = true;
+        </script>
         <?php
     }
     else
     {
         ?>
         <meta name="viewport" content="width=900, user-scalable=yes"/>
+        <script type="text/javascript" language="javascript">
+            const custom_video_controls_unsupported = false;
+        </script>
         <?php
     }
 ?>
@@ -197,7 +203,7 @@
                 <!--///////////////////////////////////////////////// VIDEO SECTION /////////////////////////////////////////////////-->
                 <div id="video-section" class="default">
                     <a name="video"></a>
-                    <figure id="video-container">
+                    <figure id="video-container" class="native">
                         <video controls playsinline allowfullscreen autoPictureInPicture="true" preload="metadata" type="video/mp4" src="">
                             <track id="video-subtitle" type="text/vtt" src="" label="Deutsche Untertitel" srclang="de" default hidden/>
                         </video>
@@ -258,7 +264,7 @@
                             <div id="share-close">
                             </div>
                             <div class="content">
-                                <h2 style="font-size:1.8em"><span class="video-title"></span> teilen</h2>
+                                <h2 style="font-size:1.8em"><span class="video-title"></span></h2>
                                 <p>
                                     <input type="text" id="share-url" readonly/>
                                 </p>
@@ -274,13 +280,24 @@
                                         <td><button id="share-wa">WhatsApp</button></td>
                                         <td><button id="share-tw">Twitter</button></td>
                                         <td><button id="share-fb">Facebook</button></td>
-                                        <td><button id="share-ms">Messenger</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><button id="share-ig">Instagram</button></td>
+                                        <!-- <td><button id="share-ms">Messenger</button></td> -->
+                                        <!-- <td><button id="share-ig">Instagram</button></td> -->
                                         <td><button id="share-th">Threema</button></td>
                                         <td><button id="share-re">Reddit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button id="share-in">LinkedIn</button></td>
+                                        <td><button id="share-tb">Tumblr</button></td>
+                                        <td><button id="share-pi">Pinterest</button></td>
+                                        <td><button id="share-tg">Telegram</button></td>
+                                        <td><button id="share-vk">VK</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button id="share-sk">Skype</button></td>
+                                        <td><button id="share-sms">SMS</button></td>
                                         <td><button id="share-em">E-Mail</button></td>
+                                        <td><button id="share-cp">Kopieren</button></td>
+                                        <td><button id="share-native">Sonstige ...</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -678,18 +695,29 @@
     if (strlen($selected_video[1]) > 0)
     {
         $selected_video = array($selected_video[1], $selected_video[2]);
-        $selected_time = isset($_GET['t']) ? $_GET['t'] : "00:00:00";
+        $selected_index = -1;
+
+        foreach ($video_ids as $key => $values)
+            if ($values[0] == $selected_video[0] && $values[1] == $selected_video[1])
+            {
+                $selected_index = $key;
+
+                break;
+            }
+
+        if ($selected_index >= 0)
+        {
+            preg_match('/^(\d+):(\d+):(\d+)$/', isset($_GET['t']) ? $_GET['t'] : '00:00:00', $selected_time);
+
+            $hours = is_numeric($selected_time[1]) ? intval($selected_time[1]) : 0;
+            $minutes = is_numeric($selected_time[2]) ? intval($selected_time[2]) : 0;
+            $seconds = is_numeric($selected_time[3]) ? intval($selected_time[3]) : 0;
 ?>
         <script type="text/javascript" language="javascript">
-            $(document).ready(() => setTimeout(() =>
-            {
-                scroll_to_anchor('video');
-
-                // TODO !!
-
-            }, 1000));
+            $(document).ready(() => setTimeout(() => start_video(<?=$selected_index?>, <?=$hours * 3600 + $minutes * 60 + $seconds?>), 1000));
         </script>
 <?php
+        }
     }
 ?>
     </body>
