@@ -1,3 +1,3 @@
-<Files "hcaptcha.txt">
+<Files "hcaptcha-keys.txt">
   Require all denied
 </Files>

@@ -2,7 +2,7 @@
     //header('Access-Control-Allow-Methods: GET, POST');
     //header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
-    $hcaptcha_sitekey = trim(fgets(fopen("hcaptcha.txt", 'r')));
+    $hcaptcha_sitekey = trim(fgets(fopen(__DIR__.'/hcaptcha-keys.txt', 'r')));
     $videos = [
         "hpues" => ["HP und ein Stein", 1],
         "hpudgpk" => ["HP und der geheime PKeller", 1],

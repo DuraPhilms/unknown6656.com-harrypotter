@@ -13,7 +13,7 @@
         preg_match('/^\d+$/', $resolution) &&
         preg_match('/^\d+$/', $fps))
     {
-        $hcaptcha_secret = trim(file("hcaptcha.txt")[1]);
+        $hcaptcha_secret = trim(file("hcaptcha-keys.txt")[1]);
         $data = array(
             'secret' => $hcaptcha_secret,
             'response' => $_GET['h-captcha-response']
