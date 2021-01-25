@@ -1,0 +1,33 @@
+---
+# TODO : add video information
+hpues:
+    name: HP und ein Stein
+    parts:
+        '01': https://www.youtube.com/watch?v=uq2OGLUel0M
+    count: 1
+hpudgpk:
+    name: HP und der geheime PKeller
+    parts:
+        '01': https://www.youtube.com/watch?v=v0Ad220QFUc
+    count: 1
+hpudpp:
+    name: HP und der Plastikpokal
+    parts:
+        '01': https://www.youtube.com/watch?v=7XKUnzddLsA
+    count: 1
+hpudpva:
+    name: HP und der Penner von Alcatraz
+    parts:
+    count: 14
+hpudodp:
+    name: HP und der Orden des Penners
+    parts:
+    count: 14
+hpudfe:
+    name: HP und der Feuer-Elch
+    parts:
+    count: 1
+hpudhlp:
+    name: HP und der Half-Life-Prinz
+    parts:
+    count: 1
