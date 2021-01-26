@@ -1,33 +1,154 @@
 ---
-# TODO : add video information
 hpues:
     name: HP und ein Stein
-    parts:
-        '01': https://www.youtube.com/watch?v=uq2OGLUel0M
     count: 1
+    parts:
+        '01':
+            resolution: 1080p
+            youtube-ids:
+                - uq2OGLUel0M
+            # TODO : add video information (codec etc.)
 hpudgpk:
     name: HP und der geheime PKeller
-    parts:
-        '01': https://www.youtube.com/watch?v=v0Ad220QFUc
     count: 1
+    parts:
+        '01':
+            resolution: 1080p
+            youtube-ids:
+                - v0Ad220QFUc
 hpudpp:
     name: HP und der Plastikpokal
-    parts:
-        '01': https://www.youtube.com/watch?v=7XKUnzddLsA
     count: 1
+    parts:
+        '01':
+            resolution: 1080p
+            youtube-ids:
+                - 7XKUnzddLsA
 hpudpva:
     name: HP und der Penner von Alcatraz
-    parts:
     count: 14
+    parts:
+        '01':
+            resolution: 720p
+            youtube-ids:
+                - "8QPo_diqd8k"
+        '02':
+            resolution: 720p
+            youtube-ids:
+                - "-h-yviW_xVs"
+        '03':
+            resolution: 720p
+            youtube-ids:
+                - "2H8SCuHWjdw"
+        '04':
+            resolution: 720p
+            youtube-ids:
+                - "3GXJpjFtv4o"
+        '05':
+            resolution: 720p
+            youtube-ids:
+                - "xc_Xa7StPbQ"
+        '06':
+            resolution: 720p
+            youtube-ids:
+                - "rKM5iXdOxtE"
+        '07':
+            resolution: 720p
+            youtube-ids:
+                - "yq7WYOOd4sk"
+        '08':
+            resolution: 720p
+            youtube-ids:
+                - "Pd8EfJ0FQb0"
+        '09':
+            resolution: 720p
+            youtube-ids:
+                - "4gOStT5d_Nw"
+        '10':
+            resolution: 720p
+            youtube-ids:
+                - "IJB5G2ZgS40"
+        '11':
+            resolution: 720p
+            youtube-ids:
+                - "_Bb2YoEspY8"
+        '12':
+            resolution: 720p
+            youtube-ids:
+                - "8TEXBGAYuN0"
+        '13':
+            resolution: 720p
+            youtube-ids:
+                - "AB5k0rhiqbc"
+        '14':
+            resolution: 720p
+            youtube-ids:
+                - "9A7KsljQHSw"
 hpudodp:
     name: HP und der Orden des Penners
-    parts:
     count: 14
+    parts:
+        '01':
+            resolution: 720p
+            youtube-ids:
+                - "4arwkIcTHgs"
+        '02':
+            resolution: 720p
+            youtube-ids:
+                - "H0ieXXwfKHI"
+        '03':
+            resolution: 720p
+            youtube-ids:
+                - "R8aXedHeZYM"
+        '04':
+            resolution: 720p
+            youtube-ids:
+                - "biptKQHHF9c"
+                - "XZWaD4Kutd4"
+        '05':
+            resolution: 720p
+            youtube-ids:
+                - "b2AxDGo6LKQ"
+        '06':
+            resolution: 720p
+            youtube-ids:
+                - "UnLIzRpz6no"
+        '07':
+            resolution: 720p
+            youtube-ids:
+                - "Dd6G60HRaCI"
+        '08':
+            resolution: 720p
+            youtube-ids:
+                - "LuQmEIbjTFM"
+        '09':
+            resolution: 1080p
+            youtube-ids:
+                - "Mzmszrx_uco"
+        '10':
+            resolution: 1080p
+            youtube-ids:
+                - "IrDY1qGAJGw"
+        '11':
+            resolution: 1080p
+            youtube-ids:
+                - "FHhVIAqBV8U"
+                - "RoGa1VFI4cA"
+        '12':
+            resolution: 1080p
+            youtube-ids:
+                - "r90wHohn3_A"
+        '13':
+            resolution: 1080p
+            youtube-ids:
+                - "CNqeEqktQHo"
+        '14':
+            resolution: 1080p
 hpudfe:
     name: HP und der Feuer-Elch
-    parts:
     count: 1
+    parts:
 hpudhlp:
     name: HP und der Half-Life-Prinz
-    parts:
     count: 1
+    parts:

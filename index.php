@@ -21,7 +21,7 @@
                 "part" => $part,
                 "total" => $info["count"],
                 "name" => $info["name"],
-                "url" => $video_info["youtube-url"],
+                "yt-ids" => isset($video_info["youtube-ids"]) ? $video_info["youtube-ids"] : [],
                 "id" => count($video_ids) - 1,
             ]);
         }
@@ -69,7 +69,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
         <meta name="format-detection" content="telephone=no"/>
         <meta name="description" content="Harry Potter Synchronisation by DURAPHILMS"/>
-        <meta name="keywords" content="unknown6656, Harry, Potter, Synchro, Sync, Synchronisation, Duraphilms, Orden, Penner, Penners, Alcatraz, Half-Life, Prince, Prinz, Coldmirror, Plastik, Pokal, Stein, geheim, geheimer, Keller"/>
+        <meta name="keywords" content="unknown6656, Harry, Potter, Synchro, Sync, Synchronisation, Duraphilms, Orden, Penner, Penners, Alcatraz, Half-Life, Prince, Prinz, Coldmirror, Plastik, Pokal, Stein, geheim, geheimer, Keller, Phoenix, Phönix, Azkaban, Gefangener, gefangen, Dustin, DarthDustin, DarthDustinKanal, DarthDustinKanal2"/>
         <meta name="author" content="unknown6656"/>
         <meta property="article:author" content="unknown6656"/>
         <meta name="og:title" content="unknown6656 | Harry Potter Synchronisation by DURAPHILMS / COLDMIRROR"/>
@@ -694,7 +694,7 @@
                         part_num: <?=$values["part"]?>,
                         total: <?=$values["total"]?>,
                         name: "<?=$values["name"]?>",
-                        url: "<?=$values["url"]?>"
+                        yt_ids: ["<?=implode($values["yt-ids"], '", "')?>"]
                         // TODO : codec info etc.
                     },
 <?php
@@ -709,7 +709,7 @@
 <?php
     preg_match('/^([_a-zA-Z]+)(\d+)$/', isset($_GET['v']) ? $_GET['v'] : '', $selected_video);
 
-    if (strlen($selected_video[1]) > 0)
+    if (isset($selected_video[0]) && strlen($selected_video[1]) > 0)
     {
         $selected_video = array($selected_video[1], $selected_video[2]);
         $selected_index = -1;
