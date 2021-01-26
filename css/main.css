@@ -759,6 +759,8 @@ table#parts td.selected::after {
         -ms-user-select: none;
          -o-user-select: none;
             user-select: none;
+
+    color: white;
 }
 
 #video-container:focus {
@@ -888,7 +890,6 @@ table#parts td.selected::after {
     background-color: var(--color-bg);
     backdrop-filter: blur(20px);
     padding: 50px 20px 20px 20px;
-    color: white;
 }
 
 @supports not (backdrop-filter: blur(20px)) {
@@ -985,6 +986,7 @@ table#parts td.selected::after {
     margin: 2px;
     width: 110px;
     cursor: pointer;
+    color: var(--color-fg);
 
     transition: all 0.3s;
 }
