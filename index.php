@@ -1,22 +1,30 @@
-<?php header('Access-Control-Allow-Origin: *');
+<?php
+    include('yaml.php');
+    header('Access-Control-Allow-Origin: *');
     //header('Access-Control-Allow-Methods: GET, POST');
     //header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 
     $hcaptcha_sitekey = trim(fgets(fopen(__DIR__.'/hcaptcha-keys.txt', 'r')));
-    $videos = [
-        "hpues" => ["HP und ein Stein", 1],
-        "hpudgpk" => ["HP und der geheime PKeller", 1],
-        "hpudpp" => ["HP und der Plastikpokal", 1],
-        "hpudfe" => ["HP und der Feuer-Elch", 1],
-        "hpudpva" => ["HP und der Penner von Alcatraz", 14],
-        "hpudodp" => ["HP und der Orden des Penners", 14],
-        "hpudhlp" => ["HP und der Half-Life-Prinz", 1],
-    ];
+
+    $yaml = new Yaml();
+    $metadata = $yaml->load(__DIR__.'/metadata.yaml');
     $video_ids = array();
 
-    foreach ($videos as $key => $info)
-        for ($i = 1; $i <= $info[1]; ++$i)
-            array_push($video_ids, [$key, str_pad($i, 2, '0', STR_PAD_LEFT), $info[1], $info[0]]);
+    foreach ($metadata as $key => $info)
+        for ($i = 1; $i <= $info["count"]; ++$i)
+        {
+            $part = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $video_info = isset($info["parts"][$part]) ? $info["parts"][$part] : [];
+
+            array_push($video_ids, [
+                "key" => $key,
+                "part" => $part,
+                "total" => $info["count"],
+                "name" => $info["name"],
+                "url" => $video_info["youtube-url"],
+                "id" => count($video_ids) - 1,
+            ]);
+        }
 ?>
 <!DOCTYPE html>
 <html lang="de" prefix="og: http://ogp.me/ns#">
@@ -154,22 +162,22 @@
 <?php
     $last = "";
 
-    foreach ($video_ids as $key => $values)
+    foreach ($video_ids as $id => $values)
     {
-        if ($last != $values[0])
+        if ($last != $values["key"])
         {
             ?>
-                        <td class="descr"><?=$values[3]?>: &nbsp;</td>
+                        <td class="descr"><?=$values["name"]?>: &nbsp;</td>
             <?php
         }
 
         ?>
-                            <td --data-video-id="<?=$key?>" class="number"><span class="tooltip" text=""><?=$values[1]?></span></td>
+                            <td --data-video-id="<?=$id?>" class="number"><span class="tooltip" text=""><?=$values["part"]?></span></td>
         <?php
 
-        $last = $values[0];
+        $last = $values["key"];
 
-        if ($key + 1 < count($video_ids) && $last != $video_ids[$key + 1][0])
+        if ($id + 1 < count($video_ids) && $last != $video_ids[$id + 1]["key"])
         {
             ?>
                     </tr>
@@ -185,7 +193,7 @@
                             <td class="number"></td>
                         </tr>
                         <tr width="100%" class="legende">
-                            <td class="legende_desc">NOCH NICHT / NICHT MEHR ONLINE: &nbsp;</td>
+                            <td class="legende_desc">ZURZEIT OFFLINE / DEMNÄCHST<sup style="font-size: 0.5em">TM</sup> VERFÜGBAR: &nbsp;</td>
                             <td class="number offline" style="cursor: default !important;"></td>
                         </tr>
                         <!--
@@ -256,7 +264,7 @@
                             <table width="100%">
                                 <tr width="100%">
                                     <td class="video-title" width="50%" align="left"></td>
-                                    <td width="50%" align="right">unknown6656.com</td>
+                                    <td width="50%" align="right"><!--unknown6656.com--> </td>
                                 </tr>
                             </table>
                         </div>
@@ -474,34 +482,34 @@
 <?php
     $group = "";
 
-    foreach ($video_ids as $key => $values)
-        if ($values[2] < 2)
+    foreach ($video_ids as $id => $values)
+        if ($values["total"] < 2)
         {
             ?>
-                        <option value="<?=$key?>"><?=$values[3]?></option>
+                        <option value="<?=$id?>"><?=$values["name"]?></option>
             <?php
         }
         else
         {
-            if ($group != $values[0])
+            if ($group != $values["key"])
             {
                 ?>
-                        <optgroup label="<?=$values[3]?>">
+                        <optgroup label="<?=$values["name"]?>">
                 <?php
             }
 
             ?>
-                            <option value="<?=$key?>"><?=$values[0]?> Part <?=$values[1]?></option>
+                            <option value="<?=$id?>"><?=$values["key"]?> Part <?=$values["part"]?></option>
             <?php
 
-            if ($values[1] > $values[2] - 1)
+            if ($values["part"] > $values["total"] - 1)
             {
                 ?>
                         </optgroup>
                 <?php
             }
 
-            $group = $values[0];
+            $group = $values["key"];
         }
 ?>
                     </select>
@@ -676,10 +684,19 @@
         <script type="text/javascript" language="javascript">
             let video_ids = [
 <?php
-    foreach ($video_ids as $key => $values)
+    foreach ($video_ids as $id => $values)
     {
 ?>
-                    ["<?=$values[0]?>", "<?=$values[1]?>", <?=$values[1]?>, <?=$values[2]?>, "<?=$values[3]?>"],
+                    {
+                        id: <?=$id?>,
+                        key: "<?=$values["key"]?>",
+                        part: "<?=$values["part"]?>",
+                        part_num: <?=$values["part"]?>,
+                        total: <?=$values["total"]?>,
+                        name: "<?=$values["name"]?>",
+                        url: "<?=$values["url"]?>"
+                        // TODO : codec info etc.
+                    },
 <?php
     }
 ?>
@@ -697,10 +714,10 @@
         $selected_video = array($selected_video[1], $selected_video[2]);
         $selected_index = -1;
 
-        foreach ($video_ids as $key => $values)
-            if ($values[0] == $selected_video[0] && $values[1] == $selected_video[1])
+        foreach ($video_ids as $id => $values)
+            if ($values["key"] == $selected_video[0] && $values["part"] == $selected_video[1])
             {
-                $selected_index = $key;
+                $selected_index = $id;
 
                 break;
             }
