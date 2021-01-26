@@ -219,7 +219,7 @@ $(document).ready(function()
         let update_share_url = () =>
         {
             let entry = video_ids[part_selector.val()];
-            var uri = `https://unknown6656.com/harrypotter?v=${entry[0]}${entry[1]}`;
+            var uri = `https://unknown6656.com/harrypotter?v=${entry.key}${entry.part}`;
 
             if (share_checkbox[0].checked)
                 uri = `${uri}&t=${share_time.val()}`;

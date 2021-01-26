@@ -41,31 +41,29 @@ jQuery.fn.extend({
 for (var i = 0; i < video_ids.length; ++i)
 {
     let element = video_ids[i];
-    let key = element[0];
-    let part = element[1];
     let table_id = `td[--data-video-id="${i}"]`;
 
     ping_uri(
-        `videos/${key}/${part}.mp4`,
+        `videos/${element.key}/${element.part}.mp4`,
         function()
         {
             $(table_id).addClass('online');
-            $(table_id + ' span.tooltip').attr('text', `${element[4]}\nPart ${part} ist online!`);
+            $(table_id + ' span.tooltip').attr('text', `${element.name}\nPart ${element.part} ist online!`);
         },
         function()
         {
             $(table_id).addClass('offline');
-            $(table_id + ' span.tooltip').attr('text', `${element[4]}\nPart ${part} ist leider (noch) nicht online.`);
+            $(table_id + ' span.tooltip').attr('text', `${element.name}\nPart ${element.part} ist leider (noch) nicht online.`);
         }
     );
 }
 
 
-let get_video_url = id => `videos/${video_ids[id][0]}/${video_ids[id][1]}.mp4`;
+let get_video_url = id => `videos/${video_ids[id].key}/${video_ids[id].part}.mp4`;
 
-let get_subtitle_url = id => `subtitles/${video_ids[id][0]}/${video_ids[id][1]}.vtt`;
+let get_subtitle_url = id => `subtitles/${video_ids[id].key}/${video_ids[id].part}.vtt`;
 
-let get_thumbnail_url = id => `thumbs/${video_ids[id][0]}/${video_ids[id][1]}.jpg`;
+let get_thumbnail_url = id => `thumbs/${video_ids[id].key}/${video_ids[id].part}.jpg`;
 
 function ping_uri(uri, success, failure)
 {
@@ -111,24 +109,24 @@ function on_selector_changed(id)
     let subtitle = get_subtitle_url(id);
     let thumbnail = get_thumbnail_url(id);
     let entry = video_ids[id];
-    let friendly = entry[4] + (entry[2] > 1 ? ' (Part ' + entry[2] + ')' : '');
+    let friendly = entry.name + (entry.part_num > 1 ? ` (Part ${entry.part})` : '');
 
-    if (entry[2] > 1)
+    if (entry.part_num > 1)
         prev_part_button.enable();
     else
         prev_part_button.disable();
 
-    if (entry[2] < entry[3] - 1)
+    if (entry.part_num < entry.total - 1)
         next_part_button.enable();
     else
         next_part_button.disable();
 
-    if (id - video_ids[id][2] >= 0)
+    if (id - video_ids[id].part_num >= 0)
         prev_movie_button.enable();
     else
         prev_movie_button.disable();
 
-    if (id - video_ids[id][2] + video_ids[id][3] < video_ids.length - 1)
+    if (id - video_ids[id].part_num + video_ids[id].total < video_ids.length - 1)
         next_movie_button.enable();
     else
         next_movie_button.disable();
@@ -158,15 +156,15 @@ function on_video_updated(id)
 
             let entry = video_ids[id];
 
-            $('#part-count').text(entry[3]);
-            download_all.css('display', entry[3] > 1 ? 'inline' : 'none');
+            $('#part-count').text(entry.total);
+            download_all.css('display', entry.total > 1 ? 'inline' : 'none');
             download_all.attr('href', uri.replace(/\d+\.mp4$/ig, "all.zip"));
             download_single.attr('href', uri);
             gif_start.enable();
             gif_duration.enable();
             gif_resolution.enable();
             gif_create.enable();
-            info_id.text(`${entry[0]}${entry[1]} (${id})`);
+            info_id.text(`${entry.key}${entry.part} (${id})`);
             info_uri.attr('href', uri);
             info_uri.html(uri);
             info_codec.text('???');
@@ -213,10 +211,10 @@ prev_movie_button.click(function()
 {
     let id = parseInt(part_selector.val());
 
-    id -= video_ids[id][2];
+    id -= video_ids[id].part_num;
 
-    if (id >= 0 && video_ids[id][2] > 1)
-        id -= video_ids[id][2] - 1;
+    if (id >= 0 && video_ids[id].part_num > 1)
+        id -= video_ids[id].part_num - 1;
 
     if (id >= 0)
         on_selector_changed(id);
@@ -226,7 +224,7 @@ next_movie_button.click(function()
 {
     let id = parseInt(part_selector.val());
 
-    id += video_ids[id][3] - video_ids[id][2];
+    id += video_ids[id].total - video_ids[id].part_num;
 
     if (id < video_ids.length - 1)
         on_selector_changed(id + 1);
@@ -251,7 +249,7 @@ gif_create.click(function()
         let length = $('[name="gif-length"]').val();
         let resolution = $('[name="gif-resolution"]').val();
         let base_url = document.URL.substr(0, document.URL.lastIndexOf('/'));
-        let url = `${base_url}/gifmaker.php?h-captcha-response=${captcha_response}&start=${start}&length=${length}&baseid=${entry[0]}&part=${entry[1]}&resolution=${resolution}`;
+        let url = `${base_url}/gifmaker.php?h-captcha-response=${captcha_response}&start=${start}&length=${length}&baseid=${entry.key}&part=${entry.part}&resolution=${resolution}`;
 
         gif_start.disable();
         gif_duration.disable();
