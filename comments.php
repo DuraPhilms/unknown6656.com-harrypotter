@@ -2,16 +2,15 @@
     include('yaml.php');
     header('Content-Type: application/json');
 
+    const COMMENTS_DIR = __DIR__.'/comments';
+    const UPDATE_INTERVAL_SECONDS = 2700; // 45min
+    const MAX_COMMENT_COUNT = 4000;
+    const MAX_WRITE_ATTEMPTS = 10;
+
+
     $yaml = new Yaml();
     $metadata = $yaml->load(__DIR__.'/metadata.yaml');
     $api_key = trim(fgets(fopen(__DIR__.'/youtube-api-keys.txt', 'r')));
-
-
-    const API_KEY_FILE = '';
-    const COMMENTS_DIR = __DIR__.'/comments';
-    const UPDATE_INTERVAL_SECONDS = 1800;
-    const MAX_COMMENT_COUNT = 4000;
-    const MAX_WRITE_ATTEMPTS = 10;
 
     if (!file_exists(COMMENTS_DIR))
         mkdir(COMMENTS_DIR, 0777, true);
@@ -24,7 +23,7 @@
         $part = substr(str_pad($part, 2, "0", STR_PAD_LEFT), -2);
 
         if (!isset($metadata[$key]["parts"][$part]["youtube-ids"]))
-            http_response_code(401);
+            http_response_code(400);
         else
         {
             http_response_code(200);
@@ -32,7 +31,7 @@
         }
     }
     else
-        http_response_code(400);
+        http_response_code(401);
 
     /*
     for each comment:
@@ -163,6 +162,7 @@
             }
 
             $existing["created"] = $now;
+            $existing["comment_count"] = count($ex_comments);
             $existing["comments"] = $ex_comments;
             $json = json_encode($existing, JSON_PRETTY_PRINT);
 
