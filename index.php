@@ -528,7 +528,7 @@
                 <br/>
                 <div id="gif-creator">
                     <br/>
-                    <b>GIF erstellen ⟨beta⟩</b>
+                    <h2>GIF erstellen ⟨beta⟩</h2>
                     <table style="margin-left: 40px">
                         <tr>
                             <td>Start-Zeitstempel:</td>
@@ -566,6 +566,11 @@
                         <br/>
                         <a href download>GIF speichern</a>
                     </div>
+                </div>
+                <br/>
+                <br/>
+                <div id="yt-comments">
+                    <h2>YouTube Kommentare zu diesem Video</h2>
                 </div>
                 <br/>
                 <hr/>
