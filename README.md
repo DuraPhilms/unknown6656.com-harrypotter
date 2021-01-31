@@ -24,7 +24,7 @@ Response:
 Response Content-Type: `application/json`
 
 Es kann eine Weile dauern, bis alle comments gefetched wurden --> am besten async aufrufen.
-Wurde die Seite vor länger als 30min nicht aufgerufen, dann werden die comments neu gefetched.
+Wurde die Seite vor länger als 45min nicht aufgerufen, dann werden die comments neu gefetched.
 
 Return Format:
 ```json
