@@ -368,10 +368,6 @@ body > div.background .clouds {
     width: 720px;
 }
 
-b {
-    font-size: 20px;
-}
-
 hr {
     border-width: 1.5px 0px 0px 0px;
     border-color: var(--color-fg);
